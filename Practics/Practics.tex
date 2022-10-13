@@ -1,0 +1,470 @@
+\documentclass[a5paper, 11pt]{article}
+
+% Текст
+\usepackage[utf8]{inputenc} % UTF-8 кодировка
+\usepackage[russian]{babel} % Русский язык
+\usepackage{indentfirst} % красная строка в первом параграфе в главе
+% Отображение страниц
+\usepackage{geometry} % размеры листа и отступов
+\geometry{
+	left=12mm,
+	top=25mm,
+	right=15mm,
+	bottom=17mm,
+	marginparsep=0mm,
+	marginparwidth=0mm,
+	headheight=10mm,
+	headsep=7mm,
+	nofoot}
+\usepackage{afterpage,fancyhdr} % настройка колонтитулов
+\pagestyle{fancy}
+\fancypagestyle{style}{ % создание нового стиля style
+	\fancyhf{} % очистка колонтитулов
+	\fancyhead[LO, RE]{Дифференциальные уравнения} % название документа наверху
+	\fancyhead[RO, LE]{\leftmark} % название section наверху
+	\fancyfoot[RO, LE]{\thepage} % номер страницы справа внизу на нечетных и слева внизу на четных
+	\renewcommand{\headrulewidth}{0.25pt} % толщина линии сверху
+	\renewcommand{\footrulewidth}{0pt} % толцина линии снизу
+}
+\fancypagestyle{plain}{ % создание нового стиля plain -- полностью пустого
+	\fancyhf{}
+	\renewcommand{\headrulewidth}{0pt}
+}
+\fancypagestyle{title}{ % создание нового стиля title -- для титульной страницы
+	\fancyhf{}
+	\fancyhead[C]{{\footnotesize
+			Министерство образования и науки Российской Федерации\\
+			Федеральное государственное автономное образовательное учреждение высшего образования
+	}}
+	\fancyfoot[C]{{\large 
+			Санкт-Петербург, 2022-2023
+	}}
+	\renewcommand{\headrulewidth}{0pt}
+}
+
+% Математика
+\usepackage{amsmath, amsfonts, amssymb, amsthm} % Набор пакетов для математических текстов
+\usepackage{dmvnbase} % мехматовский пакет latex-сокращений
+\usepackage{cancel} % зачеркивание для сокращений
+% Рисунки и фигуры
+\usepackage[pdftex]{graphicx} % вставка рисунков
+\usepackage{wrapfig, subfigure} % вставка фигур, обтекая текст
+\usepackage{caption} % для настройки подписей
+\captionsetup{figurewithin=none,labelsep=period, font={small,it}} % настройка подписей к рисункам
+% Рисование
+\usepackage{tikz} % рисование
+\usepackage{pgfplots} % графики
+% Таблицы
+\usepackage{multirow} % объединение строк
+\usepackage{multicol} % объединение столбцов
+% Остальное
+\usepackage[unicode, pdftex]{hyperref} % гиперссылки
+\usepackage{enumitem} % нормальное оформление списков
+\setlist{itemsep=0.15cm,topsep=0.15cm,parsep=1pt} % настройки списков
+% Теоремы, леммы, определения...
+\theoremstyle{definition}
+\newtheorem{Def}{Определение}
+\newtheorem*{Axiom}{Аксиома}
+\theoremstyle{plain}
+\newtheorem{Th}{Теорема}
+\newtheorem{Lem}{Лемма}
+\newtheorem{Cor}{Следствие}
+\newtheorem*{Prop}{Предложение}
+\newtheorem{Ex}{Пример}
+\theoremstyle{remark}
+\newtheorem*{Note}{Замечание}
+\newtheorem*{Solution}{Решение}
+\newtheorem*{Proof}{Доказательство}
+% Свои команды
+\newcommand{\comb}[1]{\left[\hspace{-4pt}\begin{array}{l}#1\end{array}\right.\hspace{-5pt} } % совокупность уравнений
+% Титульный лист
+\newcommand*{\titlePage}{
+	\thispagestyle{title}
+	\begingroup
+	\begin{center}
+		%		{\footnotesize
+			%			Министерство образования и науки Российской Федерации\\
+			%			Федеральное государственное автономное образовательное учреждение высшего образования
+			%		}
+		%		
+		\vspace*{6ex}
+		
+		{\small
+			САНКТ-ПЕТЕРБУРГСКИЙ НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ, МЕХАНИКИ И ОПТИКИ	
+		}
+		
+		\vspace*{2ex}
+		
+		{\normalsize
+			Факультет систем управления и робототехники
+		}
+		
+		\vspace*{15ex}
+		
+		{\Large \bfseries 
+			Дифференциальные уравнения
+		}
+	\end{center}
+	\vspace*{20ex}
+	\begin{flushright}
+		{\large 
+			\underline{Выполнил}: студент гр. \textbf{R32353}\\
+			\begin{flushright}
+				\textbf{Магазенков Е. Н.}\\
+			\end{flushright}
+		}
+		
+		\vspace*{5ex}
+		
+		{\large 
+			\underline{Преподаватель}: \textit{Бабушкин М. В.}
+		}
+	\end{flushright}	
+	\newpage
+	\setcounter{page}{1}
+	\endgroup}
+
+
+
+\begin{document}
+	\titlePage
+	\pagestyle{style}	
+	\section[23.10.2022]{Линейные уравнения 1-ого порядка (23.10)}
+	\begin{Ex}
+		\[
+		y' = y+x.
+		\]
+	\begin{Solution}
+		Решим однородное уравнение
+		\[
+		y' = y.
+		\]
+		\[
+		y = C\cdot e^x
+		\]
+		 Пусть $C$ -- функция, подставим решение в исходное уравнение
+		 \[
+		 C'(x) \cdot e^x + \cancel{C(x) \cdot e^x} = \cancel{C(x) \cdot e^x} + x
+		 \]
+		 \[
+		 C'(x) = \frac{x}{e^x}
+		 \]
+		 \[
+		 C(x) = \int x{e^{-x}} dx
+		 \]
+		 \[
+		 u = x \implies u'=1, v' = e^{-x} \implies v = -e^{-x}
+		 \]
+		 \[
+		 C(x) = -xe^{-x} - e^{-x} + c = -e^{-x}(x+1) + c
+		 \]
+		 So 
+		 \[
+		 y = (-e^{-x}(x+1) + c)e^x
+		 \]
+		 \[
+		 y = -(x+1) + ce^x
+		 \]
+	\end{Solution}
+	\end{Ex}
+	
+	\begin{Ex}
+		\[
+		y'+2y=y^2e^x
+		\]
+		\begin{Solution}
+			Разделим на $y^2$
+			\[
+			\frac{y'}{y^2}  = -\frac{2}{y} + e^x
+			\]
+			Выполним замену $z = \frac{1}{y}$, тогда $z' = -\frac{y'}{y^2}$
+			Тогда, подставляя в исходное уравнение, получаем
+			\[
+			z' = 2z  - e^x
+			\]
+			Решением данного линейного уравнения является функция 
+			\[
+			z = (e^{-x} + c) \cdot e^{2x}
+			\]
+			Тогда, возвращаясь к исходной переменной
+			\[
+			y = \frac{e^{-2x}}{e^{-x} + c}
+			\]
+		\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+		\[
+		y' = y^2 -2e^xy+e^{2x}+e^x
+		\]
+		\begin{Solution}
+			Уравнение имеет вид уравнения Рикатти.
+			
+			Очевидно, что $y=-e^x$ -- одно из решений. Тогда сделаем замену $z = y - e^x$.
+			\[
+			z' + e^x = (z+e^x)^2 - 2e^x(z+e^x) + e^{2x}+e^x,
+			\]
+			\[
+			z' + e^x = z^2 + 2e^x z + e^{2x}- 2e^x z - 2e^{2x} + e^{2x}+e^x, 
+			\]
+			\[
+			z' = z^2,
+			\]
+			\[
+			-\frac1z = x + c,
+			\]
+			\[
+			z = \frac{-1}{x+c}.
+			\]
+			Тогда, возвращаясь к исходным переменным, получаем $y=e^x - \frac{1}{x+c}$.
+		\end{Solution}
+	\end{Ex}
+
+	\section[30.09.2022]{Уравнения в полных дифференциалах}
+	\begin{Ex}
+		\[
+		(2-9xy^2)xdx + (4y^2-6x^3)ydy = 0.
+		\]
+		\begin{Solution}
+			Рассмотрим производные коэффициентов
+			\[
+			(2-9xy^2)x_y' = -18x^2y,
+			\]
+			\[
+			(4y^2-6x^3)y_x' = -18x^2y.
+			\]
+			Так как они совпадают, то по признаку это уравнение является уравнением в полных дифференциалах.
+			
+			Рассмотрим потенциал в какой-то точке с фиксированной ординатой $y_0$:
+			\[
+			u_x'(x,y_0) = 2x-9x^2y_0^2 \implies u(x, y_0) = x^2-3 x^3 y_0^2 +c(y_0) .
+			\]
+			Подставляя в уравнение $u_y' = (4y^2-6x^3)y$, получаем
+			\[
+			\hr{x^2-3 x^3 y^2 + c(y_0)}_y' = (4y^2-6x^3)y,
+			\]
+			\[
+			-6x^3y + c'(y) = (4y^2-6x^3)y,
+			\]
+			\[
+			c'(y) = 4y^3,
+			\]
+			\[
+			c(y) = y^4+c.
+			\]
+			Таким образом, получаем функцию $u=x^2-3 x^3 y_0^2 + y^4+c$. Тогда уравнение $x^2-3 x^3 y^2 + y^4 = c$ неявно задает решение нашего уравнения.
+		\end{Solution}
+	\end{Ex}
+	
+	\begin{Note}[Свойства дифференциала]			
+		\hspace{0pt}
+		\begin{enumerate}
+			\item $
+			d(\alpha u+\beta v) = \alpha du _ \beta dv,
+			$
+			\item $
+			du = d_x u + d_y u,
+			$
+			\item $
+			d_x u = d_x \hr{u+\varphi(y)},
+			$
+			\item $
+			\varphi(x,y)dx = d_x \hr{\int\varphi(x,y)dx}.
+			$
+		\end{enumerate}
+	\end{Note}
+	\begin{Note}
+		Можно решать УПД, используя свойства дифференциала. Рассмотрим пример из лекции и попробуем решить его, упращая выражение по свойствам.
+	\end{Note}
+	\begin{Ex}
+		\[
+		e^{-y}dx - \hr{xe^{-y} + 2y} dy = 0.
+		\]
+		\begin{Solution}
+		Раскроем скобки
+		\[
+		e^{-y}dx - xe^{-y} dy - 2y dy = 0.
+		\]
+		Пользуясь четвертым свойством, перейдем к 
+		\[
+		d_x(xe^{-y}) + d_y(xe^{-y}) - dy^2 = 0.
+		\]
+		Используя второе свойство, получим
+		\[
+		d(xe^{-y})-dy^2 = 0.
+		\]
+		По первому свойству
+		\[
+		d(xe^{-y}-y^2) = 0.
+		\]
+		Тогда общее решение будем неявно задаваться уравнением 
+		\[
+		xe^{-y}-y^2 = c.
+		\]
+	\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+		\[
+		2xydx+(x^2-y^2)dy=0.
+		\]
+		\begin{Solution}
+			\[
+			2xydx+x^2dy-y^2dy=0,
+			\]
+			\[
+			d_x\hr{x^2y} + d_y\hr{x^2y} - \frac13 dy^3 = 0,
+			\]
+			\[
+			d\hr{x^2y-\frac13 y^3} = 0.
+			\]
+			Тогда $x^2y-\frac13 y^3 = c$ неявно задает решение.
+		\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+		\[
+			\hr{\frac{x}{\sqrt{x^2-y^2}}-1}dx - \frac{ydy}{\sqrt{x^2-y^2}} = 0.
+		\]
+		\begin{Solution}
+		\[
+			\frac{x}{\sqrt{x^2-y^2}}dx-dx - \frac{ydy}{\sqrt{x^2-y^2}} = 0,
+		\]
+		\[
+		d_x\hr{\sqrt{x^2-y^2}} - dx + d_y\hr{\sqrt{x^2-y^2}} = 0, 
+		\]
+		\[
+		d \sqrt{x^2-y^2} - dx = 0,
+		\]
+		\[
+		d\hr{\sqrt{x^2-y^2}-x} = 0.
+		\]
+		Тогда $\sqrt{x^2-y^2}-x = c$ неявно задает решение.
+		\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+		Найти интегральный множитель
+		\[
+		\hr{1-x^2y}dx + x^2(y-x)dy = 0.
+		\]
+		\begin{Solution}
+			Запишем уравнение для нахождения интегрирующего множителя
+			\[
+			\mu_y' 	\hr{1-x^2y} - \mu x^2 = \mu_x'x^2(y-x)  + \mu \hr{2xy-3x^2}.
+			\]
+			Будем искать частное решение в виде $\mu = \mu(x)$.
+			\[
+			\mu_x'x^2(x-y) = 2\mu \hr{xy-x^2},
+			\]
+			\[
+			\mu_x' x = -2 \mu,
+			\]
+			\[
+			\mu = -\frac1{x^2}.
+			\]
+		\end{Solution}
+	\end{Ex}
+	
+	\section[07.10.2022]{Метод введения параметра}
+	\begin{Ex}
+		\[
+		y=\hr{y'}^2e^{y'}.
+		\]
+		\begin{Solution}
+			Введем параметризацию
+			\[
+			\begin{cases}
+				y'=v,\\
+				y = v^2 e^v.
+			\end{cases}
+			\]
+			Подставим в основное соотношение $dy = y_x' dx$
+			\[
+			(2ve^v + v^2 e^v)dv = v dx,
+			\]
+			\[
+			(2+v)e^vdv = dx,
+			\]
+			\[
+			x = e^v + ve^v + c.
+			\]
+			Таким образом, ответом является $\begin{cases}
+				x = e^v + ve^v + c,\\
+				y = v^2 e^v.
+			\end{cases}$
+		\end{Solution}
+	\end{Ex}
+
+	\begin{Ex}
+		\[
+		x^3 - (y')^3 = xy'.
+		\]
+		\begin{Solution}
+			\begin{Note}
+				Если кривая имеет уравнения вида $P(x,y) + Q(x,y) = 0$, где $P,Q$ -- однородные функции разной степени, то положив $y=xt$, получаем $x^{\alpha} P(1,t) + x^\beta Q(1,t) = 0$, откуда можно выразить $x$.
+			\end{Note}
+			Используя предложенное в замечании, введем параметризацию $y' = xt$.
+			\[
+			x^3 - (xt)^3 = x \cdot xt,
+			\]
+			\[
+			x = \frac{t}{1-t^3},
+			\]
+			\[
+			y'= \frac{t^2}{1-t^3}.
+			\]
+			Отсюда, используя основное соотношение $dy = y_x' dx$, получаем
+			\[
+			dy = \frac{t^2}{1-t^3} \frac{1-t^3 + 3t^3}{(1-t^3)^2}dt,
+			\]
+			\[
+			dy = \frac{t^2(1+2t^3)}{(1-t^3)^3}dt,
+			\]
+			\[
+			\begin{split}
+				u = 1+2t^3 &\implies u' = 6t^2\\
+				v' = \frac{t^2}{(1-t^3)^3} &\implies v = \frac{1}{6(1-t^3)^2}
+ 			\end{split}
+			\]
+			\[
+			y = \frac{1+2t^3}{6(1-t^3)^2} - \frac{1}{3(1-t^3)} + c,
+			\]
+			\[
+			y= \frac{4t^3-1}{6(1-t^3)^2}+c.
+			\]
+		\end{Solution}
+	\end{Ex}
+	
+	\begin{Ex}
+		\[
+		y=2xy'-(y')^2.
+		\]
+		\begin{Solution}
+			Введем параметризацию 
+			\[
+			\begin{cases}
+				x = u,\\
+				y'=v,\\
+				y=2uv-v^2.			
+			\end{cases}
+			\]
+			Отсюда, используя основное соотношение $dy = y_x' dx$, получаем
+			\[
+				2vdu + 2udv - 2vdv = v du,
+			\]
+			\[
+				vdu = 2(v-u)dv,
+			\]
+			\[
+				u' = 2-\frac{2u}{v},
+			\]
+			\[
+				u= \hr{\frac{2v^3}{3} + c}v^{-2},
+			\]
+			Тогда решением является
+			\[
+				\begin{cases}
+				x=\hr{\frac{2v^3}{3} + c}v^{-2},\\
+				y = 2\hr{\frac{2v^3}{3} + c}v^{-1} - v^2.
+				\end{cases}
+			\]
+		\end{Solution}
+	\end{Ex}
+	\end{document}
