@@ -734,6 +734,364 @@
 	\begin{Def}
 		Решение $\varphi$ уравнения $F(x, y,y') = 0$ на $\ha{a,b}$ называется особым, если для любой точки $x_0 \in \ha{a,b}$ найдется решение $\psi$ такое, что 
 	\end{Def}
+	
+	
+	\part{Системы дифференциальных уравнений}
+	\section{}	
+	
+	\section{Вспомогательные }
+	\begin{Def}
+		Под нормой вектора $x=\hr{x_1, \dots, x_n} \in \R^n$ будем понимать $|x| = \max\limits_{i=1,\dots,n}|x_i|$.
+	\end{Def}
+	\begin{Def}
+		Нормой матрицы $A = \begin{Vmatrix}
+			a_{ij}
+		\end{Vmatrix}_{\substack{i=1,\dots,m\\j=1,\dots,n}} \in Mat_{m\times n}(\R)$ будем называть $|A| = \max\limits_{\substack{i=1,\dots,m\\j=1,\dots,n}} |a_{ij}|$.
+	\end{Def}
+	\begin{Lem}
+		Пусть $f \in C(\hs{a,b})$. Тогда 
+		\[
+		\hm{\int\limits_a^b f(t) dt} \leqslant \int\limits_a^b \hm{f(t)} dt.
+		\]
+		\begin{Proof}
+			\[
+			\begin{split}
+				\hm{\int\limits_a^b f(t) dt} &= \max\limits_{i=1,\dots,n}\hm{\int\limits_a^b f_i(t) dt} \leqslant \max\limits_{i=1,\dots,n}\int\limits_a^b \hm{f_i(t)} dt \leqslant \\
+				&\leqslant \max\limits_{i=1,\dots,n}\int\limits_a^b \hm{f(t)} dt = \int\limits_a^b \hm{f(t)} dt.
+			\end{split}
+			\]
+		\end{Proof}
+	\end{Lem}
+	\begin{Lem}
+		Пусть $A \in Mat_{m\times n}(\R)$ и $B \in Mat_{n\times k}(\R)$. Тогда $\hm{A\cdot B} \leqslant n \cdot \hm{A} \cdot \hm{B}$.
+		\begin{Proof}
+			Вспомним, как вводилось определение произведения матриц: $\hs{A\cdot B}_{i,j} = \sum\limits_{l=1}^n \hs{A}_{i,l} \cdot \hs{B}_{l,j}$. Тогда перейдем к нормам
+			\[
+			\begin{split}
+				\hm{\hs{A\cdot B}_{i,j}} = \hm{\sum\limits_{l=1}^n \hs{A}_{i,l} \cdot \hs{B}_{l,j}} \leqslant \sum\limits_{l=1}^n \hm{\hs{A}_{i,l}} \cdot \hm{\hs{B}_{l,j}} \leqslant \sum\limits_{l=1}^n \hm{A} \cdot \hm{B} = n \cdot \hm{A}\cdot\hm{B}.
+			\end{split}
+			\]
+		\end{Proof}
+	\end{Lem}
+	\begin{Def}
+		Функция $f: D \to \R^n$ удовлетворяет условию Липшица на множестве $D$, если $\exists L: \quad \forall r_1, r_2 \in D \implies |f(x_2) - f(x_1)| \leqslant L |r_2-r_1|$. И пишут $f\in Lip(D)$.
+	\end{Def}
+	\begin{Ex}
+		Рассмотрим функцию $f(x) = \sqrt{x}$ на отрезке $D=\hs{\frac12, 1}$.
+		\[
+		\begin{split}
+			\hm{f(r_2) - f(r_1)} = \hm{f'(\xi)} \hm{r_2-r_1} \leqslant \underbrace{\hm{\max\limits_{\hs{\frac12,1}}f'(\xi)}}_{L} \hm{r_2-r_1}.
+		\end{split}
+		\]
+		Таким образом, функция $f(x) = \sqrt{x}$ удовлетворяет условию Липшица на отрезке $D=\hs{\frac12,1}$.
+	\end{Ex}
+	\begin{Prop}
+		Этот пример наводит на идею того, что всегда, когда производная ограничена, мы можем найти константу Липшица как $L~=~\hm{\max\limits_{\hs{\frac12,1}}f'(\xi)}$.
+	\end{Prop}
+	\begin{Prop}
+		На самом деле можно показать, что $C^1\hs{a,b} \subset Lip\hs{a,b} \subset C\hs{a,b}$.
+	\end{Prop}
+	
+	\begin{Ex}
+		Рассмотрим все ту же функцию $f(x) = \sqrt{x}$, но на множестве $D=\hs{0,1}$. Покажем, что она не Липшицива.
+		\begin{Proof}
+			Пусть $f\in Lip D$, то есть нашлось такое $L$, что
+			\[
+			|\sqrt{x_2} - \sqrt{x_1}| \leqslant L |r_2-r_1|.
+			\]
+			Возьмем в качестве точки $x_1$ точку $0$, а точку $x_2$ устремим к нулю
+			\[
+			\sqrt{x_2} \leqslant L \hm{x_2} \implies \infty \underset{x_2\to0}{\leftarrow} \frac{1}{\sqrt{x_2}} \leqslant L \underset{x_2\to0}{\rightarrow} L,
+			\]
+			что невозможно, а значит исходное предположение неверно и функция не Липшицива.
+		\end{Proof}
+	\end{Ex}
+	\begin{Note}
+		Однако понятно, что, отступив на чуть-чуть от нуля в множестве $D$, функция сразу станет Липшицевой. Именно поэтому появляется понятие локальной Липшицевости.
+	\end{Note}
+	\begin{Def}
+		$f: D \to \R^n$ удовлетворяет условию Липшица локально на множестве $D$, если $\forall r \in D \implies \exists U(r): \quad f \in Lip(D\cap U)$. И пишут $f\in Lip_{loc} D$.
+	\end{Def}
+	\begin{Ex}
+		Несложно показать, что $f(x) =\sqrt{x}$ на множестве $D=\hrs{0,1}$ удовлетворяет условию локальной Липшицевости, но не глобальной.
+	\end{Ex}
+
+	\begin{Def}
+		$f: D \to \R^n_{t,r}$ удовлетворяет условию Липшица по $r$ на множестве $D$, если $\exists L: \quad \forall (t, r_1), (t,r_2) \in D \implies |f(t, x_2) - f(t,x_1)| \leqslant L |r_2-r_1|$. И пишут $f\in Lip_r D$.
+	\end{Def}
+
+	\begin{Def}
+		$f: D \to \R^n_{t,r}$ удовлетворяет условию Липшица по $r$ локально на множестве $D$, если $\forall (t,r) \in D \implies \exists U((t,r)): \quad f \in Lip_r(D\cap U)$. И пишут $f\in Lip_{r,loc} D$.
+	\end{Def}
+
+	\begin{Ex}
+		Рассмотрим $f(t,r) = \frac1t + \frac1r$ на множестве $D = \hr{0, +\infty} \times \hs{\frac12, 1}$.
+		
+		Посмотрим на разность значений в разных точках $\hr{t_1, r_1}$, $\hr{t_2, r_2}$:
+		\[
+		\hm{f\hr{t_2, r_2}-f\hr{t_1, r_1}} = \hm{\frac1{t_2} - \frac1{t_1} + \frac1{r_2} - \frac1{r_1}}
+		\]
+		Понятно, что при очень маленьких $t_1, t_2$ разность оказывается очень большой, а  значит мы ничем не ограничим сверху. То есть глобальное условие Липшица не выполнено.
+		
+		Однако локально
+		\[
+		\begin{split}
+		\hm{\frac1{t_2} - \frac1{t_1} + \frac1{r_2} - \frac1{r_1}} &\leqslant \hm{\frac{t_1-t_2}{t_1t_2}} + \hm{\frac{r_2-r_1}{r_2r_1}} \leqslant\\&\leqslant \mu_1 \hm{t_2-t_1} + \mu_2 \hm{r_2-r_1} \leqslant \underbrace{\max\ha{\mu_1, \mu_2} \cdot 2}_{L} \hm{(t_1,r_1)- (t_2,r_2)}
+		\end{split}
+		\]
+		она удовлетворяет условию Липшица.
+	\end{Ex}
+
+	\begin{Ex}
+		Рассмотрим $f(t,r) = \sqrt{t} \sqrt{r}$ на множестве $\hsr{0, +\infty} \times \hr{0,1}$.
+		
+		Локальному условию Липшица она не удовлетворяет, рассматривая точку 0.
+		
+		Однако по $r$ она локально Липшицева:
+		\[
+		\hm{f(t,r_2) - f(t,r_1)} = \hm{\sqrt{r_2} - \sqrt{r_1}} \leqslant L \hm{r_2-r_1},
+		\]
+		где в качестве $L$ возьмем максимум производной корня. 
+	\end{Ex}
+
+	\begin{Lem}[Достаточное условие для локальной Липшицевости по $r$]
+		Пусть $G \subset \R^{n+1}_{t,r}$ -- область, $f: \; G \to \R^m$. А также $f'_r \in Mat_{m,n}\hr{C(G)}$. Тогда $f\in Lip_{r,loc}(G)$.
+		
+		Кроме того, если $K$ -- выпуклый компакт, а $M = \max\limits_K \hm{f'_r}$, то $f\in Lip_rK$ с константой Липшица $L=nM$.
+		
+		\begin{Proof}
+			Пусть $K$ -- выпуклый компакт.
+			\begin{figure}[h!]
+				\centering
+				\begin{tikzpicture}
+					\draw[->] (-1,0) -- (3,0) node[right]{$t$};
+					\draw[->] (0, -1) -- (0,3) node[above]{$r$};
+					\draw[orange] (1,2) circle(2);
+					\draw[orange] (3,3) node[right]{$K$};
+					\draw[blue] (0,1) circle(1pt) node[left]{$r_1$};
+					\draw[blue] (0,2) circle(1pt) node[left]{$r_2$};
+					\draw[blue] (1,0) circle(1pt) node[below]{$t$};
+					\draw[blue, line width=2pt] (1,1) -- (1,2);
+					\draw[blue, opacity=0.8, dotted] (1,1) -- (0,1);
+					\draw[blue, opacity=0.8, dotted] (1,2) -- (0,2);
+					\draw[blue, opacity=0.8, dotted] (1,0) -- (1,1);
+					
+				\end{tikzpicture}
+			\end{figure}
+		
+		Рассмотрим разность значений:
+		\[
+		\hm{f(t,r_2) - f(t,r_1)} = \Delta.
+		\]
+		Так как $K$ -- выпуклое, то отрезок тоже принадлежит $K$.\\
+		Рассмотрим функцию $g(s) = f(t, r_1 + s(r_2-r_1))$, определенную на $\hs{0,1}$. Заметим, что $g$ непрерывная, как композиция сужения $f$ на $r$ ($h(r) = f(t,r)$) и линейной там же ($r_1 + s(r_2-r_1)$).\\
+		Тогда по интегральной теореме Лагранжа
+		\[
+		\begin{split}
+		\Delta &= \hm{g(1) - g(0)} = \hm{\int\limits_0^1 g'(s) ds} = \hm{\int\limits_0^1 h'(r_1 + s(r_2-r_1))\cdot(r_1 + s(r_2-r_1))' ds} =\\
+		&= \hm{\int\limits_0^1 f'_r (r_1 + s(r_2-r_1)) \cdot (r_2-r_1) ds} \leqslant \int\limits_0^1 n \cdot \hm{f'_r} \cdot \hm{r_2-r_1} ds \leqslant\\
+		&\leqslant n \cdot \underbrace{\max\limits_K \hm{f'_r}}_{M} \cdot \hm{r_2-r_1}. 
+		\end{split}
+		\]
+		Таким образом, Лишицива константа равна $n\cdot M$.
+		
+		Рассмотрим область $G$. Вокруг каждой точки можем рассмотреть брус $\Pi$, который является компактом, а значит на нем у нас есть глобальная Липшицивость. То есть мы для каждой точки нашли окрестность, в которой есть глобальная Липшицивость, а значит по определению получили локальную Липшицивость на $G$.
+		\end{Proof}
+	\end{Lem}
+
+	\begin{Lem}[Достаточное условие для Липшицивости по $r$]
+		Пусть $G \subset \R^{n+1}_{t,r}$ -- область, $f: \; G \to \R^m$, $f \in Lip_{r,loc} K$, где $K\in G$ -- компакт. 
+		
+		Тогда $f$ глобально Липшицива на $K$.
+		
+		\begin{Proof}
+			Пусть $f\notin Lip_r K$, то есть
+			\[
+			\forall L \quad \exists (t,r_2), (t,r_1) \in K: \; \hm{f(t,r_2) - f(t, r_1)} > L \hm{r_2-r_1}.
+			\]
+			Найдем для каждого натурального числа $L$ пару таких точек $(t_n, r_n), (t_n, \tilde{r_n})$. Так как $K$ компакт в $\R^{n+1}$, то оно секвенциальный компакт, а значит можно выделить сходящиеся подпоследовательности.
+			
+			Пусть для первой последовательности есть $\hc{(t_{k_s}, r_{k_s})}_{s=1}^{\infty}: \quad (t_{k_s}, r_{k_s}) \to (t,r)$. Выберем во второй последовательности с теми же номерами сходящуюся подпоследовательность $\hc{(t_{k_{s_l}}, \tilde{r}_{k_{s_l}})}_{l=1}^{\infty}: \quad (t_{k_{s_l}}, \tilde{r}_{k_{s_l}}) \to (t,\tilde{r})$. 
+			
+			\begin{enumerate}
+				\item Пусть $r=\tilde{r}$.
+				
+				Так как $f \in Lip_{r,loc} K$, то есть на окрестности $U(t,r)$ $f \in Lip_{r} U$. Пусть условие Липшица выполнено с константой $L$, то есть 
+				\[
+				\forall (\tau, \rho_1), (\tau,\rho_2) \in D \implies |f(\tau, \rho_2) - f(\tau,\rho_1)| \leqslant L |\rho_2-\rho_1|.
+				\]
+				Так как начиная с какого-то номера все элементы наших последовательностей лежат в окрестности $U(t,r)$, то, выбирая $l$ так, чтобы $L_{s_l} > L$, получаем противоречие нелипшицивости $K$, но липшицивости на $U$.
+				\item Пусть $r\neq \tilde{r}$.
+				
+				\[
+				\hm{f(t_{k_{s_l}},r_{k_{s_l}}) - f(t_{k_{s_l}}, \tilde{r}_{k_{s_l}})} > L_{s_l} \hm{r_{k_{s_l}}-\tilde{r}_{k_{s_l}}}.
+				\]
+				Переходя к пределу при $l \to \infty$, получаем
+				\[
+				\hm{f(t,r)- f(t,\tilde{r})} \geqslant \infty,
+				\]
+				что невозможно. Снова пришли к противоречию. 
+			\end{enumerate}
+			 А значит исходное предположение было неверным и на самом деле $f~\in~Lip_r K$.
+		\end{Proof} 
+	\end{Lem}
+	
+	\section[Существование и единственность]{Теоремы о существовании и единственности}
+	\begin{Def}
+		Функция $\varphi: E=\ha{a,b} \to \R^n$ --- решение интегрального уравнения $r(t) = r_0 + \int\limits_{t_0}^t f(\tau, r(\tau))d\tau$, если
+		\begin{enumerate}
+			\item Она непрерывна: $\varphi \in C(E)$,
+			\item Она обращает уравнение в тождество $\varphi(t) \equiv r_0 + \int\limits_{t_0}^t f(\tau, \varphi(\tau))d\tau$.
+		\end{enumerate}
+	\end{Def}
+	\begin{Lem}[О равносильном интегральном уравнении]
+		Пусть $G \subset \R^{n+1}_{t,r}$ -- область, $f \in C(G \to \R^n)$, $\hr{t_0, r_0} \in G$.
+		Тогда $\varphi$ -- решение задачи Коши $r'=f(t,r)$, $r(t_0)=r_0$ на $E=\ha{a,b}$ тогда и только тогда, когда $\varphi$ -- решение интегрального уравнения.
+		\begin{Proof}
+			"Необходимость":\\
+			Так как $\varphi$ -- решение задачи Коши, то $\varphi \in C^1(E)$, а значит первый пункт определения решения интегрального уравнения выполнен. Второй же получаем просто проинтегрировав дифференциальное уравнение.
+			"Достаточность":\\
+			Так как интеграл от непрерывной функции -- непрерывно дифференцируем, то первый пункт определения решения задачи Коши получили. А второй получается дифференцируемостью второго пункта определения решения интегрального уравнения. 
+		\end{Proof}
+	\end{Lem}
+
+	\begin{Lem}
+		Пусть $G \subset \R^{n+1}_{t,r}$ -- область, $f \in C(G \to \R^n)$, $\hr{t_0, r_0} \in G$. Пусть также $\varphi_+, \varphi_-$ -- решения задачи Коши $r'=f(t,r)$, $r(t_0)=r_0$ на $\hsr{t_0,b}$ и $\hrs{a,t_0}$ соответственно.
+		
+		Тогда $\varphi(t) = \begin{cases}
+			\varphi_-(t), \quad t\in \hrs{a,t_0} \\
+			\varphi_+(t), \quad t\in \hsr{t_0,b} \\
+		\end{cases}$ -- решение этой же задачи Коши на интервале $\hr{a,b}$.
+	\begin{Proof}
+		Очевидно, что функция остается непрерывно дифференцируемой и обращает уравнение в тождество.
+	\end{Proof}
+	\end{Lem}
+	 \begin{Lem}[Gronwall]
+	 	Пусть $\varphi \in C(E)$, где $E=\ha{a,b}$. Пусть также $\lambda, \mu \geqslant 0$ и $\forall \, t \in E \quad 0 \leqslant \varphi(t) \leqslant \lambda + \mu \hm{\int\limits_{t_0}^t \varphi(\tau)d\tau}$. 
+	 	
+	 	Тогда $\varphi(t) \leqslant \lambda e^{\mu\hm{t-t_0}}$.
+	 	\begin{Proof}
+	 		Заметим, что в правой части цепочки неравенств на самом деле стоит решение задачи Коши для линейного дифференциального уравнения. 
+	 		
+	 		Пусть $t\geqslant t_0$.
+	 		\begin{enumerate}
+	 			\item Пусть $\lambda>0$. Обозначим $v(t) = \lambda + \mu \hm{\int\limits_{t_0}^t \varphi(\tau)d\tau}$.
+	 			
+	 			Тогда $v'(t) = \mu \varphi(t) \leqslant \mu \cdot v(t)$.\\
+	 			Так как $\lambda>0$, то и $v>0$. Значит можем поделить на $v$. 
+	 			\[
+	 			\frac{v'(t)}{v(t)} \leqslant \mu,
+	 			\]
+	 			\[
+	 			\int\limits_{t_0}^t \frac{v'(\tau)}{v(\tau)} d \tau \leqslant \int\limits_{t_0}^t\mu d\tau,
+	 			\]
+	 			\[
+	 			\ln \frac{v(t)}{v(t_0)} \leqslant \mu \hr{t-t_0},
+	 			\]
+	 			\[
+	 			v(t) \leqslant \underbrace{v(t_0)}_{\lambda} e^{\mu\hr{t-t_0}}.
+	 			\]
+	 			Таким образом, $\varphi(t) \leqslant v(t) \leqslant\lambda e^{\mu\hr{t-t_0}}$.
+	 			\item Пусть $\lambda=0$.\\
+	 			\[
+	 			\varphi(t) \leqslant \mu \int\limits_{t_0}^t \varphi(\tau)d\tau < \underbrace{\delta}_{>0} + \mu \int\limits_{t_0}^t \varphi(\tau)d\tau.
+	 			\]
+	 			Устремим $\delta$ к нулю для каждого $t$: $\varphi(t) \leqslant 0$, что и хотелось доказать.
+	 		\end{enumerate}
+ 			При $t<t_0$ сделаем замену $\varphi(t) = \psi(2t_0 - t)$.
+ 			\[
+ 			\psi(2t_0-t) \leqslant \lambda + \mu \int\limits_{t_0}^{2t_0-t} \psi(s) ds
+ 			\]
+ 			По доказанному (так как $2t_0-t>t_0$) получаем $\varphi(t) = \psi(2t_0-t) \leqslant \lambda e^{\mu \hr{2t_0-t-t_0}}$.
+	 	\end{Proof}
+	 \end{Lem}
+ 
+ 	\begin{Def}
+ 		Пусть $G \subset \R^{n+1}_{t,r}$ -- область, $f \in C(G \to \R^n)$, $\hr{t_0, r_0} \in G$. Пусть $\Pi= \hc{|t-t_0|\leqslant a, |r-r_0| \leqslant b}$ -- брус с центром в точке  $\hr{t_0, r_0}$, вписанный в данную область (такой есть в силу открытости области).
+ 		
+ 		Пусть $\|f\| = \max\limits_{\Pi} |f|$. Тогда отрезок $\hs{t_0-h, t_0+h}$, где $h=\min \hc{a, \frac{b}{\|f\|}}$ -- называется отрезком Пеано, соответствующим $t_0, r_0$.
+ 	\end{Def}
+ 	\begin{Note}
+ 		Рассмотрим, что имеется в виду, на простом двумерном примере $f:\; \R^2 \to \R$ бруса. Для простоты рассмотрим случай бруса с центром в начале координат.
+ 		Пусть есть какое-то решение $\varphi$, проходящее внутри бруса. Тогда 
+ 		\[
+ 		\hm{\varphi(t)} = \hm{\int_0^t \varphi'(t) dt} \leqslant \int_0^t |\varphi'(t)| dt \leqslant \int_0^t \|f\| dt = \|f\| t.
+ 		\]
+ 		То есть мы получили, что наше решение ограничено внутри бруса двумя лучами. Кардинально появляется два случая: лучи пересекают горизонтальное ребро бруса или вертикальное (см. Рис. \ref{Peano}). В первом случае мы можем уверенно утверждать, что наше решение лежит внутри бруса на отрезке до пересечения луча с брусом. А во втором --- на всем отрезке бруса. Вот эти отрезки и называются отрезками Пеано $\hs{0, h}$, где в первом случае $h=\frac{b}{\|f\|}$, а во втором -- $h=a$.
+ 		\begin{figure}
+ 			\centering
+ 			\begin{subfigure}{0.45\linewidth}
+ 				\begin{tikzpicture}
+ 					\draw[gray, ->] (-2.5,0) -- (2.5,0) node[right]{$t$};
+ 					\draw[gray, ->] (0,-2.5) -- (0,2.5) node[above]{$r$};
+ 					\draw (-2,-2) rectangle (2,2);
+ 					\draw (2,1) node[right] {$\Pi$};
+ 					\draw (2,0) node[below right] {$a$};
+ 					\draw (0,2) node[above left] {$b$};
+ 					\draw[purple] (0,0) -- (1,2);
+ 					\draw[purple] (0,0) -- (1,-2);
+ 					\draw[dotted, orange] (1,2) -- (1,0) node[below]{$h$} -- (1,-2);
+ 					\draw[line width=1.5pt, orange] (0,0) -- (1,0);
+ 					\draw[line width=2pt, blue] (0,0) ..controls (1,0.5) and (1,1) .. (1,1);
+ 				\end{tikzpicture}
+ 			\end{subfigure}
+ 			\begin{subfigure}{0.45\linewidth}
+ 			\begin{tikzpicture}
+					\draw[gray, ->] (-2.5,0) -- (2.5,0) node[right]{$t$};
+					\draw[gray, ->] (0,-2.5) -- (0,2.5) node[above]{$r$};
+ 				\draw (-2,-2) rectangle(2,2);
+ 				\draw (2,1) node[right] {$\Pi$};
+ 				\draw (2,0) node[below right] {$a$};
+ 				\draw (0,2) node[above left] {$b$};
+ 				\draw[purple] (0,0) -- (2.5, 2);
+ 				\draw[purple](0,0) -- (2.5,-2);
+ 				\draw[orange] (2,0) node[below left]{$h$};
+ 				 \draw[line width=1.5pt, orange] (0,0) -- (2,0);
+ 				\draw[line width=2pt, blue] (0,0) ..controls (1,0) and (1,0.4) .. (2,0.5);
+ 			\end{tikzpicture}
+ 		\end{subfigure}
+ 		\caption{Иллюстрация к определению отрезка Пеано} \label{Peano}
+ 		\end{figure}
+ 	\end{Note}
+ 
+	\begin{Th}[Пеано о существовании решения]
+		Пусть $G \subset \R^{n+1}_{t,r}$ -- область, $f \in C(G \to \R^n)$, $\hr{t_0, r_0} \in G$. 
+		
+		Тогда задача Коши имеет решение на отрезке Пеано.
+		\begin{Note}
+			Без доказательства.
+		\end{Note}
+	\end{Th}
+	\begin{Th}[Пикара о существовании и единственности решения]
+		Пусть $G \subset \R^{n+1}_{t,r}$ -- область, $f \in C(G \to \R^n) \cap Lip_{r,loc}$, $\hr{t_0, r_0} \in G$.
+		
+		Тогда \begin{enumerate}
+			\item На отрезке Пеано существует решение задачи Коши,
+			\item На любом интервале $\hr{a,b}$ решение задачи Коши единственно.
+		\end{enumerate}
+	\begin{Proof}
+		Не умоляя общности, рассмотрим в качестве $\hr{t_0,r_0}$ точку начала координат. 
+		Будем искать решение при $t\in \hs{0,h}$, где $h=\min \hc{A, \frac{B}{\|f\|}}$ из определения отрезка Пеано.
+		
+		Рассмотрим последовательность, заданную реккурентно 
+		\[
+		\begin{split}
+			&\varphi_0(t) = 0,\\
+			&\varphi_m(t) = \int\limits_0^t f(\tau, \varphi_{m-1}(\tau))d\tau.
+		\end{split}
+		\]
+		
+		\begin{Note}
+			Укажем план нашего доказательства:
+			\begin{enumerate}
+				\item Докажем, что последовательность определена корректна, то есть $\varphi_m \in C\hs{0,h}$ и $\hm{\varphi_m(t)} \leqslant \|f\| t$,
+				\item Докажем равномерную сходимость последовательности, то есть $\exists \varphi: \quad \varphi_m \underset{m\to\infty}{\rightrightarrows} \varphi$,
+				\item Докажем, что полученное $\varphi$ является решением интегрального уравнения, связанного с задачей Коши,
+				\item 
+			\end{enumerate}
+		\end{Note}
+	\end{Proof}
+	\end{Th}
 \end{document}
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.30)  14 OCT 2022 16:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.30)  23 NOV 2022 17:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1330,18 +1330,78 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 13.59999pt, for example:
 (fancyhdr)                \setlength{\footskip}{13.59999pt}.
 
-[9] (./Practics.aux)
+[9]
+Overfull \hbox (14.12993pt too wide) detected at line 653
+[]
+ []
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\footskip}{13.59999pt}.
+
+[10]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\footskip}{13.59999pt}.
+
+[11]
+Overfull \hbox (1.33725pt too wide) in paragraph at lines 717--729
+[]\T2A/cmr/m/it/10.95 «амечание. []\T2A/cmr/m/n/10.95 –ас-смот-рим за-да-чу дви
+-же-ни€ те-ла над по-верх-но-стью зем-
+ []
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\footskip}{13.59999pt}.
+
+[12]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\footskip}{13.59999pt}.
+
+[13]
+Overfull \hbox (18.81277pt too wide) in paragraph at lines 793--794
+[]\T2A/cmr/m/it/10.95 ѕусть об-щее ре-ше-ние это-го урав-не-ни€ опре-де-ле-но ф
+ор-му-лой $\OML/cmm/m/it/10.95 u\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x; y\OT
+1/cmr/m/n/10.95 ) =
+ []
+
+
+Overfull \hbox (28.9127pt too wide) detected at line 812
+[]  \OT1/cmr/m/n/10.95 =[]\OMS/cmsy/m/n/10.95 )  []\OML/cmm/m/it/10.95 dx \OT1/
+cmr/m/n/10.95 = []\OML/cmm/m/it/10.95 dy  \OT1/cmr/m/n/10.95 =[]\OMS/cmsy/m/n/1
+0.95 )  \OML/cmm/m/it/10.95 ydx \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 xdy  \
+OT1/cmr/m/n/10.95 =[]\OMS/cmsy/m/n/10.95 )  \OML/cmm/m/it/10.95 y \OT1/cmr/m/n/
+10.95 = \OML/cmm/m/it/10.95 cx:
+ []
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\footskip}{13.59999pt}.
+
+[14]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\footskip}{13.59999pt}.
+
+[15] (./Practics.aux)
 Package rerunfilecheck Info: File `Practics.out' has not changed.
-(rerunfilecheck)             Checksum: 4CAEB31279E581BA73433C9A31B05EBB;372.
+(rerunfilecheck)             Checksum: A1AAF421FC096CD8298F6C7F675D9713;1118.
  ) 
 Here is how much of TeX's memory you used:
- 35824 strings out of 479721
- 804709 string characters out of 5887697
- 1326778 words of memory out of 5000000
- 53188 multiletter control sequences out of 15000+600000
+ 35860 strings out of 479721
+ 805188 string characters out of 5887697
+ 1327782 words of memory out of 5000000
+ 53206 multiletter control sequences out of 15000+600000
  485943 words of font info for 68 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
- 84i,15n,89p,761b,2182s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,27n,89p,761b,2182s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/leo/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/lati1095.600pk> 
 </home/leo/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/labx1095.600pk> </h
 ome/leo/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/lati1200.600pk> </home
@@ -1362,10 +1422,10 @@ cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Practics.pdf (10 pages, 207587 bytes).
+Output written on Practics.pdf (16 pages, 242016 bytes).
 PDF statistics:
- 445 PDF objects out of 1000 (max. 8388607)
- 156 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
- 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 551 PDF objects out of 1000 (max. 8388607)
+ 204 compressed objects within 3 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 77 words of extra memory for PDF output out of 10000 (max. 10000000)
 

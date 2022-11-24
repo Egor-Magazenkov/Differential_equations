@@ -574,4 +574,274 @@
 		\end{figure}
 		\end{Solution}
 	\end{Ex}
-	\end{document}
+	\section[11.11.2022]{Системы дифференциальных уравнений}
+	\subsection{Метод последовательного интегрирования}
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x'=x,\\
+			y'=y.
+		\end{cases}
+		\]
+		\begin{Solution}
+			Заметим, что каждое из уравнений содержит только одну функцию, поэтому можно решить их по отдельности
+			\[
+			x = C_1e^t, \quad y=C_2 e^t, \quad C_1, C_2 \in \R.
+			\]
+		\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x'=x,\\
+			y'=y+x.
+		\end{cases}
+		\]
+		\begin{Solution}
+			Первое уравнение содержит только одну функцию и мы можем его решить и подставить решение во второе.
+			\[
+			\begin{cases}
+				x=C_1 e^t,\\
+				y'=y+C_1e^t
+			\end{cases}
+			\Leftrightarrow
+			\begin{cases}
+				x=C_1 e^t,\\
+				y = C_2e^t+C_1te^t.
+			\end{cases}
+			\]
+		\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+		Считая $t>0$, решить систему
+		\[
+		\begin{cases}
+			x'=\frac{2t}{1+t^2}x,\\
+			y'=-\frac1t y +x + t,
+		\end{cases}
+		\]
+		\begin{Solution}
+			\[
+			\begin{split}
+			&\begin{cases}
+				x'=\frac{2t}{1+t^2}x,\\
+				y'=-\frac1t y +x + t,
+			\end{cases}
+		\hspace{-0.5cm}\Leftrightarrow
+			\begin{cases}
+				x = C_1(1+t^2),\\
+				y'=-\frac1t y +C_1(1+t^2) + t,
+			\end{cases}
+		\hspace{-0.5cm}\Leftrightarrow\\
+		\Leftrightarrow&
+		\begin{cases}
+			x = C_1(1+t^2),\\
+			y= (C_2 + \int (C_1(1+t^2)+t) t dt)\frac1t,
+		\end{cases}
+	\hspace{-0.5cm}\Leftrightarrow
+	\begin{cases}
+		x = C_1(1+t^2),\\
+		y= (C_2 + C_1(\frac{t^2}{2} + \frac{t^4}{4}) + \frac{t^3}{3})\frac1t,
+	\end{cases}
+\hspace{-0.5cm}\Leftrightarrow\\
+\Leftrightarrow&
+	\begin{cases}
+	x = C_1(1+t^2),\\
+	y= C_2\frac1t + C_1(\frac{t}{2} + \frac{t^3}{4}) + \frac{t^2}{3},
+\end{cases}
+	\end{split}
+			\]
+		\end{Solution}
+	\end{Ex}
+	
+	\subsection{Метод исключения}
+	\begin{Note}
+		Под исключением понимается избавление от всех функций кроме одной. 
+		
+		Идея заключается в дифференцировании нескольких из уравнений системы.
+		
+		Пусть есть система
+		\[
+		\begin{cases}
+			x' = f(t,x,y),\\
+			y' = g(t,x,y).
+		\end{cases}
+		\]
+		При условии, что $f$ непрерывно дифференцируемая, у $x$ существует вторая производная.
+		Дифференцируя первое уравнение, получаем
+		\[
+		x'' = \frac{df}{dt} = f'_t + f'x \cdot x' + f'_y \cdot y' = f'_t + f'_x \cdot f(t,x,y) + f'_y \cdot g(t,x,y).
+		\]
+		
+		При условии, что $y$ выражается из первого уравнения --- $y = \beta(t,x,x')$, подставим в нашу вторую производную
+		\[
+		x'' = \gamma(x,t,t').
+		\]
+		
+		Тогда если найдется решение $x(t)$, то можно подставить обратно и получить $y = \beta(t,x,x')$
+	\end{Note}	
+
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x' = 1-\frac1y,\\
+			y' = \frac1{x-t}.
+		\end{cases}
+		\]
+		\begin{Solution}
+			Так как $\frac{1}{x-t}$ -- непрерывно дифференцируема, то из первого уравнения системы, получим 
+			\[
+			y'' = -\frac{x'-1}{(x-t)^2}  = \frac{-\frac1{y}}{(x-t)^2} 
+			\]
+			И подставим  второе
+			\[
+			y'' = -\frac{y'^2}{y},
+			\]
+			Однородное, решается заменой 
+			\[
+			y = C_2 \sqrt{C_1+2x},
+			\]
+			Тогда \[
+			x = \frac{1}{y'} + t = \frac{1}{-\frac{1}{C_1+t}} + t = -{C_1+1} + t
+			\]
+		\end{Solution}
+	\end{Ex}
+	\subsection[18.11.2022]{Первый интеграл}
+	\begin{Def}
+		Функция $u: \Sigma \subset \R^n_r \to \R$ называется первым интегралом системы $r' = f(r)$, если для любого решения $\varphi$ этой системы $u(\varphi(t)) \equiv const$. 
+	\end{Def}
+	\begin{Note}
+		Важно, что в правой части системы явно нет $t$ (такие системы называются автономными).
+	\end{Note}
+	\begin{Note}
+		Рассмотрим задачу движения тела над поверхностью земли.
+		\begin{figure}[h!]
+			\centering
+			\begin{tikzpicture}
+				\draw[->, gray] (0,0) -- (0,3) node[above]{$x$};
+				\draw (0,0) -- (3,0);
+				\filldraw[blue] (1,2) circle (2pt) node[above left]{$m=1$};
+				\draw[<->] (3,0) --node[right]{$x$} (3,2);
+				\draw[dotted] (1,2) -- (3,2);
+			\end{tikzpicture}
+		\end{figure}
+		По второму закону Ньютона 
+		\[
+		x'' = -g.
+		\]
+	
+		Запишем эквивалентную систему данному уравнению:
+		\[
+		\begin{cases}
+			x' = v,\\
+			v' = -g.
+		\end{cases}
+		\]
+		Ее решение есть $\begin{cases}
+			x = -\frac{gt^2}{2} + c_1t + c_2,\\
+			v = -gt + c_1,
+		\end{cases}$
+		
+		Рассмотрим функцию полной механической энергии системы: 
+		\[
+		u(x,v) = \frac{v^2}{2} + gx.
+		\]
+		Докажем, что это первый интеграл системы. Подставим решение в эту функцию
+		\[
+		\begin{split}
+		u(-\frac{gt^2}{2} + c_1t + c_2, -gt + c_1) = \frac{(-gt + c_1)^2}{2} + g\hr{-\frac{gt^2}{2} + c_1t + c_2} = \\
+		= \cancel{\frac{g^2t^2}{2}} - \cancel{gtc_1} + \frac{c_1^2}{2} - \cancel{\frac{g^2t^2}{2}} + \cancel{gtc_1} + c_2g = \frac{c_1^2}{2} + c_2g.
+		\end{split}
+		\] 
+		Таким образом, получили константу при каждом конкретном решении, а значит это первый интеграл по определению.
+		
+		\begin{Note}
+			Можно было по-другому проверить. Например логично, что если это первый интеграл, то $u'(\varphi(t)) = 0$.
+		\end{Note}
+	\end{Note}
+	\begin{Prop}
+		С другой стороны, нелогично находить первый интеграл, уже зная решение системы. Хочется применять его в обратную сторону: используя первый интеграл, находить решение системы уравнения.
+		
+		Попробуем это сделать в нашем примере.
+		
+		Так как $u(x,v) = \frac{v^2}{2} + gx = const$, то можно выразить какую-нибудь из переменных через вторую. Тогда, подставляя в уравнение системы, мы получим уже дифференциальное уравнение относительно только одной переменной, которое решать уже легче.
+		
+		Например, попробуем выразить $x = \frac1g \hr{const-\frac{v^2}{2}}$ и подставим в первое уравнение системы
+		\[
+		x' = v \Leftrightarrow -\frac1g v v' = v \Leftrightarrow v' = -g.
+		\] 
+	\end{Prop}
+
+	\begin{Prop}[Поиск первого интеграла для системы 2-ого порядка]
+		Рассмотрим систему
+		\[
+		\begin{cases}
+			x' = f(x,y),\\
+			y' = g(x,y).
+		\end{cases}
+		\]
+		Пусть $\hr{x,y}$ -- какое-то решение этой системы, тогда
+		\[
+		\begin{cases}
+			\frac{dx}{dt} = f(x,y),\\
+			\frac{dy}{dt} = g(x,y)
+		\end{cases}
+		\implies g(x,y) dx = f(x,y) dy.
+		\]
+		То есть $\hr{x,y}$ -- параметрическое решение уравнения $g(x,y) dx = f(x,y) dy$. Иначе говоря,  $\hr{x,y}$ --  параметрическое задание интегральной кривой.
+		
+		Пусть общее решение этого уравнения определено формулой $u(x,y)=c$. А тогда, подставляя исходное решение в это решение, получаем тождество $u(x(t),y(t)) \equiv c$. Таким образом, $u$ -- первый интеграл. 	
+	\end{Prop}
+
+	\begin{Ex}
+		Решить систему уравнений при $x,y>0$
+		\[
+		\begin{cases}
+			x' =\frac{x}{(x+y)^2},\\
+			y' = \frac{y}{(x+y)^2}.
+		\end{cases}
+		\]
+		\begin{Solution}
+			\[
+			\begin{cases}
+				\frac{dx}{dt}= \frac{x}{(x+y)^2},\\
+				\frac{dy}{dt} =  \frac{y}{(x+y)^2},
+			\end{cases}
+		\implies
+			 \frac{y}{(x+y)^2} dx = \frac{x}{(x+y)^2} dy \implies ydx = xdy \implies y = cx.
+			\]
+			Таким образом, $u = \frac{y}{x}$ --  первый интеграл ($u=c$).
+			
+			Подставим во второе уравнение системы
+			\[
+			\begin{split}
+			y' = \cancel{c}x' = \frac{\cancel{c}\cancel{x}}{(c+1)^2x^{\cancel{2}}} \Leftrightarrow xdx = \frac{dt}{(c+1)^2} \Leftrightarrow \frac{x^2}{2} =\\
+			= \frac{t}{(c+1)^2} + C \Leftrightarrow x = \sqrt{\frac{2t}{(c+1)^2}+C}.
+		\end{split}
+			\]
+			\[
+			y = cx = c\cdot \sqrt{\frac{2t}{(c+1)^2}+C}.
+			\]
+		\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+			Решить систему уравнений при $x>z>0$ и $y>0$
+			\[
+			\begin{cases}
+				x' = x^2 + z^2,\\
+				y' = y(x-z),\\
+				z' = 2xz.
+			\end{cases}
+			\]
+			\begin{Solution}
+				Заметим, что первое и третье уравнения системы не зависят от $y$. Решим их, как систему двух уравнений, используя первый интеграл
+				\[
+				2xzdx = (x^2+z^2)dz \implies \frac{dx}{dz} = \frac{x^2+z^2}{2xz} = \frac{1}{2z} x + \frac{z}{2}x^{-1},
+				\]
+				Это уравнение Бернулли, замена $t=\frac{x^2}{2}$.
+				\[
+				xx' = \frac{1}{2z} x^2 + \frac{z}{2} \implies t' = \frac{1}{z} t + \frac{z}{2} \implies t = \hr{C + \int\frac{z}{2} \cdot e^{-\ln z} } \cdot e^{\ln z}
+				\]
+			\end{Solution}
+	\end{Ex}
+\end{document}
