@@ -1071,7 +1071,7 @@
 		\end{enumerate}
 	\begin{Proof}
 		Не умоляя общности, рассмотрим в качестве $\hr{t_0,r_0}$ точку начала координат. 
-		Будем искать решение при $t\in \hs{0,h}$, где $h=\min \hc{A, \frac{B}{\|f\|}}$ из определения отрезка Пеано.
+		Будем искать решение при $t\in \hs{0,h}$, где $h=\min \hc{a, \frac{b}{\|f\|}}$ из определения отрезка Пеано.
 		
 		Рассмотрим последовательность, заданную реккурентно 
 		\[
@@ -1087,11 +1087,186 @@
 				\item Докажем, что последовательность определена корректна, то есть $\varphi_m \in C\hs{0,h}$ и $\hm{\varphi_m(t)} \leqslant \|f\| t$,
 				\item Докажем равномерную сходимость последовательности, то есть $\exists \varphi: \quad \varphi_m \underset{m\to\infty}{\rightrightarrows} \varphi$,
 				\item Докажем, что полученное $\varphi$ является решением интегрального уравнения, связанного с задачей Коши,
-				\item 
+				\item Докажем единственность.
 			\end{enumerate}
 		\end{Note}
+		$\bullet$
+		\begin{enumerate}
+			\item Докажем методом математической индукции:\\
+			При $m=0$: $\varphi_0$ определена на $\hs{0,h}$.\\
+			Пусть $\varphi_m \in C(\hs{0,h})$ и $\hm{\varphi_m(t)} \leqslant \|f\|t$.\\
+			Рассмотрим $\varphi_{m+1}(t) = \int\limits_0^t f(\tau, \varphi_m(\tau))d\tau$. Так как $t\leqslant h \leqslant \frac{b}{\|f\|}$, то $\hm{\varphi_m} \leqslant b$. Тогда $f(\tau, \varphi_m(\tau))$  есть композиция непрерывных функций, а значит она интегрируема и функция $\varphi_{m+1}$ задана корректно на $\hs{0,h}$, причем к тому же она непрерывна. 
+			\[
+			\begin{split}
+				\hm{\varphi_{m+1}} \leqslant \hm{\int\limits_0^t f(\tau, \varphi_m(\tau))d\tau} \leqslant \int\limits_0^t \hm{f(\tau, \varphi_m(\tau))}d\tau \leqslant \|f\| \int\limits_0^td\tau = \|f\| t.
+			\end{split}
+			\]
+			Таким образом, индукционный переход выполняется, а значит наша последовательность задана корректно для любого $n\in\N$.
+			\item Докажем, что $\hc{\varphi_n}_{n\in\N}$ -- фундаментальная, то есть 
+			\[
+			\forall \varepsilon \quad \exists n_0: \quad \forall m \geqslant n_0, k\in \N \implies \|\varphi_m - \varphi_{m+k}\| < \varepsilon.
+			\]
+			На самом деле будем доказывать более сильное утверждение, а именно
+			\[
+			\forall t\in\hs{0,h} \quad \forall m\in \Z_+, k \in \N \quad \exists L: \quad \hm{\varphi_m(t) - \varphi_{m+k}(t)}\leqslant \frac{\|f\| L^m \cdot t^{m+1}}{(m+1)!}.
+			\]
+			Воспользуемся методом математической индукции по $m$.\\
+			При $m=0$: 
+			\[
+			\hm{\varphi_0(t) - \varphi_k(t)} = \hm{\int\limits_0^t f(\tau, \varphi_{k-1}(t))d\tau} \leqslant t \cdot \|f\|.
+			\]
+			Пусть при некотором $m$ утверждение верно, докажем для $m+1$
+			\[
+			\begin{split}
+			\hm{\varphi_{m+1}(t) - \varphi_{m+1+k}(t)} &= \hm{\int\limits_0^t f(\tau, \varphi_{m}(t))d\tau - \int\limits_0^t f(\tau, \varphi_{m+k}(\tau))d\tau} \leqslant \\
+			&\leqslant \int\limits_0^t \hm{f(\tau, \varphi_{m}(t))d\tau - f(\tau, \varphi_{m+k}(\tau))d\tau} \boxed{\leqslant}
+			\end{split} 
+			\]
+			Так как у нас есть локальная Липшицевость, то можем найти на компакте, а именно на нашем брусе, $L$, что
+			\[
+			\begin{split}
+			& \boxed{\leqslant} \int\limits_0^t L \cdot \hm{\varphi_m(\tau) - \varphi_{m+k}(\tau)}d\tau \leqslant \frac{\|f\|L^{m+1}}{(m+1)!}\int\limits_0^t\tau^{m+1}d\tau = \\
+			&= \frac{\|f\|L^{m+1}}{(m+2)!}t^{m+2}.
+			\end{split}
+			\]
+			Таким образом, по Критерию Коши, есть $\varphi\in C(\hs{0,h})$, что $\varphi_m \underset{m\to\infty}{\rightrightarrows} \varphi$.
+			\item Рассмотрим интегральное уравнение, равносильное задаче Коши. 
+			\[
+			\varphi_{m+1} = \int\limits_0^t f(\tau, \varphi_m(\tau))d\tau.
+			\]
+			при $m\to\infty$
+			\[
+			\varphi(t) = \lim\limits_{m\to\infty} \int\limits_0^t f(\tau, \varphi_m(\tau))d\tau.
+			\]
+			Рассмотрим 
+			\[
+			\begin{split}
+				\hm{\int\limits_0^t f(\tau, \varphi_m(\tau))d\tau 0 \int\limits_0^t f(\tau, \varphi(\tau))d\tau} &\leqslant \int\limits_0^t \hm{f(\tau, \varphi_m(\tau)) - f(\tau, \varphi(\tau))}d\tau \leqslant \\
+				& \leqslant L\int\limits_0^t \hm{\varphi_m(\tau) - \varphi(\tau)}d\tau \leqslant\\
+				&\leqslant L \cdot \|\varphi_m - \varphi\| \cdot h \to 0.
+			\end{split}
+			\]
+			Таким образом, $\varphi(t) = \int\limits_0^t f(\tau, \varphi(\tau))d\tau$, а значит $\varphi$ -- решение интегрального уравнения, а тогда и задачи Коши.
+			\item Пусть есть два разных решения $\psi_1, \psi_2$ задачи Коши на отрезке $\hs{a,b}$.
+			Рассмотрим 
+			\[
+			\begin{split}
+			\hm{\psi_1(t) - \psi_2(t)} &= \hm{\int\limits_0^t f(\tau, \psi_1(\tau))d\tau - \int\limits_0^t f(\tau, \psi_2(\tau))d\tau} \leqslant \\
+			&\leqslant \int\limits_0^t \hm{f(\tau, \psi_1(\tau))d\tau - f(\tau, \psi_2(\tau))}d\tau \boxed{\leqslant}
+			\end{split}
+			\]
+			Рассмотрим графики $\gamma_1 = \left.\psi_1\right|){\hs{\alpha, \beta}}$ и $\gamma_2 = \left.\psi_2\right|){\hs{\alpha, \beta}}$. Тогда $\gamma_1 \cap \gamma_2$ -- компакт. А значит из локальной Липшицевости на компакте можем найти константу $\mu$, для которой
+			\[
+			\begin{split}
+				&\boxed{\leqslant} \int\limits_0^t \mu \hm{\psi_1(\tau) - \psi_2(\tau)}d\tau.
+			\end{split}
+			\]
+			А значит получили по лемме Gronwall $\hm{\psi_1(t) - \psi_2(t)} \leqslant 0$, то есть на самом деле $\hm{\psi_1(t) - \psi_2(t)} \equiv 0$ на $\hs{\alpha, \beta}$. Так как это утверждение выполнено для любых $\alpha, \beta$ из интервала $\hr{a,b}$, то на самом деле  $\hm{\psi_1(t) - \psi_2(t)} \equiv 0$ на $\hr{a, b}$. 
+			
+			Таким образом, два решения совпали.
+		\end{enumerate}
 	\end{Proof}
 	\end{Th}
+	\begin{Cor}[Теорема Пикара с простыми условиями]
+		Пусть $G \subset \R^{n+1}_{t,r}$ -- область, $\hr{t_0, r_0} \in G$, $f \in C(G \to \R^n)$, причем $f'_r \in Mat_n\hr{C(G)}$.
+		Тогда \begin{enumerate}
+			\item На отрезке Пеано существует решение задачи Коши,
+			\item На любом интервале $\hr{a,b}$ решение задачи Коши единственно.
+		\end{enumerate}
+		
+		А также \[
+		\|\varphi-\varphi_m\| \leqslant \frac{\|f\| \cdot \hr{n\|f\|}^n \cdot h^{n+1}}{\hr{n+1}!}
+		\]
+		\begin{Proof}
+			Из достаточного условия локальной Липшицевости прилетают все ограничения.
+			А вторая часть из доказательства, устремляя $k$ к бесконечности.
+		\end{Proof}
+	\end{Cor}
+	
+	\section{Продолжение решений}
+	\begin{Note}
+		Теорема Пикара дает представление только о решении на отрезке Пеано, однако этот отрезок может оказаться очень маленьким и не давать необходимого понимания о дифференциальном уравнении. Поэтому хочется расширять решение за границы отрезка Пеано, причем понимая до куда мы это действительно можем сделать.
+	\end{Note}
+	\begin{Ex}
+		\[
+		x' = 1+x^2, \qquad x(0) = 0.
+		\]
+		\begin{Solution}
+			\begin{figure}[h!]
+				\centering
+				\begin{tikzpicture}[scale=0.5]
+					\draw[->] (-5,0) -- (5,0);
+					\draw[->] (0,-5) -- (0,5);
+					\draw[domain=-1.37:1.37, thick, green] plot (\x, {tan(\x r)});
+					\draw[domain=-pi/4:pi/4, thick, red] plot (\x, {tan(\x r)});
+					\draw[dashed, orange] (-1.57,-5) -- (-1.57,5);
+					\draw[dashed, orange] (1.57,-5) -- (1.57, 5);
+					\draw[dashed, blue] (pi/4, -5) -- (pi/4, 5);
+					\draw[dashed, blue] (-pi/4, -5) -- (-pi/4, 5);
+					
+				\end{tikzpicture}
+			\end{figure}
+			Очевидно, что решение уравнения -- это $x=\tg t$ на отрезке $\hs{-\frac{\pi}{4}, \frac{\pi}{4}}$. Однако вполне очевидно, что решение можно продолжить до интервала $\hr{-\frac{\pi}{2}, \frac{\pi}{2}}$. Причем дальше продолжать уже не получится, то есть это максимальное решение.
+		\end{Solution}
+	\end{Ex}
+	\begin{Def}
+		Решение $\varphi$ называется максимальным решением системы, если не существует другого решения $\psi$ такого, что $\varphi$ является сужением $\psi$.
+	\end{Def}
+	\begin{Th}[критерий продолжимости]
+		Пусть $f\in C\hr{G\to \R^n}$, $G\subset \R_{t,r}^{n+1}$ -- область, а $\varphi$ -- решение на $\hr{a,b}$. Тогда $\varphi$ продлолжимо на $\hr{a,c}$, где $c>b$ тогда и только тогда, когда $\hr{b,\varphi(b-0)} \in G$.
+		\begin{Proof}
+			Так как $\varphi$ непрерывно, то $\varphi(b-0) = \varphi(d)$. Тогда, так как каждая интегральная кривая должна лежать в $G$, то и точка $(d, \varphi(b))$ лежит в $G$.
+			
+			Обратно. Решим задачу Коши с той же системой, но с начальным условием, что в точке $b$ значение равно $\varphi(b-0)$. Тогда по теореме Пеано, есть отрезок $\hs{b,b+h}$ (на самом деле и левая часть отрезка тоже есть, но нам она неважна), на котором существует решение. Тогда по лемме о стыковке решений получим решение исходной задачи Коши на $\hrs{a,b+h}$, что является продолжением.
+		\end{Proof}
+	\end{Th}
+	
+	\begin{Cor}
+		Пусть $f\in C\hr{G\to \R^n}$, $G\subset \R_{t,r}^{n+1}$ -- область, а $\varphi$ -- максимальное решение задачи Коши. Тогда область решения -- обязательно интервал.
+		\begin{Proof}
+			Пусть решение -- не интервал, а, например, $\hrs{a,b}$. Тогда точка $b$ лежит в $G$, а значит по критерию можем продолжить решение.
+		\end{Proof}
+	\end{Cor}
+
+	\begin{Th}[О существовании единственного максимального решения]
+		Пусть $f\in C\hr{G\to \R^n} \cap Lip_{r, loc}$, $G\subset \R_{t,r}^{n+1}$ -- область. 
+		Тогда 
+		\begin{enumerate}
+			\item Существует максимальное решение $\varphi$ задачи Коши
+			\[
+			r'=f(t,r), \qquad r(t_0) = r_0.
+			\]
+			\item Любое другое решение этой задаче Коши является сужением $\varphi$.
+		\end{enumerate}
+	\begin{Proof}
+		Рассмотрим множество $s$ всех решений этой задачи Коши (заданных на любых промежутках). 
+		Пусть $a = \inf\limits_{\psi\in s}\inf \dom \psi$, $b = \sup\limits_{\psi\in s}\sup \dom \psi$, то есть это максимальные из левых и правых границ. 
+		
+		Рассмотрим точку $t\in \hsr{t_0,b}$. Из опрделения супремума найдется $\psi:\; \sup \dom \psi > t$. Тогда определим в этой точке $\varphi(t) = \psi(t)$. Таким образом, в каждой точке $t\in \hsr{t_0, b}$ мы задали какое-то значение функции $\varphi(t)$. 
+		
+		\begin{Note}
+			Однако может оказаться, что таких функций $\psi$ несколько. Тогда непонятно, каким образом выбирать значение для $\varphi$. Однако по второму пункту теоремы Пикара мы знаем, что на пересечении областей определения этих решений они совпадают. А точка $t$ точно лежит на этом пересечении, а значит все значения этих $\psi_i$ в точке $t$ одинаковы.
+		\end{Note}
+	
+		Аналогично задаем $\varphi$ на $\hrs{a,t_0}$. 
+		
+		Тогда, так как в точке $t \in \hr{a,b}$ и ее какой-то окрестности $\varphi \equiv \psi$, то в силу того, что $\psi $ --  решение, оказывается, что $\varphi$ -- непрерывно дифференцируема в точке $t$ и при этом обращает уравнение в тождество. А значит $\varphi$ -- решение.
+		
+		Почему максимальное решение? Очевидно, что все решения из $s$ являются сужением $\varphi$, так как по второму пункту теоремы Пикара два решения $\varphi$ и $\psi$ совпадают на пересечении областей определения, которое на самом деле есть область $\psi$, а это пересечение есть А значит, по определению, $\varphi$ -- максимальное решение.
+	\end{Proof}
+	\end{Th}
+	\begin{Th}[О выходе интегральной кривой за пределы любого компакта]
+		Пусть $f\in C\hr{G\to \R^n} \cap Lip_{r, loc}$, $G\subset \R_{t,r}^{n+1}$ -- область, $\varphi$ -- максимальное решение, заданное на $\hr{a,b}$, $K \subset G$ -- компакт. Тогда существует $\Delta$, что $\forall t\in\hr{a, a+\Delta}\cup\hr{b-\Delta, b} \quad \hr{t,\varphi(t)} \notin K$ (то есть фактически любое решение точно выходит из компакта).
+		\begin{Proof}
+			\begin{Prop}
+				Расстояние $\rho = \rho(K, \partial G) > 0$.
+			\end{Prop}
+			\begin{Prop}
+				Пусть $\Pi(t',r') = \hc{\hr{t,r}\in G | \|\hr{t',r'} - \hr{t,r}\|\leqslant \frac{\rho}{2}}$ и $K_{\rho} = \underset{\hr{t',r'}\in K}{\cup} \Pi(t',r')$. Тогда $K_{\rho}$ -- компакт, причем $K_{\rho} \subset G$.
+			\end{Prop}
+		\end{Proof}
+	\end{Th}
+
 \end{document}
 
 

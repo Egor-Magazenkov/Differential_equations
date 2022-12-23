@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.30)  24 NOV 2022 12:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.30)  9 DEC 2022 15:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1474,7 +1474,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
 [22]
-Overfull \hbox (12.05519pt too wide) in paragraph at lines 1073--1075
+Overfull \hbox (9.84106pt too wide) in paragraph at lines 1073--1075
 \T2A/cmr/m/n/10 ку на-ча-ла ко-ор-ди-нат. Бу-дем ис-кать ре-ше-ние при $\OML/cm
 m/m/it/10 t \OMS/cmsy/m/n/10 2 []$\T2A/cmr/m/n/10 , где $\OML/cmm/m/it/10 h \OT
 1/cmr/m/n/10 = [] []$
@@ -1492,20 +1492,69 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
 [23]
+Overfull \hbox (1.32828pt too wide) detected at line 1112
+\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 t \OMS/cmsy/m/n/10 2 []  8\OML/cmm/m/it/10 m
+ \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 Z[]\OML/cmm/m/it/10 ; k \OMS/cmsy/m/n/10 2 \U
+/msb/m/n/10 N \OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 L \OT1/cmr/m/n/10 :  [] \U/msa
+/m/n/10 6 []\OML/cmm/m/it/10 :
+ []
+
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
-[24] (./Lectures.aux)
+[24]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[25]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[26]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[27]
+Overfull \hbox (13.70659pt too wide) in paragraph at lines 1232--1235
+[][]\T2A/cmr/bx/n/10 Теорема 7 \T2A/cmr/m/n/10 (О су-ще-ство-ва-нии един-ствен-
+но-го мак-си-маль-но-го ре-ше-ния)\T2A/cmr/bx/n/10 . []\T2A/cmr/m/it/10 Пусть
+ []
+
+
+Overfull \hbox (13.20866pt too wide) in paragraph at lines 1242--1244
+\T2A/cmr/m/n/10 (за-дан-ных на лю-бых про-ме-жут-ках). Пусть $\OML/cmm/m/it/10 
+a \OT1/cmr/m/n/10 = [] [] [] \OML/cmm/m/it/10  $\T2A/cmr/m/n/10 , $\OML/cmm/m/i
+t/10 b \OT1/cmr/m/n/10 = [] [] [] \OML/cmm/m/it/10  $\T2A/cmr/m/n/10 ,
+ []
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[28]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[29] (./Lectures.aux)
 Package rerunfilecheck Info: File `Lectures.out' has not changed.
-(rerunfilecheck)             Checksum: 566E73F35A30F76216BC69CF739F4272;2361.
+(rerunfilecheck)             Checksum: 9ADCF10663CBCA138CF7D585A545525B;2564.
  ) 
 Here is how much of TeX's memory you used:
- 35848 strings out of 479721
- 804510 string characters out of 5887697
+ 35981 strings out of 479721
+ 806998 string characters out of 5887697
  1294705 words of memory out of 5000000
- 53131 multiletter control sequences out of 15000+600000
+ 53242 multiletter control sequences out of 15000+600000
  490024 words of font info for 77 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
  84i,25n,89p,855b,2152s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1536,11 +1585,12 @@ exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive
 dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/latxfont/line10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Lectures.pdf (25 pages, 339906 bytes).
+ts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on Lectures.pdf (30 pages, 366656 bytes).
 PDF statistics:
- 809 PDF objects out of 1000 (max. 8388607)
- 342 compressed objects within 4 object streams
- 112 named destinations out of 1000 (max. 500000)
- 109 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 866 PDF objects out of 1000 (max. 8388607)
+ 384 compressed objects within 4 object streams
+ 134 named destinations out of 1000 (max. 500000)
+ 117 words of extra memory for PDF output out of 10000 (max. 10000000)
 
