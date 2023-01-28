@@ -1267,6 +1267,184 @@
 		\end{Proof}
 	\end{Th}
 
+	\part{Линейные системы дифференциальных уравнений}
+	
+	\section{}
+	
+	\section{}
+	\begin{Th}
+		Пусть $P\in Mat_n\hr{C\hr{a,b}}$. Тогда общее решение линейной однородной системы $r' = P(t) r$ есть $n$-мерное линейное пространство.
+		\begin{Proof}
+			Линейность этого пространства очевидна: сумма лежит в нем, умножение на скаляр -- тоже.
+			
+			Решим $n$ задач Коши для этой систем с условиями: 
+			\[
+			r(t_0) = \begin{bmatrix}
+				1\\0\\\vdots\\0
+			\end{bmatrix},
+		r(t_0) = \begin{bmatrix}
+			0\\1\\\vdots\\0
+		\end{bmatrix},\dots r(t_0) = \begin{bmatrix}
+		0\\0\\\vdots\\1
+	\end{bmatrix}.
+			\] 
+			По теореме о существовании решения, существуют $\varphi_1, \varphi_2, \dots, \varphi_n$ -- решения этих задач Коши.
+			
+			Рассмотрим их Вронскиан:
+			\[
+			W(\varphi_1, \varphi_2, \dots, \varphi_n, t_0) = \begin{vmatrix}
+				1 &0 & \dots &0\\
+				0&1&\dots &0\\
+				\vdots& \vdots&\ddots &\vdots\\
+				0&0&\dots &1\\
+			\end{vmatrix}=1.
+			\]
+			Таким образом, он не равен нулю, а значит эти решения линейно независимы. 
+			
+			Пусть теперь $\varphi$ -- общее решение исходной системы уравнений, причем $\varphi(t_0) = \begin{bmatrix}
+				c_1\\c_2\\\vdots\\c_n
+			\end{bmatrix}
+			$.
+			
+			Рассмотрим функцию $\phi(t) = \sum\limits_{k=1}^n c_k \varphi_k(t)$. Заметим, что она также является решением системы. Рассмотрим его значение в точке $t_0$
+			\[
+			\phi(t_0) = \sum\limits_{k=1}^n c_k \varphi_k(t_0) = \begin{vmatrix}
+				c_1\\c_2\\\vdots\\c_n
+			\end{vmatrix} = \varphi(t_0).
+			\]
+			А значит по теореме о совпадении решений получаем, что из совпадения в одной точке решений системы следует совпадение этих решений. А значит решение разложилось в линейную комбинацию $\varphi_i$. То есть $\hc{\varphi_k}_{k=1}^n$ -- базис размерности $n$.
+		\end{Proof}
+	\end{Th}
+	\begin{Def}
+		Фундаментальная система решения (ФСР) есть базис в пространстве решений.
+	\end{Def}
+	\begin{Def}
+		Матрица $\hr{\varphi_1, \varphi_2, \dots, \varphi_n}$ для фундаментальной системы решений $\hc{\varphi_k}_{k=1}^n$ называется фундаментальной матрицей.
+	\end{Def}
+	\begin{Lem}[о множестве фундаментальных матриц]
+		Пусть $\Phi$ -- фундаментальная матрица для линейной однородной системы. 
+		
+		Тогда $\hc{\Phi \cdot M\;|\; M\in M_n(\mathbb{C}) \& \det M \neq 0}$ -- множество всех фундаментальных матриц для этой системы.
+		\begin{Proof}
+			Пусть $\mathcal{A}$ -- множество фундаментальных решений, а $\mathcal{B} = \hc{\Phi \cdot M\;|\; M\in M_n(\mathbb{C}) \& \det M \neq 0}$.
+			
+			\begin{itemize}
+				\item[$\boxed{\mathcal{A}\subset \mathcal{B}}$] Пусть $\Psi \in \mathcal{A}$.
+				\[
+				\Psi \underset{\psi_i \text{ -- решение}}{=} \hr{\psi_1, \psi_2, \dots, \psi_n} = \hr{\sum\limits_{k=1}^n c_{1k}\phi_k, \sum\limits_{k=1}^n c_{2k}\phi_k, \dots, \sum\limits_{k=1}^n c_{nk}\phi_k}.
+				\]
+				Тогда, обозначая $M = \begin{vmatrix}
+					c_{11} & c_{21} & \dots & c_{n1} \\
+					c_{12} & c_{22} & \dots & c_{n2} \\
+					\vdots & \vdots & \ddots & \vdots \\
+					c_{1n} & c_{2n} & \dots & c_{nn} \\
+				\end{vmatrix}
+			$, получаем
+			\[
+			\Psi = \Phi \cdot M.
+			\]
+			При этом осталось показать, что определитель $M$ не обнуляется.
+			\[
+			\underbrace{\det \Psi}_{\neq 0} = \det \Phi \cdot M = \underbrace{\det \Phi}_{\neq 0} \cdot \det M \implies \det M \neq 0.
+			\]
+			\item[$\boxed{\mathcal{B} \subset \mathcal{A}}$]
+			Пусть $\det M \neq 0$. Рассмотрим $\Psi = \Phi \cdot M \in \mathcal B$. Так как $\psi_i$ есть линейная комбинация $\phi_k$, то $\psi_i$ -- решения.
+			\[
+			W(\psi_1, \psi_2, \dots, \psi_n) = \det \Psi = \det \Phi \cdot \det M \neq 0.
+			\]
+			Таким образом эти решения линейно независимы, а значит являются фундаментальной системой решений. 
+			\end{itemize}
+		
+		Таким образом, получаем вложения $\mathcal{A} \subset \mathcal{B}$ и $\mathcal{B} \subset \mathcal{A}$. А значит $\mathcal{A} = \mathcal{B}$.
+		\end{Proof}
+	\end{Lem}
+
+	\begin{Lem}[об овеществлении]
+		Пусть $\hc{\varphi_i}_{i=1}^n$ -- фундаментальная система решений в комплексном варианте, причем $\varphi_1 = \overline{\varphi_2}$.
+		
+		Тогда $\hc{\Re{\varphi_1}}, \hc{\Im{\varphi_1}}, \varphi_3, \dots, \varphi_n$ тоже фундаментальная система решений.
+		\begin{Proof}
+			Выразим вещественную и мнимую части через ${\varphi_i}_{i=1}^n$:
+			\[
+			\Re{\varphi_1} = \frac{\varphi_1 + \overline{\varphi_1}}{2} = \frac12 \varphi_1 + \frac12 \varphi_2,
+			\]
+			\[
+			\Re{\varphi_1} = \frac{\varphi_1 + \overline{\varphi_1}}{2} = \frac1{2i} \varphi_1 - \frac1{2i} \varphi_2.
+			\]
+			Тогда можно записать $\hr{\Re{\varphi_1}}, \hc{\Im{\varphi_1}}, \varphi_3, \dots, \varphi_n = \hr{\varphi_1, \varphi_2, \varphi_3, \dots, \varphi_n} \cdot \begin{bmatrix}
+					\frac12 & \frac1{2i} & 0\\
+					\frac12 & -\frac1{2i} & 0\\
+					\vdots & \vdots & \vdots \\
+					0 & 0 & E_{n-2} 
+				\end{bmatrix}$. 
+			При этом определитель матрицы равен $-\frac1{2i} \neq 0$, а значит это тоже ФСР по предыдущей лемме.
+		\end{Proof}
+	\end{Lem}
+	
+	\section[ЛОС с постоянными коэффициентами]{Линейные однородные системы с постоянными коэффициентами}
+	\begin{Def}
+		Систему $r' = A r$, где $A\in Mat_n(\mathbb{C})$, будем называть линейной однородной системой с постоянными коэффициентами.
+	\end{Def}
+
+	\begin{Lem}
+		Пусть $\lambda\in spec A$, $h_1, h_2, \dots, h_s$ -- Жорданова цепочка, соответствуюшая $\lambda$. 
+		
+		Тогда $e^{\lambda t}h_1, e^{\lambda t} (th_1+h_2), \dots, e^{\lambda t} \hr{\frac{t^{s-1}}{(s-1)!} h_1 + \dots + h_{s-1} + h_s}$ -- решения линейной однородной системы с постоянными коэффициентами.
+		\begin{Proof}
+			\begin{Note}
+				Вспомним, что такое Жорданова цепочка.
+				Набор $h_1, h_2, \dots, h_s$ такой, что 
+				\[
+				\begin{split}
+				Ah_1 &= \lambda h_1,\\
+				\hr{A-\lambda E} h_2 &= h_1\\
+				\hr{A-\lambda E} h_3 &= h_2\\
+				\dots \\
+				\hr{A-\lambda E} h_s &= h_{s-1}\\
+				\end{split}
+				\]
+				называется Жордановой цепочкой.
+			\end{Note}
+		
+			Проверим честной подстановкой
+			Пусть $\varphi_k(t) = e^{\lambda t} \sum\limits_{j=1}^k \frac{t^{k-j}}{(k-j)!}h_j$. 
+			
+			\[
+			\begin{split}
+			\varphi_k'(t) &= \lambda e^{\lambda t} \sum\limits_{j=1}^k \frac{t^{k-j}}{(k-j)!}h_j + e^{\lambda t} \sum\limits_{j=1}^{k-1} \frac{(k-j)t^{k-j-1}}{(k-j)!}h_j = \\
+			&=\lambda e^{\lambda t} \sum\limits_{j=1}^k \frac{t^{k-j}}{(k-j)!}h_j + e^{\lambda t} \sum\limits_{j=1}^{k-1} \frac{t^{k-j-1}}{(k-j-1)!}h_j,
+			\end{split}
+			\]
+			\[
+			\begin{split}
+				A \cdot \varphi_k(t) &= e^{\lambda t} \sum\limits_{j=1}^k \frac{t^{k-j}}{(k-j)!}A h_j = e^{\lambda t} \frac{t^{k-1}}{(k-1)!}\lambda h_1 + e^{\lambda t} \sum\limits_{j=2}^k \frac{t^{k-j}}{(k-j)!} \hr{\lambda h_j + h_{j-1}}  =\\
+				&= e^{\lambda t} \sum\limits_{j=1}^k \frac{t^{k-j}}{(k-j)!}\lambda h_j + e^{\lambda t} \sum\limits_{j=2}^k \frac{t^{k-j}}{(k-j)!}h_{j-1} = \\
+				&=  \lambda e^{\lambda t} \sum\limits_{j=1}^k \frac{t^{k-j}}{(k-j)!} h_j + e^{\lambda t} \sum\limits_{j=1}^{k-1} \frac{t^{k-j-1}}{(k-j-1)!}h_{j}.
+			\end{split}
+			\]
+			Таким образом, видно, что $\varphi_k'(t) = A\cdot \varphi_k(t)$, а значит это решение.
+		\end{Proof}
+	\end{Lem}
+	\begin{Lem}[ФСР ЛОС с постоянными коэффициентами]
+		Фундаментальная система решений линейной однородной системы с постоянными коэффициентами в для Жорданова базиса $\begin{matrix}
+			\lambda_1 \leftrightarrow h_1, \dots, h_s\\
+			\dots \\
+			\lambda_d  \leftrightarrow u_1, \dots, u_m
+		\end{matrix}$ 
+		есть \[\begin{matrix}
+			e^{\lambda_1 t}h_1, e^{\lambda_1 t} (th_1+h_2), \dots, e^{\lambda_1 t} \hr{\frac{t^{s-1}}{(s-1)!} h_1 + \dots + h_{s-1} + h_s}\\
+			\dots \\
+			e^{\lambda_d t}u_1, e^{\lambda_d t} (tu_1+u_2), \dots, e^{\lambda_d t} \hr{\frac{t^{m-1}}{(m-1)!} h_1 + \dots + h_{m-1} + h_m}
+		\end{matrix}\] 
+	\begin{Proof}
+		Проверим определитель Вронского для этих решений
+		\[
+		W(\hc{\phi_i},0) = \det \hr{h_1, h_2, \dots, h_s, \dots, u_1, u_2, \dots, u_m} \neq 0.
+		\]
+		(отличие от нуля есть из-за того, что матрица под детерминантом есть просто базис в $\mathbb{C}^n$).
+		Значит это действительно фундаментальная система решений.
+	\end{Proof}
+	\end{Lem}
 \end{document}
 
 

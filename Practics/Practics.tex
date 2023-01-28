@@ -962,4 +962,226 @@
 			Доказательство основывается на рассмотрении всевозможных квадратов - компактов с центром в начале, и утверждении, что интегральная кривая выходит по правой границе квадрата.  из области $x\geqslant y$ возрастающая ($y'=(x-y)(x^2+xy+y^2)\geqslant 0$) кривая не может попасть в область $y\geqslant x$ (интересное доказательство через  определение дифференцируемости и сравнение со значением $y$). а из $y\geqslant x$ она точно перейдет в $x\geqslant y$. тогда получается мы точно выйдем по правой границе.
 		\end{Proof} 
 	\end{Ex}
+	\section[23.12.2022]{Линейные однородные системы}
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x' = -x-2y,\\
+			y'=3x+4y.
+		\end{cases}
+		\]
+		\begin{Solution}
+			Запишем систему в матричном виде $r' = A r$
+			\[
+			\begin{bmatrix}
+				x'\\y'
+			\end{bmatrix}
+			=
+			\begin{bmatrix}
+				-1 &-2\\
+				3 & 4\\
+			\end{bmatrix}
+			\begin{bmatrix}
+				x\\y
+			\end{bmatrix}.
+			\]
+			Найдем собственные числа
+			\[
+			\det \hr{A-\lambda E} = 0 \Leftrightarrow (-1-\lambda)(4-\lambda) + 6 = 0 \Leftrightarrow \lambda \in \hc{1,2}.
+			\]
+			Найдем собственные векторы
+			\begin{itemize}
+				\item[$\boxed{\lambda = 1}$]
+				\[
+				\hr{A-E} h_1 = 0 \Leftrightarrow \begin{bmatrix}
+					-2 & -3\\
+					2 & 3
+				\end{bmatrix}h_1 = 0 \Leftrightarrow h_1 = \begin{bmatrix}
+					\alpha\\-\alpha.
+				\end{bmatrix}
+				\]
+				\item[$\boxed{\lambda = 2}$]
+				\[
+				\hr{A-2E} u_1 = 0 \Leftrightarrow \begin{bmatrix}
+					-3 & -2\\
+					3 & 2
+				\end{bmatrix}u_1 = 0 \Leftrightarrow u_1 = \begin{bmatrix}
+			\beta\\
+			-\frac32 \beta
+		\end{bmatrix}.
+				\]
+			\end{itemize}
+		Тогда фундаментальным решением будет 
+		\[
+		\begin{bmatrix}
+			e^{t}\\
+			e^{t}\\
+		\end{bmatrix},
+		\begin{bmatrix}
+			2e^{2t}\\
+			-3e^{2t}
+		\end{bmatrix}
+		\]
+		\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+		\[
+		\begin{cases}
+		x' = 2x-y, \\
+		y'=x+2y.
+	\end{cases}
+		\]
+		\begin{Solution}
+			В матричном виде
+			\[
+			\begin{bmatrix}
+				x'\\y'
+			\end{bmatrix} = 
+		\begin{bmatrix}
+			2 & -1\\
+			1 & 2
+		\end{bmatrix}
+	\begin{bmatrix}
+		x\\ y
+	\end{bmatrix}.
+			\]
+			Найдем собственные числа 
+			\[
+			\begin{vmatrix}
+				2-\lambda & -1\\
+				1 & 2-\lambda
+			\end{vmatrix} = 0 \Leftrightarrow 
+			4-4\lambda + \lambda^2 + 1 = 0 \Leftrightarrow \lambda = 2 \pm i.
+			\]
+			Найдем собственные векторы
+			\begin{itemize}
+				\item[$\boxed{\lambda=2+i}$] 
+				\[
+				\begin{bmatrix}
+				-i & -1\\
+				1 & -i
+				\end{bmatrix}h_1 = 0 \Leftrightarrow h_1 = \begin{bmatrix}
+				\lambda\\
+				-i\lambda 
+				\end{bmatrix}
+				\]			
+							\item[$\boxed{\lambda=2-i}$] 
+				\[
+				\begin{bmatrix}
+				i & -1\\
+				1 & i
+				\end{bmatrix}u_1 = 0 \Leftrightarrow u_1 = \begin{bmatrix}
+				\beta\\
+				i\beta
+				\end{bmatrix}
+				\]			
+			\end{itemize}
+			Тогда овеществленным решением будет 
+				\[
+				\Re{e^{(2+i)t}
+			\begin{bmatrix}
+				1\\
+				-i\\
+			\end{bmatrix}},
+		\Im{e^{(2+i)t}
+			\begin{bmatrix}
+				1\\
+				-i\\
+		\end{bmatrix}},
+			\]
+			то есть
+				\[
+			e^{2t}
+				\begin{bmatrix}
+					\cos t\\
+					\sin t\\
+			\end{bmatrix},
+			e^{2t}
+				\begin{bmatrix}
+					\sin t\\
+					-\cos t\\
+			\end{bmatrix}.
+			\]
+			
+		\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x' = -4x+2y+5z,\\
+			y' = 6x-y-6z,\\
+			z' = -8x + 3y + 9z.
+		\end{cases}
+		\]
+		\begin{Solution}
+			Собственные числа: $\lambda_1 = 2$, $\lambda_2 = 1$.
+			Найдем собственные и присоединенные векторы
+			\begin{itemize}
+				\item[$\boxed{\lambda_1 = 2}$]
+				\[
+				\begin{bmatrix}
+					-6 & 2 & 5\\
+					6 & -3 & -6\\
+					-8 & 3 & 7
+				\end{bmatrix} h_1 = 0 \Leftrightarrow \begin{bmatrix}
+				-6 & 2 & 5\\
+				0 & -1 & -1\\
+				0 & 2 & 2 
+			\end{bmatrix} h_1 = 0 \Leftrightarrow h_1 = \begin{bmatrix}
+			 \frac12\lambda \\
+			-\lambda \\
+			\lambda 
+		\end{bmatrix}.
+				\]
+				\item[$\boxed{\lambda_2 = 1}$]
+			\[
+			\begin{bmatrix}
+				-5 & 2 & 5\\
+				6 & -2 & -6\\
+				-8 & 3 & 8
+			\end{bmatrix} u_1 = 0 \Leftrightarrow \begin{bmatrix}
+				-5 & 2 & 5\\
+				0 & 2 & 0\\
+				0 & 1 & 0 
+			\end{bmatrix} u_1 = 0 \Leftrightarrow u_1 = \begin{bmatrix}
+				\lambda\\
+				0 \\
+				\lambda
+			\end{bmatrix}.
+			\]
+			Найдем присоединенный к нему
+			\[
+			\begin{bmatrix}
+				-5 & 2 & 5\\
+				6 & -2 & -6\\
+				-8 & 3 & 8
+			\end{bmatrix} u_2 = \begin{bmatrix}
+			1\\0\\1
+		\end{bmatrix} \Leftrightarrow 
+			\begin{bmatrix}
+				-5 & 0 & 5\\
+				0 & 2 & 0\\
+				0 & 1 & 0 
+			\end{bmatrix} u_2 = \begin{bmatrix}
+			-5 \\ 6 \\ 3
+		\end{bmatrix},
+			\]
+			\[
+			u_2 = \begin{bmatrix}
+				\gamma +1 \\3\\\gamma
+			\end{bmatrix}.
+			\]
+			\end{itemize}
+		Тогда фундаментальное решение есть
+		\[
+		r = C_1 e^{2t} \begin{bmatrix}
+			\frac12\\-1\\1
+		\end{bmatrix} + C_2 e^{t} \begin{bmatrix}
+		1\\0\\1
+	\end{bmatrix} + C_3 t e^t \begin{bmatrix}
+	1\\3\\0
+\end{bmatrix}.
+		\]
+		\end{Solution}
+	\end{Ex}
 \end{document}
