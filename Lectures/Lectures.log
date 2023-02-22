@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.30)  23 DEC 2022 16:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.30)  22 FEB 2023 12:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1569,56 +1569,106 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
 [32]
+Overfull \hbox (15.67001pt too wide) detected at line 1500
+[]
+ []
+
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
-[33] (./Lectures.aux)
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 1518--1520
+
+ []
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[34]
+Overfull \hbox (22.37146pt too wide) in paragraph at lines 1553--1555
+[]\T2A/cmr/m/it/10 Доказательство. []\T2A/cmr/m/n/10 Необ-хо-ди-мо до-ка-зать р
+а-вен-ство мно-жеств $\OML/cmm/m/it/10 A \OT1/cmr/m/n/10 = []$
+ []
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[35]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[36]
+Overfull \hbox (41.30019pt too wide) in paragraph at lines 1638--1649
+[]\T2A/cmr/m/it/10 Если есть неко-то-рая Жор-да-но-ва клет-ка раз-ме-ра $\OML/c
+mm/m/it/10 s$ $J[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U\OT1/cmr/m/n/10 ) = []$\
+T2A/cmr/m/it/10 ,
+ []
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[37]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[38] (./Lectures.aux)
 Package rerunfilecheck Info: File `Lectures.out' has not changed.
-(rerunfilecheck)             Checksum: AD5195BCC9E63F7AC0F2B5E652F4247D;3360.
+(rerunfilecheck)             Checksum: 5672DF1DC8319BA7ECCFA34B909C071C;3854.
  ) 
 Here is how much of TeX's memory you used:
- 36001 strings out of 479721
- 807152 string characters out of 5887697
- 1294708 words of memory out of 5000000
- 53246 multiletter control sequences out of 15000+600000
- 490024 words of font info for 77 fonts, out of 8000000 for 9000
+ 36027 strings out of 479721
+ 807357 string characters out of 5887697
+ 1302798 words of memory out of 5000000
+ 53251 multiletter control sequences out of 15000+600000
+ 491772 words of font info for 79 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
  84i,25n,89p,855b,2152s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/leo/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/lati0900.600pk> 
-</home/leo/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/labx2074.600pk> </h
-ome/leo/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/larm0600.600pk> </home
-/leo/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/larm0700.600pk> </home/le
-o/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </home/leo
-/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/lati1000.600pk> </home/leo/.t
-exlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/lacc1000.600pk> </home/leo/.texl
-ive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/labx1000.600pk> </home/leo/.texlive
-2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/lati1200.600pk> </home/leo/.texlive202
-1/texmf-var/fonts/pk/ljfour/lh/lh-t2a/labx1200.600pk> </home/leo/.texlive2021/t
-exmf-var/fonts/pk/ljfour/lh/lh-t2a/larm1200.600pk> </home/leo/.texlive2021/texm
-f-var/fonts/pk/ljfour/lh/lh-t2a/labx1440.600pk> </home/leo/.texlive2021/texmf-v
-ar/fonts/pk/ljfour/lh/lh-t2a/larm1000.600pk> </home/leo/.texlive2021/texmf-var/
-fonts/pk/ljfour/lh/lh-t2a/larm0900.600pk> </home/leo/.texlive2021/texmf-var/fon
-ts/pk/ljfour/lh/lh-t2a/larm0800.600pk></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cmextra/cmex7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/latxfont/line10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on Lectures.pdf (34 pages, 389282 bytes).
+ </home/leo/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/larm0500.600pk> 
+</home/leo/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/lati0900.600pk> </h
+ome/leo/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/labx2074.600pk> </home
+/leo/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/larm0600.600pk> </home/le
+o/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/larm0700.600pk> </home/leo/.
+texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </home/leo/.t
+exlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/lati1000.600pk> </home/leo/.texl
+ive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/lacc1000.600pk> </home/leo/.texlive
+2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/labx1000.600pk> </home/leo/.texlive202
+1/texmf-var/fonts/pk/ljfour/lh/lh-t2a/lati1200.600pk> </home/leo/.texlive2021/t
+exmf-var/fonts/pk/ljfour/lh/lh-t2a/labx1200.600pk> </home/leo/.texlive2021/texm
+f-var/fonts/pk/ljfour/lh/lh-t2a/larm1200.600pk> </home/leo/.texlive2021/texmf-v
+ar/fonts/pk/ljfour/lh/lh-t2a/labx1440.600pk> </home/leo/.texlive2021/texmf-var/
+fonts/pk/ljfour/lh/lh-t2a/larm1000.600pk> </home/leo/.texlive2021/texmf-var/fon
+ts/pk/ljfour/lh/lh-t2a/larm0900.600pk> </home/leo/.texlive2021/texmf-var/fonts/
+pk/ljfour/lh/lh-t2a/larm0800.600pk></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cmextra/cmex7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/latxfont/line10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/symbols/msbm7.pfb>
+Output written on Lectures.pdf (39 pages, 412413 bytes).
 PDF statistics:
- 923 PDF objects out of 1000 (max. 8388607)
- 424 compressed objects within 5 object streams
- 150 named destinations out of 1000 (max. 500000)
- 149 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 993 PDF objects out of 1000 (max. 8388607)
+ 471 compressed objects within 5 object streams
+ 169 named destinations out of 1000 (max. 500000)
+ 165 words of extra memory for PDF output out of 10000 (max. 10000000)
 

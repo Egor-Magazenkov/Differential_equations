@@ -1184,4 +1184,230 @@
 		\]
 		\end{Solution}
 	\end{Ex}
+
+	\section[17.02.2023]{Линейные неоднородные системы}
+	\begin{Ex}
+		Решить систему методом вариации постоянных
+		\[
+		\begin{cases}
+			x' = -2x -4y+1+4t, \\
+			y' = -x + y + \frac32 t^2\\
+		\end{cases}
+		\]
+		\begin{Solution}
+			Рассмотрим соответствующую однородную систему 
+			\[
+			r' = \underbrace{\begin{bmatrix}
+				-2 & -4 \\
+				-1 & 1
+			\end{bmatrix}}_A r.
+			\]
+			
+			Найдем собственные числа матрицы
+			\[
+			\begin{vmatrix}
+				-2-\lambda & -4 \\
+				-1 & 1-\lambda 
+			\end{vmatrix} = \lambda^2 +\lambda-6 = 0,
+			\]
+			Собственные числа $\lambda_1= -3$, $\lambda_2 = 2$.
+			
+			Найдем собственные векторы
+			\begin{itemize}
+				\item[$\lambda_1 = -3$] \[
+				\begin{bmatrix}
+					1 & -4 \\
+					-1 & 4 
+				\end{bmatrix} \equiv \begin{bmatrix}
+				1 & -4 \\
+				0 & 0
+			\end{bmatrix}.
+			\]
+			То есть $h_1 = \hr{4\alpha, \alpha}^T$. Возьмем $h_1 = \hr{4,1}^T$.
+			
+				\item[$\lambda_1 = 2$] \[
+			\begin{bmatrix}
+				-4 & -4 \\
+				-1 & -1 
+			\end{bmatrix} \equiv \begin{bmatrix}
+				1 & 1\\
+				0 & 0
+			\end{bmatrix}.
+			\]
+			То есть $h_2 = \hr{\alpha, -\alpha}^T$. Возьмем $h_2 = \hr{1,-1}^T$.
+			\end{itemize}
+		
+			Тогда фундаментальная матрица получается 
+			\[
+			\Phi = \begin{bmatrix}
+				4e^{-3t} & e^{2t} \\
+				e^{-3t} & -e^{2t} \\
+			\end{bmatrix}.
+			\]
+			
+			
+			А тогда общее решение исходной системы имеет вид 
+			\[
+			r=  \Phi \cdot C, \quad \text{где } \Phi \cdot C' = \begin{bmatrix}
+				1+4t\\\frac32 t^2
+			\end{bmatrix}.
+			\]
+			Найдем $C$
+			\[
+			\begin{cases}
+				4e^{-3t}C_1'+  e^{2t}C_2' = 1+4t ,\\
+				e^{-3t}C_1' - e^{2t}C_2' = \frac32 t^2.
+			\end{cases}
+		\Leftrightarrow
+			\begin{cases}
+				C_1' = \frac15 e^{3t} (1+4t+\frac32 t^2),\\
+				C_2' = \frac15 e^{-2t}  (1+4t-6t^2)
+			\end{cases}
+			\]
+			\[
+			\begin{cases}
+			C_1 = \frac1{10} e^{3t} t^2 + \frac15 e^{3t} t + A_1, \\
+			C_2 = \frac35 e^{-2t} t^2 + \frac15 e^{-2t} t + A_2
+			\end{cases}
+			\]
+			
+			Таким образом, получаем общее решение исходной системы
+			\[
+			\begin{split}
+			r = \Phi \cdot C &= \begin{bmatrix}
+				4e^{-3t} & e^{2t} \\
+				e^{-3t} & -e^{2t} \\
+			\end{bmatrix} \cdot \begin{bmatrix}
+			\frac1{10} e^{3t} t^2 + \frac15 e^{3t} t + A_1 \\
+			\frac35 e^{-2t} t^2 + \frac15 e^{-2t} t + A_2
+		\end{bmatrix} = \\
+	& =\begin{bmatrix}
+		\frac25t^2 + \frac45 t + 4e^{-3t}A_1 + \frac3{5} t^2 + \frac15 t + e^{2t} A_2\\
+		\frac1{10} t^2 + \frac15 t + e^{-3t}A_1 - \frac35 t^2 -\frac15 t - e^{-2t} A_2
+	\end{bmatrix}=\\
+			&= \begin{bmatrix}
+				t^2 + t+ 4e^{-3t}A_1 + e^{2t}A_2\\
+				-\frac12t^2 + e^{-3t}A_1- e^{-2t}A_2
+			\end{bmatrix}.
+		\end{split}
+			\]
+		\end{Solution}
+	\end{Ex}
+
+	\begin{Ex}
+		Решить задачу Коши, используя матричную экспоненту
+		\[
+		\begin{cases}
+			x' = x+4y,\\
+			y' = -x + 5y,
+		\end{cases} \qquad r(0) = \hr{1~1}^T.
+		\]
+		\begin{Solution}
+			Знаем, что $r=e^{A \cdot \hr{t-0}}\begin{bmatrix}
+		1\\1
+	\end{bmatrix}$ является решением системы.
+	
+	Разложим в Жорданову форму матрицу $A$. Собственное число $\lambda_{1,2} = 3$.
+	\[
+	 	h_1 = \hr{2,1}^T
+	\]
+	\[
+		h_2 = \hr{1,1}^T
+	\]
+	
+	 То есть матрица перехода $T = \begin{bmatrix}
+	 	2 & 1 \\
+	 	1 & 1
+	 \end{bmatrix}$, Жорданова матрица $J = \begin{bmatrix}
+	 3 & 1 \\ 0 & 3
+ \end{bmatrix}$.
+
+Найдем обратную к матрице перехода
+	\[
+	T^{-1} = \begin{bmatrix}
+		1 & -1 \\
+		-1 & 2
+	\end{bmatrix}.
+	\]
+	
+	Таким образом, можно записать по формуле для матричной экспоненты
+	\[
+	e^{At} = T \cdot e^{3t}\cdot T^{-1} = \begin{bmatrix}
+		2 & 1 \\
+		1 & 1
+	\end{bmatrix}  \begin{bmatrix}
+	1 & t \\ 0 & 1
+\end{bmatrix} \begin{bmatrix}
+1 & -1 \\
+-1 & 2
+\end{bmatrix}e^{3t} = \begin{bmatrix}
+-2t+1 & 4t \\ -t & 2t+1
+\end{bmatrix}e^{3t}.
+	\]
+	Тогда решением системы является 
+	\[
+	r = \begin{bmatrix}
+		-2t+1 & 4t \\ -t & 2t+1
+	\end{bmatrix}e^{3t} \cdot \begin{bmatrix}
+	1\\1
+\end{bmatrix} = \begin{bmatrix}
+2t+1\\t+1
+\end{bmatrix} e^{3t}.
+	\]
+		\end{Solution}
+	\end{Ex}
+
+	\begin{Ex}
+		Вычислить матричную экспоненту для матрицы
+		\[
+		A = \begin{bmatrix}
+			0 & 1 & 0\\
+			0 & 0 & 0 \\
+			0 & 0 & 2
+		\end{bmatrix}.
+		\]
+		\begin{Solution}
+			Заметим, что $A^n = 2^n \cdot \begin{bmatrix}
+				0 & 0 & 0 \\
+				0 & 0 & 0 \\
+				0 & 0 & 1
+			\end{bmatrix}$.
+		
+		Тогда по определению
+		\[
+		e^A = \sum\limits_{n=0}^\infty \frac{A^n}{n!} = I + A + \begin{bmatrix}
+			0 & 0 & 0 \\
+			0 & 0 & 0 \\
+			0 & 0 & 1
+		\end{bmatrix} \underbrace{\sum\limits_{n=2}^\infty \frac{2^n}{n!}}_{e^2-1-2} = \begin{bmatrix}
+		1 & 1 & 0\\
+		0& 1 & 0\\
+		0 & 0& e^2
+	\end{bmatrix}.
+		\]
+		\end{Solution}
+	\end{Ex}
+
+	\begin{Ex}
+		Найти определитель матричной экспоненты, не вычисляя саму матричную экспоненту
+		\[
+		A = \begin{bmatrix}
+			1 & 0 & 3\\
+			-1 & 2 & 0\\
+			0 & 1 & -1
+		\end{bmatrix}.
+		\]
+		\begin{Solution}
+			Заметим, что $\det e^{At} = W(t)$.
+			
+			По формуле Остроградского-Лиувилля 
+			\[
+			\det e^{At}  = \det e^{A\cdot 0} e^{\int\limits_0^t \tr A d\tau} = e^{2t}.
+			\]
+			А тогда, подставляя $t=1$, получаем искомое.
+			\[
+			\det e^{A} = e^2.
+			\]
+		\end{Solution}
+	\end{Ex}
 \end{document}

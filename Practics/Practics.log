@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.30)  23 DEC 2022 16:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.30)  22 FEB 2023 12:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1430,15 +1430,33 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 13.59999pt, for example:
 (fancyhdr)                \setlength{\footskip}{13.59999pt}.
 
-[20] (./Practics.aux)
+[20]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\footskip}{13.59999pt}.
+
+[21]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\footskip}{13.59999pt}.
+
+[22]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\footskip}{13.59999pt}.
+
+[23] (./Practics.aux)
 Package rerunfilecheck Info: File `Practics.out' has not changed.
-(rerunfilecheck)             Checksum: C669412BA6C42ECFE778D828D814BACE;1399.
+(rerunfilecheck)             Checksum: F279B1047C29F4FFB21DB5FAD3720009;1493.
  ) 
 Here is how much of TeX's memory you used:
- 35884 strings out of 479721
- 805398 string characters out of 5887697
+ 35893 strings out of 479721
+ 805459 string characters out of 5887697
  1329782 words of memory out of 5000000
- 53214 multiletter control sequences out of 15000+600000
+ 53215 multiletter control sequences out of 15000+600000
  485943 words of font info for 68 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
  84i,27n,89p,879b,2182s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1452,20 +1470,22 @@ live2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/larm1095.600pk> </home/leo/.texliv
 e2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/larm1000.600pk> </home/leo/.texlive20
 21/texmf-var/fonts/pk/ljfour/lh/lh-t2a/larm0900.600pk></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Practics.pdf (21 pages, 269489 bytes).
+fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Practics.pdf (24 pages, 297071 bytes).
 PDF statistics:
- 609 PDF objects out of 1000 (max. 8388607)
- 243 compressed objects within 3 object streams
- 69 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 644 PDF objects out of 1000 (max. 8388607)
+ 268 compressed objects within 3 object streams
+ 77 named destinations out of 1000 (max. 500000)
+ 109 words of extra memory for PDF output out of 10000 (max. 10000000)
 

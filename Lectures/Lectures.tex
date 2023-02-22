@@ -1425,7 +1425,7 @@
 			Таким образом, видно, что $\varphi_k'(t) = A\cdot \varphi_k(t)$, а значит это решение.
 		\end{Proof}
 	\end{Lem}
-	\begin{Lem}[ФСР ЛОС с постоянными коэффициентами]
+	\begin{Lem}[ФСР ЛОС с постоянными коэффициентами]\label{Lem:FSR}
 		Фундаментальная система решений линейной однородной системы с постоянными коэффициентами в для Жорданова базиса $\begin{matrix}
 			\lambda_1 \leftrightarrow h_1, \dots, h_s\\
 			\dots \\
@@ -1445,6 +1445,246 @@
 		Значит это действительно фундаментальная система решений.
 	\end{Proof}
 	\end{Lem}
+	
+	\begin{Th}[Формула Остроградского-Лиувилля]
+		Пусть есть линейная однородная система $R' = P(t) r$, где $P\in M_n(C(a,b))$, $r_1, \dots, r_n$ -- решения этой системы. 
+		
+		Тогда \[
+		W(r_1, \dots, r_n, t) = W(t_0) \cdot e^{\int\limits_{t_0}^t \tr P(\tau) d\tau}.
+		\]
+		\begin{Proof}
+			Заметим, что написанное выражение очень похоже на решение линейного однородного дифференциального уравнения 1 порядка $y=y_0\cdot e^{\int p}$.
+			
+			Рассмотрим дифференциальное уравнение $W' = \tr P(t) W$, то есть то, которое дает написанное выражение в качестве решения. Тогда, если Вронскиан удовлетворяет этому уравнению, то он удовлетворяет и написанному выражению.
+			
+			Рассмотрим, что из себя представляет производная Вронскиана. Запишем определитель по определению
+			\[
+			W(t) = \det \hr{r_1, \dots, r_n} = \begin{vmatrix}
+				r_1^1 & r_2^1 & \dots & r_n^1 \\
+				r_1^2 & r_2^2 & \dots & r_n^2 \\
+				\vdots  & \vdots & \ddots & \vdots \\
+				r_1^n & r_2^n & \dots & r_n^n \\
+			\end{vmatrix} = 
+			\sum\limits_\pi (-1)^{[\pi]} r_{\pi(1)}^1 r_{\pi(2)}^2 \dots r_{\pi(n)}^n. 
+			\]
+			Тогда производная 
+			\[
+			\begin{split}
+			W'(t) &= 
+			\sum\limits_\pi (-1)^{[\pi]} \hr{\hr{\hr{r_{\pi(1)}^1}' r_{\pi(2)}^2 \dots r_{\pi(n)}^n} + \dots + \hr{r_{\pi(1)}^1 r_{\pi(2)}^2 \dots \hr{r_{\pi(n)}^n}'}} = \\
+			&=\det \begin{bmatrix}
+				(r_1^1)' & (r_2^1)' & \dots & (r_n^1)' \\
+				r_1^2 & r_2^2 & \dots & r_n^2 \\
+				\vdots  & \vdots & \ddots & \vdots \\
+				r_1^n & r_2^n & \dots & r_n^n \\
+			\end{bmatrix}+ \dots + 
+	\det \begin{bmatrix}
+		r_1^1 & r_2^1 & \dots & r_n^1 \\
+		r_1^2 & r_2^2 & \dots & r_n^2 \\
+		\vdots  & \vdots & \ddots & \vdots \\
+		(r_1^n)' & (r_2^n)' & \dots & (r_n^n)' \\
+	\end{bmatrix} = \\
+			&=\det \begin{bmatrix}
+				R_1'\\R_2\\\vdots\\R_n
+			\end{bmatrix}
+			+ 
+			\det \begin{bmatrix}
+				R_1\\R_2'\\\vdots\\R_n
+			\end{bmatrix}
+			+ 
+			\dots +
+		\det \begin{bmatrix}
+			R_1\\R_2\\\vdots\\R_n'
+		\end{bmatrix}.
+	\end{split}
+			\]
+			
+			Из того, что $r_1, r_2, \dots, r_n$ -- решения, получаем, что \[\hr{r_1', r_2', \dots r_n'} = P \cdot \hr{r_1, r_2, \dots, r_n}.\]
+			А тогда 
+			\[
+			R_k' = \sum\limits_{j=1}^n [P]_{k,j} R_j.
+			\]
+			
+			Таким образом, 
+			\[
+			W'(t) = \det \begin{bmatrix}
+				\sum\limits_{j=1}^n [P]_{1,j} R_j\\R_2\\\vdots\\R_n
+			\end{bmatrix} + \det\begin{bmatrix}
+			R_1 \\ \sum\limits_{j=1}^n [P]_{2,j} R_j\\\vdots\\R_n
+		\end{bmatrix} + 
+	\dots + \det\begin{bmatrix}
+		R_1 \\ R_2 \\ \dots \\ \sum\limits_{j=1}^n [P]_{n,j} R_j
+	\end{bmatrix} = 
+		\]
+			По свойству определителя вычтем строки, умноженные на необходимые коэффициенты в каждой матрице  \\
+			  \[
+			=\det \begin{bmatrix}
+				[P]_{1,1}R_1\\R_2\\\vdots\\R_n
+			\end{bmatrix}
+			+ 
+			\det \begin{bmatrix}
+				R_1\\ [P]_{2,2} R_2\\\vdots\\R_n
+			\end{bmatrix}
+			+ 
+			\dots +
+			\det \begin{bmatrix}
+				R_1\\R_2\\\vdots\\ [P]_{n,n}R_n
+			\end{bmatrix} =
+		\]
+		Вынесем коэффициенты из под определителя
+		\[
+		= \hr{\sum\limits_{j=1}^n [P]_{j,j}} \cdot \det \begin{bmatrix}
+			R_1\\R_2\\\vdots\\R_n
+		\end{bmatrix}=\tr P \cdot W.
+			\]
+		\end{Proof}
+	\end{Th}
+
+	\section{Неоднородные линейные системы}
+	\begin{Th}[общее решение линейной неоднородной системы]
+		Пусть $P \in M_n(C(a,b))$, $q\in C\hr{(a,b) \to \mathbb{C}^n}$, $\Phi$ -- фундаментальная матрица соответствующей линейной однородной системы, $\varphi$ -- частное решение линейной системы $r'=P(t) r + q(t)$. 
+		
+		Тогда общее решение линейной системы есть
+		\[
+		r = \Phi \cdot C + \varphi, \quad C\in \mathbb{C}^n.
+		\]
+		
+		\begin{Proof}
+			Необходимо доказать равенство множеств $A = \hc{r= \Phi \cdot C + \varphi}$ и $B= \hc{\text{множество всех решений}}$.
+			\begin{itemize}
+			\item[$\boxed{A\subset B}$] Очевидно подстановкой в уравнение.
+			\[
+			\Phi' \cdot C + \varphi' = P(t) \cdot  \hr{\Phi \cdot C + \varphi} + q(t),
+			\]
+			\[
+			\Phi' \cdot C + \varphi' = P(t) \cdot \Phi \cdot C + P(t) \cdot \varphi + q(t),
+			\]
+			\[
+			\underbrace{\hr{\Phi' -P(t)\cdot \Phi}}_{\stackrel{=0 \text{ , т.к. }}{\text{$\Phi$ -- фундаментальная}}} \cdot C = - \underbrace{\hr{\varphi' - P(t) \varphi - q(t)}}_{\stackrel{=0 \text{ , т.к. }}{\text{$\varphi$ -- решение}}}.
+			\]
+			
+			\item[$\boxed{B\subset A}$] Пусть $r$ -- некоторое решение линейной системы. 
+			Тогда $r' = P(t)r+q$ и $\varphi' = P(t) \varphi +q$, а значит, вычитая, получаем 
+			\[
+			r' - \varphi' = P(t) (r-\varphi), 
+			\]
+			\[
+			(r-\varphi)'=P(t) (r-\varphi),
+			\]
+			По теореме для однородной линейной системы найдется $C\in \mathbb{C}^n$, что
+			\[
+			r-\varphi = \Phi \cdot C,
+			\]
+			\[
+			r = \Phi \cdot C + \varphi.
+			\]
+		\end{itemize}
+		\end{Proof}
+	\end{Th}
+
+	\begin{Th}[метод вариации постоянных]
+		Пусть $P \in M_n(C(a,b))$, $q\in C\hr{(a,b) \to \mathbb{C}^n}$, $\Phi$ -- фундаментальная матрица соответствующей линейной однородной системы. 
+		
+		Тогда решение линейной системы имеет вид 
+		\[
+		r = \Phi \cdot C, \quad \text{где } C \text{ -- решение уравнения } \Phi \cdot C' = q.
+		\]
+		\begin{Proof}
+			Найдем решение уравнения $\Phi \cdot C' = q$.
+			\[
+			C' = \Phi^{-1} q,
+			\]
+			Так как $\Phi^{-1} = \frac1{\det \Phi} \tilde{\Phi}^{T}$, то правая часть непрерывна, а тогда есть первообразная.
+			\[
+			C = \int \Phi^{-1} q + A.
+			\]
+			
+			Покажем, что тогда $r=\Phi \hr{\int \Phi^{-1} q + A}$ является общим решением.
+			
+			\[
+			r=\Phi \hr{\int \Phi^{-1} q + A} = \Phi \cdot A + \Phi \int \Phi^{-1} q.
+			\]
+			Заметим, что оно имеет вид общего решения из предыдущей теоремы, при условии, что $\Phi \int \Phi^{-1} q$ является частным решением. Для проверки этого подставим в исходную линейную систему
+			\[
+			\hr{\Phi \hr{\int \Phi^{-1} q}}' = P \Phi \hr{\int \Phi^{-1} q}+ q,
+			\]
+			\[
+			\Phi' \int \Phi^{-1} q + \cancel{\hr{\Phi \Phi'} q} = P \Phi \int \Phi^{-1} q + \cancel{q},
+			\]
+			\[
+			\hr{\Phi' - P\Phi} \int \Phi^{-1}q = 0.
+			\]
+			А это уже верное равенство, так как $\Phi$ -- фундаментальная матрица однородной системы.
+			
+			Таким образом, получили, что $r=\Phi\cdot C=\Phi \hr{\int \Phi^{-1} q + A}$ имеет вид общего решения системы.
+		\end{Proof}
+	\end{Th}
+
+	\section{Матричная экспонента}
+		\begin{Def}
+			Матричной экспонентой матрицы $A$ называется ряд
+			\[
+			e^A = \sum\limits_{k=0}^{\infty} \frac{A^k}{k!}.
+			\]
+		\end{Def}
+		\begin{Th}[Свойства матричной экспоненты]
+			\hspace{0pt}
+			\begin{enumerate}
+				\item Для любой матрицы $A \in M_n(\mathbb{C})$ ряд $e^A$ сходится.
+				\item Если для матриц $A, B$ выполнено $AB=BA$, то $e^{A+B} = e^A e^B$.
+				\item $\hr{e^{At}}'_t = A e^{At}$.
+				\item Если матрица $A$ представима в виде $A = TJT^{-1}$, то $e^A = T e^J T^{-1}$.
+				\item Если матрица $A$ -- диагональная $A = \diag \hr{A_1, \dots, A_d}$, то $e^A = \diag \hr{e^{A_1}, \dots, e^{A_r}}$.
+				\item Если есть некоторая Жорданова клетка размера $s$ $J_s(\lambda) = \begin{bmatrix}
+					\lambda & 1 & & \dots \\
+					 & \lambda & 1 & \dots \\
+					\vdots & \vdots & \ddots & \vdots \\
+					 & \dots   && \lambda 
+				\end{bmatrix}$, то $e^{J_s(\lambda)t} = \begin{bmatrix}
+				1 & t & \frac{t^2}{2} & \dots & \frac{t^{s-1}}{(s-1)!} \\
+				 & 1 & t & \dots & \frac{t^{s-2}}{(s-2)!} \\
+				& & & \ddots & \vdots \\
+				& & & & 1
+			\end{bmatrix} e^{\lambda t}$ 
+			\end{enumerate}
+		
+			\begin{Proof}
+				еще будет
+			\end{Proof}
+		\end{Th}
+		
+		\begin{Cor}
+			Пусть $A \in M_n (\mathbb{C})$, $r_0 \in \mathbb{C}^n$. 
+			
+			Тогда $r= e^{A(t-t_0)} r_0$ является решением задачи Коши $\begin{cases}r'=Ar,\\ r(t_0) = r_0.\end{cases}$
+			
+			\begin{Proof}
+				Рассмотрим по третьему свойству
+				\[
+				\hr{e^{A(t-t_0)}}_t' = A e^{A(t-t_0)}.
+				\]
+				Тогда, подставляя в уравнение, получаем
+				\[
+				\hr{e^{A(t-t_0)}r_0}_t' = A e^{A(t-t_0)}r_0,
+				\]
+				при этом $r(t_0) = e^{A(t_0-t_0)} r_0 = r_0$ и $\det e^{A(t_0-t_0)} = 1$.
+				
+				А значит $e^{A(t-t_0)}$ является фундаментальной матрицей для системы.
+			\end{Proof}
+		\end{Cor}
+	
+		\begin{Note}
+			Заметим, что раскладывая в Жорданову форму, получим
+			\[
+			e^{A(t-t_0)}r_0 = e^{At}\cdot e^{-At_0}r_0 = T e^{Jt} T^{-1} e^{-At_0}r_0 = T e^{Jt} \underbrace{\hr{T^{-1} e^{-At_0}r_0}}_{C} = Te^{Jt} C.
+			\]
+			Таким образом, между $C$ и $r_0$ устанавливается биекция.
+			
+			Тогда, вспоминая, что $T = \hr{h_1, \dots, h_s, \dots, v_1, \dots, v_d}$, придем к решению линейной однородной системы с постоянными коэффициентами \ref{Lem:FSR}
+			\[
+			Te^{Jt} = \hr{e^{\lambda t}h_1, e^{\lambda t} (th_1+h_2), \dots, e^{\lambda t} \hr{\frac{t^{s-1}}{(s-1)!} h_1 + \dots + h_{s-1} + h_s}, \dots}.
+			\]
+		\end{Note}
 \end{document}
 
 
