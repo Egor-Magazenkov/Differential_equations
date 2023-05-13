@@ -130,7 +130,44 @@
 \begin{document}
 	\titlePage
 	\pagestyle{style}
-	\part{}
+	\part{Уравнения первого порядка}
+	\section{Основные определения}
+	\begin{Def}
+		Обыкновенным дифференциальным уравнением первого порядка называют уравнение вида 
+		\[
+		F(x, y, y') = 0.
+		\]
+	\end{Def}
+	\begin{Def}
+		Функция $\varphi$ является решением уравнения $F(x,y,y') = 0$ на промежутке $\ha{a,b}$, если 
+		\[
+		\varphi \in C\ha{a,b},
+		\]
+		\[
+		F(x, \varphi(x), \varphi'(x)) \equiv 0 \text{ на $\ha{a,b}$}.
+		\]
+	\end{Def}
+	\begin{Def}
+		Интегральной кривой уравнения $F(x,y,y')=0$ называется график его решения.
+	\end{Def}
+	\begin{Def}
+		Общим решением уравнения $F(x,y,y')=0$ называется множество всех его решений.\\
+		Частным же решением называют какое-то конкретное решение.
+	\end{Def}
+	\begin{Def}
+		Общим интегралом уравнения $F(x,y,y') =0$ называют соотношение вида $\Phi(x,y,C) = 0$, где $C$ -- константа, перебирающая некоторые значения и задающая решения.
+	\end{Def}
+	\begin{Note}
+		Общий интеграл не всегда описывает общее решение. 
+	\end{Note}
+	
+	\section{Уравнение в нормальной форме}
+	\begin{Def}
+		Уравнение $y'=f(x,y)$, разрешённое относительно производной, называют нормальным уравнением или уравнением в нормальной форме. \\
+		При этом областью задания уравнения называется область определения его правой части $\dom f$. 
+	\end{Def}
+	
+	
 	\section[ЛУ 1-ого порядка]{Линейные уравнения 1-ого порядка}
 	\begin{Def}
 		Дифференциальное уравнение вида 
@@ -1258,18 +1295,86 @@
 	\begin{Th}[О выходе интегральной кривой за пределы любого компакта]
 		Пусть $f\in C\hr{G\to \R^n} \cap Lip_{r, loc}$, $G\subset \R_{t,r}^{n+1}$ -- область, $\varphi$ -- максимальное решение, заданное на $\hr{a,b}$, $K \subset G$ -- компакт. Тогда существует $\Delta$, что $\forall t\in\hr{a, a+\Delta}\cup\hr{b-\Delta, b} \quad \hr{t,\varphi(t)} \notin K$ (то есть фактически любое решение точно выходит из компакта).
 		\begin{Proof}
-			\begin{Prop}
-				Расстояние $\rho = \rho(K, \partial G) > 0$.
-			\end{Prop}
-			\begin{Prop}
-				Пусть $\Pi(t',r') = \hc{\hr{t,r}\in G | \|\hr{t',r'} - \hr{t,r}\|\leqslant \frac{\rho}{2}}$ и $K_{\rho} = \underset{\hr{t',r'}\in K}{\cup} \Pi(t',r')$. Тогда $K_{\rho}$ -- компакт, причем $K_{\rho} \subset G$.
-			\end{Prop}
+				Введем расстояние $\rho = \rho(K, \partial G) > 0$.
+		
+				Рассмотрим брусы $\Pi(t',r') = \hc{\hr{t,r}\in G | \|\hr{t',r'} - \hr{t,r}\|\leqslant \frac{\rho}{2}}$ и множество таких брусов вокруг каждой точки компакта $K_{\rho} = \underset{\hr{t',r'}\in K}{\cup} \Pi(t',r')$. 
+				
+				Тогда $K_{\rho}$ -- компакт, причем $K_{\rho} \subset G$.
+				
+				Рассмотрим произвольную точку $\hr{t_0, r_0}\in K$. Посмотрим на величину $h$ из отрезка Пеано
+				\[
+				h = \min \hc{\frac{\rho}{2}, \frac{\frac{\rho}{2}}{\|f\|_{\Pi\hr{r_0, t_0}}}} \geqslant \min \hc{\frac{\rho}{2}, \frac{\frac{\rho}{2}}{\|f\|_{K_\rho}}} =\delta.
+				\] 
+				
+				По теореме Пеано существует решение задачи Коши на отрезке $\hs{t_0-\delta, t_0+\delta}$.
+				
+				Предположим, что утверждение теоремы неверно, то есть 
+				\[
+				\forall \; \Delta \quad \exists t \in \hr{a, a+\Delta} \cup \hr{b-\Delta, b}: \quad \hr{t, \varphi(t)} \in K.
+				\]
+				Не теряя общности, будем рассматривать случай, в котором $t\in \hr{b-\Delta, b}$.
+				
+				Положим $t_0 = b-\frac{\delta}{2}$. Тогда существует решение $\psi$ задачи Коши на отрезке $\hs{b-\frac{\delta}{2} - \delta, b-\frac{\delta}{2}+\delta} = \hs{b-\frac{3\delta}{2}, b+\frac{\delta}{2}}$.
+				
+				Рассмотрим функцию 
+				\[
+				\chi(t) = \begin{cases}
+					\varphi(t), \quad t \in \hr{a,b},\\
+					\psi(t), \quad t \in \hs{b-\frac{3\delta}{2}, b+\frac{\delta}{2}}.
+				\end{cases}
+				\]
+				
+				При этом $\chi(t)$ тоже оказывается решением, однако уже на промежутке $\hrs{a, b+\frac{\delta}{2}}$. Но $\varphi$ -- максимальное решение по условию, а значит такого быть не может.
+				
+				Таким образом, предположение неверно, и решение выходит за границы компакта.
 		\end{Proof}
 	\end{Th}
 
+	\begin{Th}[о системе, сравнимой с линейной]
+		Пусть $G=\hr{a,b} \times \R^n$, $f\in C\hr{G\to \R^n}\cap Lip_{loc, r}$, а также 
+		\[
+		\exists u,v \in C\hr{a,b}: \quad \hm{f(t,r)} \leqslant v(t) + u(t) \hm{r} \; \forall t\in \hr{a,b}.
+		\]
+		Тогда максимальное решение уравнения $r' = f(t,r)$ задано на интервале $\hr{a,b}$.
+		\begin{Proof}
+			Пусть $\varphi$ -- максимальное решение на интервале $\hr{\alpha, \beta} \subset \hr{a,b}$. 
+			
+			Рассмотрим $t_0 \in \hr{\alpha, \beta}$. Запишем равносильное задаче Коши интегральное уравнение
+			\[
+			\varphi(t) = \varphi(t_0) + \int\limits_{t_0}^t f(\tau, \varphi(\tau)) d\tau, 
+			\]
+			\[
+			\begin{split}
+			\hm{\varphi(t)} &\leqslant \hm{\varphi(t_0)} + \int\limits_{t_0}^t \hm{f(\tau, \varphi(\tau))} d\tau \leqslant \\
+			&\leqslant \hm{\varphi(t_0)} + \int\limits_{t_0}^t v(\tau)+u(\tau) \hm{r} d\tau =\\
+			&= \hm{\varphi(t_0)} + \int\limits_{t_0}^t v(\tau) d\tau+ \int\limits_{t_0}^t u(\tau) \hm{r} d\tau.
+			\end{split}
+			\]
+			Так как $u,v$ непрерывны, то они ограничены на $\hr{\alpha, \beta}$. Пусть $\hm{\varphi(t_0)} + \int\limits_{t_0}^t v(\tau) d\tau \leqslant \lambda$, $u(t) \leqslant \mu$.
+			\[
+			\hm{\varphi(t)} \leqslant \lambda + \mu \int\limits_{t_0}^t \hm{\varphi(\tau)} d\tau.
+			\]
+			По лемме Гронуолла
+			\[
+			\hm{\varphi(t)} \leqslant \lambda e^{\mu(t-t_0)} \leqslant \lambda e^{\mu(\beta-t_0)} = C.
+			\]
+			Рассмотрим компакт $K = \hs{t_0, \beta} \times \hs{-C, C}^n$.
+			Заметим, что интегральная кривая $\varphi$ не выходит из этого компакта, что невозможно по предыдущей теореме. Получили противоречие, а значит на самом деле $\varphi$ -- решение на $\hr{a,b}$.
+		\end{Proof}
+	\end{Th}
+
+	\begin{Cor}
+		Пусть $G = \hr{a,b} \times \R^n$, $f\in C\hr{G\to \R^n} \cap Lip_r$.
+		
+		Тогда максимальное решение задано на $\hr{a,b}$.
+	\end{Cor}
+	
 	\part{Линейные системы дифференциальных уравнений}
 	
-	\section{}
+	\section{Линейная система и ее решения}
+	\begin{Def}
+		Система уравнений $r' = P(t) \cdot r + q(t)$, где $P \in Mat_n(C\hr{a,b} \to \mathbb{C}), \; q\in C\hr{\hr{a,b} \to \mathbb{C}^n}$, называется линейной системой дифференциальных уравнений.
+	\end{Def}
 	
 	\section{}
 	\begin{Th}
@@ -1649,7 +1754,10 @@
 			\end{enumerate}
 		
 			\begin{Proof}
-				еще будет
+				TODO
+				\begin{enumerate}
+					\item 
+				\end{enumerate}
 			\end{Proof}
 		\end{Th}
 		
@@ -1685,17 +1793,1164 @@
 			Te^{Jt} = \hr{e^{\lambda t}h_1, e^{\lambda t} (th_1+h_2), \dots, e^{\lambda t} \hr{\frac{t^{s-1}}{(s-1)!} h_1 + \dots + h_{s-1} + h_s}, \dots}.
 			\]
 		\end{Note}
+	
+		\part{Линейные уравнения}
+		\section{title}
+		\begin{Def}
+			Дифференциальное уравнение вида 
+			\[
+			y^{(n)} + p_{n-1}(t) y^{(n-1)} + \dots + p_1(t) y' + p_0(t) y = q(t)
+			\]
+			называется линейным уравнением $n$-ого порядка.
+		\end{Def}
+		\begin{Def}
+			В случае, если в уравнении \[
+			y^{(n)} + p_{n-1}(t) y^{(n-1)} + \dots + p_1(t) y' + p_0(t) y = q(t)
+			\]
+			$q(t) \equiv 0$, будем называть уравнение однородным. Иначе --- неоднородным.
+		\end{Def}
+		\begin{Note}
+			Можно говорить о дифференциальном линейном операторе 
+			\[
+			Ly = y^{(n)} + p_{n-1}(t) y^{(n-1)} + \dots + p_1(t) y' + p_0(t) y.
+			\]
+		\end{Note}
+	
+		\begin{Lem}[о равносильной линейной системе]
+			Если $\varphi$ -- решение линейного уравнения на интервале $\hr{a,b}$, то $\Lambda \varphi = \begin{bmatrix}
+				\varphi\\\varphi'\\\vdots\\\varphi^{(n-1)}
+			\end{bmatrix}
+		$ является решением системы $r'=P(t) r + q(t)$ на $\hr{a,b}$, где $P(t) = \begin{bmatrix}
+			0 & 1 & 0 & \dots & 0\\
+			0 & 0 & 1 & \dots & 0\\
+			\vdots & \vdots & \vdots &\ddots & \vdots\\
+			0 & 0 & 0 & \dots & 1\\
+			-p_0 & -p_1 & -p_2 & \dots & -p_{n-1}
+		\end{bmatrix}
+	$.
+	
+	А также наоборот, если $\begin{bmatrix}
+		\varphi_1 \\ \varphi_2 \\ \vdots \\ \varphi_n
+	\end{bmatrix}$ -- решение линейной системы на $\hr{a,b}$, то $\varphi_1$ -- решение линейного уравнения, и, кроме того, $\varphi_2 = \varphi_1'$, $\varphi_3 = \varphi_1''$, $\dots$, $\varphi_n = \varphi_1^{(n-1)}$. 
+	
+		\begin{Proof}
+			TODO
+		\end{Proof}
+		\end{Lem}
+	
+	\begin{Th}[о существовании и единственности максимального решения]
+		TOFO
+	\end{Th}
+
+	\begin{Note}
+		Заметим, что в силу линейности дифференциального оператора $Ly$, сумма двух решений однородного линейного уравнения остается решением, а также умножение на скаляр остается решением. Таким образом, появляется  мысль , что множество решений образует линейное пространство. На самом деле, все оказывается даже более удобным.
+	\end{Note}
+
+	\begin{Th}[об изоморфизме]
+		Множество решений линейных однородных уравнений есть линейное пространство, изоморфное пространству решений системы $r'=P(t)r$, где $P(t) = \begin{bmatrix}
+			0 & 1 & 0 & \dots & 0\\
+			0 & 0 & 1 & \dots & 0\\
+			\vdots & \vdots & \vdots &\ddots & \vdots\\
+			0 & 0 & 0 & \dots & 1\\
+			-p_0 & -p_1 & -p_2 & \dots & -p_{n-1}
+		\end{bmatrix}
+		$. 
+		
+		При этом $\Lambda \varphi = \begin{bmatrix}
+			\varphi\\\varphi'\\\vdots\\\varphi^{(n-1)}
+		\end{bmatrix}
+		$ устанавливает этот изоморфизм.
+		\begin{Proof}
+			TODO
+		\end{Proof}
+	\end{Th}
+	
+	\begin{Note}
+		Таким образом, у нас есть изоморфизм, в силу которого получаем равенство размерностей.
+	\end{Note}
+	
+	\begin{Cor}
+		Множество решений линейного однородного уравнения есть $n$-мерное линейное пространство.
+	\end{Cor}
+
+	\begin{Def}
+		Базис в пространстве решений линейного однородного уравнения будем называть фундаментальной системой решений (ФСР).
+	\end{Def}
+
+	\begin{Def}
+		Вронскианом скалярных функций $y_1, \dots, y_n$ будем называть соответствующий вронскиан вектор функций 
+		\[
+		W(y_1, \dots, y_n, t) = W(\Lambda y_1, \dots, \Lambda y_n, t) = \begin{vmatrix}
+			y_1 & y_2 & \dots & y_n \\
+			y_1' & y_2' & \dots & y_n' \\
+			\vdots & \vdots & \ddots & \vdots \\
+			y_1^{(n-1)} & y_2^{(n-1)} & \dots & y_n^{(n-1)} \\
+		\end{vmatrix}.
+		\]
+	\end{Def}
+	
+	\begin{Note}[свойства Вронскиана решений линейных однородных уравнений]
+		\begin{enumerate}
+			Пусть $y_1, \dots, y_n$ -- решения линейного однородного уравнения.
+			
+			Тогда 
+			\item Если $
+			\exists t_0 \in \hr{a,b} \;:\; W(t_0) = 0
+			$, то $y_1, \dots, y_n$ -- линейно зависимы,
+			\item Если $
+			\exists t_0 \in \hr{a,b} \;:\; W(t_0) \neq 0
+			$, то $y_1, \dots, y_n$ -- линейно независимы.
+		\end{enumerate}
+	
+	Достаточно интересно, что эти свойства говорят также о том, что не может найтись точек, в которых Вронскиан равен нулю, и точек, в которых не равен, на одном наборе решений.
+	\end{Note}
+
+	\begin{Th}[формула Остроградского-Лиувилля]
+		\[
+		W(t) = W(t_0) \cdot e^{-\int\limits_{t_0}^t p_{n-1}(\tau) d\tau}.
+		\]
+		TODO
+	\end{Th}
+	
+	\begin{Th}[общее решение линейного уравнения]
+		Пусть $\hc{\varphi_k}_{k=1}^n$ -- ФСР для линейного однородного уравнения, $\psi_k$ -- частное решение линейного уравнения. 
+		
+		Тогда $y = \sum\limits_{k=1}^n C_k \varphi_k + \psi_k$ является общим решением линейного уравнения.
+		\begin{Proof}
+			Заметим, что в силу изоморфизма $\Lambda$, $\hc{\Lambda \varphi_k}_{k=1}^n$ является ФСР соответствующей линейной однородной системы, а $\Lambda \psi_k$ является частным решением соответствующей линейной системы.
+			
+			Тогда по теореме об общем решении линейной системы получаем, что $r=\sum\limits_{k=1}^n C_k \Lambda \varphi_k + \Lambda \psi_k$ является общим решением линейной системы. 
+			В силу биективности $\Lambda$ найдем обратное от обеих частей
+			\[
+			\Lambda^{-1} r = \Lambda^{-1} \hr{\sum\limits_{k=1}^n C_k \Lambda \varphi_k + \Lambda \psi_k} = \sum\limits_{k=1}^n C_k \varphi_k + \psi_k.
+			\]
+			Тогда, взяв первую координату $r$, как раз и получим решение линейного уравнения.
+		\end{Proof}
+	\end{Th}
+
+	\begin{Th}[метод вариации постоянных]
+		Пусть $\hc{\varphi_k}_{k=1}^n$ -- ФСР для линейного однородного уравнения. 
+		
+		Тогда общее решение линейного уравнения имеет вид 
+		\[
+		y = \sum\limits_{k=1}^n C_k(t) y_k,
+		\]
+		где функции $C_k$ удовлетворяют системе
+		\[
+		\begin{bmatrix}
+			\Lambda y_1, \Lambda y_2, \dots, \Lambda y_n
+		\end{bmatrix}
+		\begin{bmatrix}
+			C_1'\\C_2'\\\vdots\\C_n'
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			0\\0\\\vdots\\q
+		\end{bmatrix}.
+		\]
+		\begin{Proof}
+			Решим соответствующую линейному уравнению систему:
+			
+			Общее решение, согласно методу вариации постоянных для линейных систем, имеет вид
+			\[
+			r = \Phi \cdot C,
+			\]
+			где $C$ удовлетворяет уравнению $\Phi \cdot C' = Q$.
+			
+			Так как $\Phi = \begin{bmatrix}
+				\Lambda y_1 & \Lambda y_2 &\dots & \Lambda y_n
+			\end{bmatrix}$ из изоморфизма, то 
+		\[
+		\Lambda^{-1} r = \Lambda^{-1} \hr{\sum\limits_{k=1}^n C_k \Lambda y_k} = \sum\limits_{k=1}^n C_k y_k.
+		\]
+		\end{Proof}
+	\end{Th}
+	
+	\section{Линейное уравнение с постоянными коэффициентами}
+	\begin{Def}
+		Уравнение 
+		\[
+					y^{(n)} + a_{n-1} y^{(n-1)} + \dots + a_1 y' + p_0 y = q(t)
+		\]
+		называется линейным с постоянными коэффициентами.
+	\end{Def}
+	
+	\begin{Note}
+		Рассмотрим линейное однородное уравнение и подставим в него $y=e^{\lambda t}$:
+		\[
+		\hr{\lambda^n + a_{n-1} \lambda^{n-1} + \dots + a_0} e^{\lambda t}.
+		\]
+		Выражение $p(\lambda) = \lambda^n + a_{n-1} \lambda^{n-1} + \dots + a_0$ называется характеристическим многочленом данного уравнения.
+		
+		Заметим, что если $\lambda$ является корнем характеристического уравнения, то $e^{\lambda t}$ оказывается решением линейного однородного уравнения.
+	\end{Note}
+	
+	\begin{Lem}
+		Если $\lambda \in \mathbb{C}$ -- корень характеристического многочлена кратности $m$, то $e^{\lambda t}, t e^{\lambda t}, \dots, t^{m-1} e^{\lambda t}$ являются решениями соответствующего линейного однородного уравнения.
+		\begin{Proof}
+			TODO
+		\end{Proof}
+	\end{Lem}
+	\begin{Lem}
+		Пусть $\hc{\hr{k_j, \lambda_j}}_{j=1}^n$ -- различные пары чисел $k_j\in \Z_+$, $\lambda_j \in \mathbb{C}$.
+		
+		Тогда $\hc{t^{k_j}e^{\lambda_j t}}_{j=1}^n$ -- линейно независимый набор.
+	\end{Lem}
+
+	\begin{Ex}
+		\[
+		y''+3y'+2y = 0.
+		\]
+		\begin{Solution}
+			Корни характеристического уравнения $\lambda^2 + 3 \lambda + 2 = 0$ есть $\lambda \in \hc{-2,-1}$.
+			
+			Таким образом, решение исходного уравнения есть $y = C_1 e^{-2t} + C_2 e^{-t}$.
+		\end{Solution}
+	\end{Ex}
+	\begin{Note}
+		В случае комплексных корней характеристического многочлена стоит овеществлять решение, заменяя сопряженные корни на вещественную и мнимую часть таких корней. Тогда коэффициенты $C_1, C_2$ тоже становятся вещественными.
+	\end{Note}
+
+	\part{Теория устойчивости}
+		\section{Автономные системы}
+		\begin{Def}
+			Автономной системой назовем систему \[r'=f(r).\]
+		\end{Def}
+		\begin{Note}
+			Фактическое отличие от рассматриваемых ранее систем заключается в независимости правой части от $t$.
+		\end{Note}
+		\begin{Def}
+			Фазовым пространством назовем область определения~$f$ 
+			\[
+			\dom f \subset \R^n.
+			\]
+		\end{Def}
+		\begin{Def}
+			Расширенным фазовым пространством назовем \[\R \times \dom f.\]
+		\end{Def}
+		\begin{Note}
+			То есть в расширенном фазовом пространстве добавляется временная часть.
+		\end{Note}
+	\begin{Ex}
+		\[
+		x'=x.
+		\]
+		$\R^2$ -- расширенное фазовое пространство, $\R$ -- фазовое пространство.
+	\end{Ex}
+	\begin{Def}
+		Фазовая траектория есть проекция интегральной кривой на фазовое пространство.
+	\end{Def}
+	\begin{Def}
+		Фазовая скорость в точке $r \in \dom f$ есть значение $f(r)$.
+	\end{Def}
+	\begin{Def}
+		Фазовая скорость касается фазовой траектории и указывает направление движения.
+	\end{Def}
+\begin{Def}
+	Точка покоя (положение равновесия, стационарная точка) -- точка, в которой фазовая скорость равна нулю.
+\end{Def}
+\begin{Th}["о понижении размерности автономной системы"]
+	Пусть $u,v \in C(\Sigma)$, $G_0 = \hc{(x,y)\in G | u(x,y) = v(x,y) = 0}$ -- множество точек покоя. 
+	Тогда на множестве $G \setminus G_0$ фазовое пространство для $\begin{cases}
+		x' = u(x,y),\\y'=v(x,y)
+	\end{cases}$ совпадает с интегральными кривыми уравнения $vdx = udy$.
+\end{Th}
+\begin{Ex}
+	Рассмотрим математический маятник
+	\[
+	\begin{cases}
+		x_1' = x_2,\\
+		x_2' = -\omega_0^2 x_1.
+	\end{cases}
+	\]
+	Согласно теореме, фазовое пространство совпадает с интегральными кривыми уравнения 
+	\[
+	-\omega_0^2 x_1 dx_1 = x_2dx_2,
+	\]
+	\[
+	\frac{x_2^2}{2} + \frac{\omega_0^2 x_1^2}{2} = C,
+	\]
+	\[
+	\frac{x_1^2}{\hr{\frac{\sqrt{2C}}{\omega_0}}^2} + \frac{x_2^2}{\hr{\sqrt{2C}}^2} = 1.
+	\]
+	А это эллипс, как мы изначально и предполагали.
+\end{Ex}
+\begin{Cor}[виды траекторий]
+	Пусть $f\in Lip_{loc} \Omega$, где $\Omega$ -- область в $\R^n$. 
+	
+	Тогда любая траектория автономной системы является одной из трех возможных:
+	\begin{enumerate}
+		\item точка покоя,
+		\item замкнутая траектория без самопересечений,
+		\item незамкнутая траектория без самопересечений.
+	\end{enumerate}
+\end{Cor}
+
+	\section{Понятия устойчивости}
+		\begin{Def}
+			Положение равновесия $r=0$ называется устойчивым по Ляпунову, если 
+			\[
+			\forall \varepsilon >0 \quad \exists \delta >0 \;:\; \forall r_0: \hm{r_0}<\delta \quad  \forall t \geqslant 0 \hm{\varphi(t,r_0)}<\varepsilon,
+			\]
+			где $\varphi(t,r_0)$ -- решение задачи Коши $\begin{cases}
+				r'=f(r),\\r(0) = r_0.
+			\end{cases}$
+		\end{Def}
+		\begin{Def}
+			Положение равновесия $r=0$ называется асимптотически устойчивым по Ляпунову, если 
+			\begin{enumerate}
+				\item $r=0$ -- устойчивое,
+				\item $\exists \varepsilon : \forall r_0: \hm{r_0}<\varepsilon \implies  \rho(t,r_0) \underset{t\to \infty}{\to} 0$.
+			\end{enumerate}
+		\end{Def}
+		\begin{Def}
+			Пусть $\varphi$ решение $r'=f(t,r)$ на $\hsr{r_0,+\infty}$. 
+			
+			Тогда $\varphi$ -- устойчивое, если
+			\[
+			\forall \varepsilon >0 \quad \exists \delta >0 : \forall r_0: \hm{\varphi(t_0) - r_0}<\delta  \; \forall t\in \hsr{t_0, +\infty} \implies \hm{\varphi(t,t_0, r_0) - \varphi(t)}<\varepsilon,
+			\]
+			где  $\varphi(t,t_0, r_0)$ -- решение задачи Коши с соответствующими начальными условиями.
+		\end{Def}
+	\begin{Lem}
+		Решение $\varphi$ системы $r'=f(t,r)$ устойчиво тогда и только тогда, когда устойчиво решение $s=0$ системы $s'=f(t,s+\varphi) - f(t,\varphi)$.
+		\begin{Proof}
+			Пусть последняя система имеет вид $s'=g(t,s)$. Понятно, что $s=0$ является ее решением (подстановка очевидна). Проверим его на устойчивость, то есть 
+			\[
+			\forall \varepsilon >0 \quad \exists \delta >0 \;:\; \forall s_0: \hm{s_0}<\delta  \quad \forall t \geqslant t_0 \implies \hm{\psi(t,t_0, s_0)}<\varepsilon.
+			\]
+			Переобозначим, введя $r_0:\; s_0 = r_0-\varphi(t_0)$ и TODOTODOTODOTODOTODOTODOTODOTODOTODOTODO
+			\[
+			\forall \varepsilon >0 \quad \exists \delta >0 \;:\; \forall r_0: \hm{r_0-\varphi(t_0)}<\delta  \quad \forall t \geqslant t_0 \implies \hm{\psi(t,t_0, s_0)}<\varepsilon. 
+			\]
+		\end{Proof}
+	\end{Lem}
+	
+	\section{Устойчивость линейной системы}
+	\begin{Note}
+		Линейная система имеет вид 
+		\[
+		r' = P(t) r + q(t).
+		\]
+		Согласно последней лемме предыдущего пункта, характер устойчивости решения линейной системы такой же, как у решения $s=0$ системы $s'=P(t) (s+\xcancel{\varphi}) + \cancel{q(t)} - \xcancel{P(t) \varphi }- \cancel{q(t)} = P(t) s$.
+	\end{Note}
+
+	\begin{Th}[Устойчивость ЛОС с постоянными коэффициентами]
+		Пусть $A \in Mat_n(\R)$ -- матрица системы ($r'=Ar$).
+		
+		Тогда:
+		\begin{enumerate}
+			\item система асимптотически устойчива, если $\forall \lambda \in spec A \quad Re \lambda < 0$,
+			\item система устойчива, но не асимптотически, если $\forall \lambda \in spec A \quad \Re \lambda \leqslant 0$, но $\exists \lambda \in spec A: \quad \Re \lambda = 0$, для которых геометрическая кратность совпадает с алгебраической,
+			\item система неустойчива, если $\exists \lambda \in spec A: \Re \lambda > 0$ или $\Re \lambda = 0$, но геометрическая разность меньше алгебраической.
+		\end{enumerate}
+		
+		\begin{Proof}
+			\begin{enumerate}
+				\item Решение задачи Коши для этой системы с начальным условием $r_0 = \begin{bmatrix}
+					x_0\\y_0
+				\end{bmatrix}$ есть $r(t) = e^{At} r_0$.
+			
+				Рассмотрим 
+				\[
+				\hm{r(t)} = \hm{T \cdot e^{Jt} \cdot T^{-1} \cdot r_0} \leqslant n^3 \cdot \hm{T} \cdot \hm{e^{Jt}} \cdot \hm{T^{-1}} \cdot \hm{r_0} = K \cdot \hm{e^{Jt} \cdot \hm{r_0}}.
+				\]
+				Так как любая компонента матрицы $e^{Jt}$ имеет вид $\frac{t^k}{k!}e^{\lambda t}$, то можем оценить его
+				\[
+				\hm{\frac{t^k}{k!}e^{\lambda t}} = \frac{t^k}{k!}\hm{e^{\Re\lambda t}} \hm{\cancelto{1}{e^{i\Im\lambda t}}} =    \frac{t^k}{k!} e^{\overbrace{\Re\lambda}^{<0} t} \underset{t\to\infty}{\to} 0.
+				\]
+				А тогда эти компоненты ограничены, а значит и норма всей матрицы будет ограничена, пусть числом $C$.
+				
+				Таким образом, 
+				\[
+				\hm{r(t)} \leqslant K \cdot C \cdot \hm{r_0}.
+				\]
+				И тогда при $\delta = \frac{\varepsilon}{K\cdot C}$ получаем $\hm{r(t)} < \varepsilon$, то есть $\hm{r(t)} \to 0$.
+				\item В случаях, когда $\Re \lambda < 0$ полностью повторяется предыдущее. 
+				
+				При $\Re \lambda = 0$ все Жордановы клетки не содержат 1 и имеют вид $\begin{bmatrix}
+					e^{\lambda t}
+				\end{bmatrix}$. А тогда $\hm{e^{\lambda t}} = \hm{e^{i \Im \lambda t}} = 1$ и снова можем ограничить матричную экспоненту каким-то числом $C$, а значит получили устойчивость решения $r=0$.
+			
+				Покажем, почему устойчивость не асимптотическая.
+				
+				Мы знаем, что решение системы имеет вид $\varphi(t) = e^{\lambda t} h$, где $h$ -- собственный вектор. 
+				\[
+				\hm{\varphi(t)} = \hm{e^{\lambda t}} \hm{h} = \hm{h} \not \to 0.
+				\]
+				
+				Таким образом, либо $\Im \varphi(t)$, либо $\Re \varphi(t)$ не стремится к нулю.
+				
+				Пусть $\Re \varphi(t) \not \to 0$. Тогда возьмем такое $C$, чтобы $C\cdot \Re \varphi(t_0)$ лежало в шаре, радиуса $\varepsilon$. И тогда $r(t, C\cdot \Re \varphi(t_0)) \not \to 0$, что и требовалось.
+				\item При $\Re \lambda>0$ возьмем также $C\cdot \Re \hr{e^{\lambda t}h} \to \infty$.
+				
+				При $\Re \lambda = 0$, но алгебраической кратности большей, чем геометрической, рассмотрим $\varphi(t) = e^{\lambda t} (th_1+h_2) \to \infty$, а значит либо $\Re \varphi(t)$, либо $\Im \varphi(t)$ стремится к бесконечности. Снова выберем достаточно малое $C$, чтобы $C\cdot \Re \varphi(t_0)$ стартовало в шаре, радиуса $\delta$, но $r(t, C\cdot \Re \varphi(t_0)) \to \infty$
+			\end{enumerate}
+		\end{Proof}
+	\end{Th}
+	
+	
+	\section{Теорема Четаева}
+	\begin{Th}[Четаев]
+		Пусть $f(0) = 0$, $f(Lip_{loc} \Omega)$.
+		
+		Функция $C \in C^1(\Omega \to \R)$, обладающая свойствами:
+		\begin{enumerate}
+			\item[\boxed{1}] $C(0) = 0$,
+			\item[\boxed{2}] $\forall \; \rho > 0 \implies B_{\rho}(0) \cap \hc{r | C(r) > 0} \not= 0$,
+			\item[\boxed{3}] $\exists\; \rho>0: \quad \forall \; r \in \bar{B}_{\rho}(0) \cap \hc{r|C(r)>0} \implies \grave{C}(r) = C' \cdot f > 0$,
+		\end{enumerate}
+		называется функцией Четаева. 
+		
+		Если для системы $r'=f(r)$ существует функция Четаева, то $r=0$ является неустойчивым положением равновесия.
+		\begin{Proof}
+			Пусть $r=0$ -- устойчивое положение равновесия, то есть
+			\[
+			\forall \; \varepsilon>0 \quad \exists\; \delta > 0: \quad \forall \; r_0 \in B_{\delta}(0) \quad \forall \; t \geqslant 0 \implies \hm{r(t,r_0)}<\varepsilon.
+			\]
+			Положим $\varepsilon=\rho$. Так как при уменьшении $\delta$ не теряется  справедливость утверждения из определения устойчивости, то можем рассматривать $\delta<\varepsilon$.
+			
+			Выберем $r_0 \in B_\delta(0) \cap \Int U$.
+			\begin{figure}[h!]
+				\centering
+				\begin{tikzpicture}
+					\draw[->, gray] (0,-5) -- (0,5);
+					\draw[->, gray] (-5,0) -- (5,0);
+					\filldraw[blue, opacity=0.5, domain=-2.2:2.2, variable=\y] plot ({\y*\y},\y) node[right]{$\boxed{2}~C(r) > 0$};
+					\filldraw[red, opacity=0.5] (-2,-2) node[left]{$\boxed{3}~\grave{C}(r)>0$} rectangle (2,2);
+					\fill (1,0.5) circle (2pt) node[above right]{$r_0$};
+					\draw (0,-2) node[below left]{$-\rho$};
+					\draw (0,2) node[above left]{$\rho$};
+					\filldraw[green, opacity=0.4] (1.2,0.4) circle(0.5) node[below right]{$V$};
+					\draw (1,-1) node[right, purple!80!black]{$U$};
+				\end{tikzpicture}
+			\end{figure}
+		\[
+		\begin{split}
+		C(r(t,r_0)) &= C(r_0) + \int\limits_0^t \frac{d}{d\tau} C(r(\tau, r_0))d\tau =\\
+		&= C(r_0) + \int\limits_0^t C'(r(\tau,r_0))\cdot r'(\tau, r_0) d\tau =\\
+		&= C(r_0) + \int\limits_0^t \grave{C}(r(\tau, r_0))d\tau
+		\end{split}
+		\]
+		
+		Пусть $\gamma = \min\limits_V \grave{C}(r)$, где $V=\hc{r\in U \;|\; C(r) \geqslant C(r_0)}$.
+		
+		Покажем, что $V$ -- компакт.\\
+		Так как $V\subset U \subset \bar{B}_{\rho}(0)$, то $V$ -- ограничено.\\
+		Рассмотрим последовательность $\hc{r_n}_{n\geqslant1}$, сходящуюся к $\bar{r}$. 
+		\[
+		\forall \; n, r_n \in V \quad C(r_n) \geqslant(r_0) \qquad \text{из определения $V$},
+		\]
+		\[
+		\lim\limits_{n\to \infty} C(r_n) \geqslant C(r_0),
+		\]
+		\[
+		C(\lim\limits_{n\to \infty} r_n) \geqslant C(r_0),
+		\]
+		\[
+		C(\bar{r}) \geqslant C(r_0) \implies \bar{r} \in V \implies \text{$V$ -- замкнуто}.
+		\]
+		Таким образом $V$ ограничено и замкнуто, а значит оно компактно.
+		
+		Тогда по теореме Вейерштрасса на $V$ достигается минимум непрерывной функции $\grave{C}(r)$, то есть $\exists\; r_\gamma: \; \gamma = \grave{C}(r_\gamma)$. При этом, так как $r_\gamma \in V \subset U$, то $\grave{C}(r_\gamma) > 0$.
+		
+		Тогда $\forall\; t \geqslant 0 \; \grave{C}(r(t,r_0)) \geqslant \gamma$, а значит
+		\[
+		C(r(t,r_0)) = C(r_0) + \int\limits_0^t \grave{C}(r(\tau, r_0))d\tau \geqslant C(r_0) + \int\limits_0^t \gamma d\tau = C(r_0) + \gamma t \underset{t\to + \infty}{\to} +\infty.
+		\]
+		А значит получили неограниченность, что противоречит тому, что мы рассматриваем все в шаре.
+		
+		Таким образом, на самом деле, $r=0$ --- неустойчивое положение равновесия.
+		\end{Proof}
+	\end{Th}
+
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x' = x+ y^2,\\
+			y'=-y+x^2.
+		\end{cases}
+		\]
+		Рассмотреть положение равновесия $(0,0)$.
+		\begin{Solution}
+			Рассмотрим функцию $C(x,y) = \frac{x^2-y^2}{2}$. Проверим, является ли она функцией Четаева.
+			\begin{enumerate}
+				\item $C(0,0) = 0$,
+				\item Рассмотрим на графике, где функция положительна
+				\begin{figure}[h!]
+					\centering
+					\begin{tikzpicture}[scale=0.5]
+						\draw[gray, ->] (-2,0) -- (2,0) node[above]{$x$};
+						\draw[gray, ->] (0,-2) -- (0,2) node[below right]{$y$};
+						\draw[domain=-2:2] plot(\x,\x);
+						\draw[domain=-2:2] plot(\x,{-\x});
+						\draw[red] (1,0) node[]{${\tiny \boxed{+}}$};
+						\draw[red] (-1,0) node[]{${\tiny \boxed{+}}$};
+						\draw[blue] (0,1) node[]{${\tiny \boxed{-}}$};
+						\draw[blue] (0,-1) node[]{${\tiny \boxed{-}}$};
+						
+					\end{tikzpicture}
+				\end{figure}
+				Таким образом, в любой окрестности нуля есть точки, где функция неотрицательна.
+				\item Пусть $r \in \bar{B}_\rho (0) \cap \hc{r|C(r)>0}$.
+				\[
+				\begin{split}
+					\grave{C}(r) = \begin{pmatrix}
+						x & -y
+					\end{pmatrix} \cdot \begin{pmatrix}
+					x+y^2 \\ -y+x^2
+				\end{pmatrix} = x^2+xy^2 + y^2-yx^2 =\\
+			= x^2(1-y) + y^2(1+x).
+				\end{split}
+				\]
+				При достаточно маленьких $x,y$ (например, $|x|, |y|<1$) $\grave{C}(r) > 0$.
+			\end{enumerate}
+		\end{Solution}
+	\end{Ex}
+
+	\section{Предельные циклы}
+	\begin{Def}
+		Пусть есть некоторое решение $\varphi(t) = \begin{pmatrix}
+			x(t)\\y(t)
+		\end{pmatrix}$ линейной автономной системы $r' = f(r)$.
+	
+		Если существует такое $T>0$, что $\varphi(t+T) \equiv \varphi(t)$, но $x,y \ne const$, то траектория этого решения есть цикл.
+	\end{Def}
+
+	\begin{Ex}
+		\[
+	\begin{cases}
+			x' = -y,\\
+		y' = x.
+	\end{cases}
+		\]
+		Решая такую систему, можно получить $x^2+y^2=C$. То есть каждая траектория есть цикл, кроме точки $(0,0)$.
+	\end{Ex}
+	\begin{Def}
+		Предельный цикл -- это такой цикл, что все близкие траектории неограниченно приближаются к нему при $t\to +\infty$ или $t\to -\infty$.
+	\end{Def}
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x' = -y + x(1-x^2-y^2),\\
+			y' = x + y(1-x^2-y^2).\\
+		\end{cases}
+		\]
+		Переходя к полярным координатам, мы получим систему
+		\[
+		\begin{cases}
+			r' = r-r^3,\\
+			\varphi' = 1.
+		\end{cases}
+		\]
+		Тогда $r = 1$ будет циклом, а остальные траектории приближаются к нему при $t\to +\infty$. А значит $r=1$ -- предельный цикл. При этом отходя от этого цикла на немного, мы будем стремиться вернуться обратно на цикл. А значит этот цикл устойчивый.
+	\end{Ex}
+	\begin{Ex}
+		Рассмотрим в полярных координатах
+		\[
+		\begin{cases}
+			r' = r^3-r,\\
+			\varphi' = 1.
+		\end{cases}
+		\]
+		Отойдя от $r=1$ на немного, мы улетим от него, но при $t\to-\infty$ мы будем приближаться обратно к циклу. Такой цикл называется неустойчивым.
+	\end{Ex}
+	\begin{Ex}
+		\[
+		\begin{cases}
+			r' = r|r^2-1|,\\
+			\varphi' = 1.
+		\end{cases}
+		\]
+		Теперь внутри мы будем приближаться к $r=1$, а снаружи -- отдаляться. Такой цикл называется полуустойчивым.
+	\end{Ex}
+	
+	\begin{Th}[Необходимое условие цикла]
+		Пусть $f\in Lip_{loc} D$, где $D \subset \R^2$ -- область. Пусть также существует цикл в $D$. 
+		
+		Тогда внутри этого цикла существует точка покоя.
+	\end{Th}
+	
+	\begin{Th}[Достаточное условие цикла: теорема Пуанкаре-Бендиксона]
+		Пусть $c_o, c_i \subset \R^2$ -- простые (без самопересечений) замкнутые кривые, $R$ -- область между ними, на которой нет точек покоя, и существует траектория $T$ решения автономной системы, которая не покидает $cl(R)$ при всех $t\geqslant 0$.
+		
+		Тогда либо $T$ является циклом, либо $T$ приближается при $t\to +\infty$ к предельному циклу, лежащему в $cl(R)$.
+	\end{Th}
+
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x' = -y + x(1-x^2-y^2),\\
+			y' = x + y(1-x^2-y^2).\\
+		\end{cases}
+		\]
+		Рассмотрим функцию $V(x,y) = x^2+y^2$. 
+		\[
+		\grave{V}(x,y) = v'\cdot f = \begin{pmatrix}
+			2x & 2y
+		\end{pmatrix} \cdot \begin{pmatrix}
+		-y + x(1-x^2-y^2)\\
+		x + y(1-x^2-y^2)
+		\end{pmatrix}
+		= 2 (x^2+y^2)(1-x^2-y^2).
+		\]
+		
+		Рассмотрим в качестве $c_o$ окружность радиуса $2$, в качестве $c_i$ -- радиуса $\frac12$. 
+		
+		Так как $\grave{V}|_{c_o} < 0$, то любая траектория, начинающаяся в $R$, не выйдет на кривую $c_o$.
+		Так как $\grave{V}|_{c_i} > 0$, то любая траектория, начинающаяся в $R$, не выйдет на кривую $c_i$.
+		
+		А значит, любая траектория, начинающаяся в $R$ не выйдет из этой области.
+		При этом точка покоя лишь $(0,0)$, и она не внутри $R$.
+		
+		А значит, попадаем в условия теоремы Пуанкаре-Бендиксона. То есть в замыкании $cl(R)$ есть цикл.
+		
+		Заметим, что если мы будем брать в качестве $c_i$ окружности радиуса $\frac{n}{n+1}$, а в качестве $c_o$ -- радиуса $\frac{n+1}{n}$, то все те же рассуждения будут работать, и мы увидим, что только лишь $x^2+y^2=1$ является циклом.
+	\end{Ex}
+	\begin{Ex}[Ванд дер Поль]
+		\[
+		\begin{cases}
+			x' = y-x^3 + x,\\
+			y' = -x.
+		\end{cases}
+		\]
+		Рассмотрим в качестве $c_i$ окружность радиуса $\frac{1}{2}$, а в качестве $c_o$ -- многоугольник $(\frac12, 3), (3,3), (\frac12, -2), (-\frac12, -3), (-3,-3), (-\frac12, 2)$.
+		
+		\begin{tikzpicture}
+			\draw[gray, ->] (-4,0) -- (4,0);
+			\draw[gray, ->] (0,-4) -- (0,4);
+			\draw[green!60!black] (0,0) circle(1/2) node[right]{$c_i$};
+			\draw[blue] (1/2, 3) node[above left]{$A$} -- (3,3) node[above right]{$B$} -- (1/2, -2)node[below right]{$C$} -- (-1/2, -3)node[below]{$D$}--(-3,-3)node[below left]{$E$}--node[left]{$c_o$}(-1/2, 2)node[above left]{$F$}--cycle ;
+		\end{tikzpicture}
+		
+		Рассмотрим ребро $AB$. У него нормаль $(0,1)$. 
+		\[
+		f\cdot (0,1) = -x < 0.
+		\]
+		А значит $f$ направлена внутрь $R$ и мы не выйдем через ребро $AB$.
+		
+		Рассмотрим ребро $BC$. У него нормаль $(5,-\frac52)$. 
+		\[
+		f\cdot (5,-\frac52) = -5x^3+5y + \frac{15}{2}x.
+		\]
+		Так как мы на ребре $BC$, то $y=2x-3$.
+		\[
+		f\cdot (5,-\frac52) = 17.5x-5x^3-15.
+		\]
+		При $x \in (\frac12, 3)$ $17.5x-5x^3-15 \in \hs{-\frac{195}{2}, \underbrace{\frac{35\sqrt{7}}{3\sqrt{6}}-15}_{<0}}$
+		А значит $f$ направлена внутрь $R$ и мы не выйдем через ребро $BC$.
+		
+		Аналогично можно рассмотреть  для всех ребер.
+		
+		Для контура $c_i$ рассмотрим параметризацию $\begin{cases}
+			x(t) = \frac12\cos t,\\y(t) = \frac12 \sin t
+		\end{cases}$. Тогда нормаль будет задаваться $n(t) = \begin{pmatrix}
+			x(t) = \frac12\cos t\\y(t) = \frac12 \sin t
+	\end{pmatrix}$.
+	\[
+	n \cdot f = \frac{\cos^2 t}{4} \hr{1-\frac14 \cos^2 t} \geqslant 0.
+	\]
+	А значит мы не можем выйти через $c_i$.
+	
+	Точка покоя единственна и это $(0,0)$ --- не лежит в $R$. 
+	
+	А значит по теореме внутри $R$ есть цикл.
+	\end{Ex}
+
+	\begin{Th}[Достаточное условие отсутствия цикла]
+		Пусть $f,g\in C^1(\Omega)$, $R \subset \Omega$ -- прямоугольник. 
+		
+		Если на $R$: $\frac{\partial f}{\partial x} + \frac{\partial g}{\partial y} > 0$ или $<0$, то система $\begin{cases}
+			x' = f(x,y),\\
+			y' = g(x,y).
+		\end{cases}$ не имеет циклов в $R$.
+	\begin{Proof}
+		Вспомним формулу Грина
+		\[
+		\int\limits_{\partial G} udx+vdy = \iint\limits_G \hr{\frac{\partial{v}}{\partial x} - \frac{\partial{u}}{\partial y}} dxdy.
+		\]
+		Положим $u=-g$, $v=f$.
+		\[
+		\int\limits_{\partial G} -gdx+fdy = \iint\limits_G \hr{\frac{\partial{f}}{\partial x} + \frac{\partial{g}}{\partial y}} dxdy.
+		\]
+		
+		Пусть в $R$ существует цикл.
+		
+		Тогда для него применим формулу Грина. По условию теоремы правая часть либо всегда $>0$, либо $<0$, то есть
+		\[
+		\int\limits_{\partial G} fdx-gdy > 0.
+		\]
+		Так как траектория является решением системы уравнений, то $\int\limits_{\partial G} fdx-gdy = 0$.
+		Противоречие! А значит в $R$ нет циклов.
+		\end{Proof}
+	\end{Th}
+
+
+    \part{Преобразование Фурьe}
+    
+    \section{Предварительные сведения}
+    \begin{Def}
+        Функция $f$ называется принадлежащей пространству  $L_p(\R)$, где $1\leqslant p<\infty$, если $f$ -- измеримая на $\R$ и $\int\limits_{\R} \hm{f}^p < \infty$.
+    \end{Def}
+    
+    \begin{Ex}
+        \[
+            f_{\alpha} (x) = \begin{cases}
+            \frac{1}{x^{\alpha}}, \quad & x>1;\\
+            0, \quad & x<1.
+        \end{cases}
+        \] 
+        \begin{figure}[]
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin= -2, xmax= 10,
+                    ymin= -1, ymax = 2,
+                    axis lines = middle,
+                ]
+                    \addplot[domain=1:10, samples=300, thick, blue]{1/x^2};
+                    \addplot[domain=-2:1, samples=300, thick, blue]{0*x};
+                \end{axis}
+            \end{tikzpicture}
+            \caption{$f_{\alpha(x)}$}
+            \label{}
+        \end{figure}    
+
+        \[
+            \int\limits_{\R} \hm{f_{\alpha}}^p = \int\limits_1^{+\infty} \frac{dx}{x^{\alpha p}} =\left. \frac{x^{-\alpha p + 1}}{-\alpha p + 1} \right|_1^{+\infty} < \infty \Leftrightarrow \alpha > \frac{1}{p}.
+        \]
+        Таким образом, при $\alpha > \frac{1}{p}$ функция принадлежит $L_p$ пространству.
+    \end{Ex}
+
+    \begin{Def}
+        $f\in C^{\infty}(\R)$, если она бесконечно дифференцируема.
+    \end{Def}
+    \begin{Def}
+        $f\in C^{\infty}_0(\R)$ -- финитные функции, если  $f\in C^\infty(\R)$ и $\supp f = cl\hc{x\in \dom f | f(x) \neq 0}$ -- ограничен.
+    \end{Def}
+    \begin{Ex}
+        \[
+            \omega_\varepsilon (x) = \begin{cases}
+                C_\varepsilon \cdot e^{-\frac{\varepsilon^2}{\varepsilon^2-x^2}}, \quad & |x|\leqslant \varepsilon;\\
+                    0, \quad & |x|>\varepsilon,
+            \end{cases}
+        \] 
+        где константа $C_\varepsilon$ такова, что $\int\limits_{\R} \omega_\varepsilon(x)dx = 1$.
+        \begin{figure}[h!]
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin= -1, xmax= 1,
+                    ymin= -0.1, ymax = 0.5,
+                    axis lines = middle,
+                ]
+                    \addplot[domain=-0.99:0.99, samples=300]{1*exp(-1/(1-x^2))};
+                \end{axis}
+            \end{tikzpicture}
+            \caption{$\omega_\varepsilon(x)$}
+            \label{omega}
+        \end{figure}
+    \end{Ex}
+
+    \begin{Def}
+        Сверткой функций $f,g: \R \to \mathbb{C}$ называется 
+        \[
+            (f * g)(x) = \int\limits_{\R} f(y) \cdot g(x-y) dy.
+        \] 
+    \end{Def}
+    \begin{Ex}
+        $f = \chi_{[0,2]}$, $g=\chi_{[-\frac{1}{2}, \frac{1}{2}]}$. 
+
+        Найти свертку $f*g$.
+        \begin{Solution}
+          \[
+              f*g = \int\limits_{0}^2 \chi_{[-\frac{1}{2}, \frac{1}{2}]}(x-y) dy =  \int\limits_{x-2}^{x} \chi_{[-\frac{1}{2}, \frac{1}{2}]}(t) dt = \begin{cases}
+                  x+\frac{1}{2}, \quad &x\in\hs{-\frac{1}{2},\frac{1}{2}}\\
+                  1, \quad &x\in\hs{\frac{1}{2}, \frac{3}{2}}\\
+                  \frac{5}{2}-x, \quad &x\in\hs{\frac{3}{2},\frac{5}{2}}\\
+                  0, \quad & else
+                  \end{cases}
+          \]   
+          \begin{figure}[h!]
+              \centering
+              \begin{tikzpicture}
+                  \begin{axis}[
+                      xmin= -1, xmax= 3,
+                      ymin= -1, ymax = 2,
+                      axis lines = middle,
+                  ]
+                      \addplot[blue,domain=-1/2:1/2, samples=100, opacity=0.5, thick]{1};
+                      \addlegendentry{$g$}
+                      \addplot[red,domain=0:2, samples=100, opacity=0.5]{1};
+                      \addlegendentry{$f$}
+                  \end{axis}
+              \end{tikzpicture}
+              \caption{Графики исходных функций $f$ и $g$}
+              \label{}
+          \end{figure}
+          \begin{figure}[h!]
+              \centering
+              \begin{tikzpicture}
+                  \begin{axis}[
+                      xmin= -1, xmax= 3,
+                      ymin= -1, ymax = 2,
+                      axis lines = middle,
+                  ]
+                      \addplot[domain=-1/2:1 /2, samples=100]{x+1 / 2};
+                      \addplot[domain=1/2:1.5 , samples=100]{1} ;
+                      \addplot[domain=3/2:2.5 , samples=100]{2.5-x} ;
+                  \end{axis}
+              \end{tikzpicture}
+              \caption{График итоговой свертки}
+              \label{График итоговой свертки}
+          \end{figure}
+        \end{Solution}
+    \end{Ex}
+
+    \begin{Ex}
+        Рассмотрим свертку характеристической функции отрезка и $\omega_\varepsilon$. Оказывается, что это финитная функция.
+        \[
+            \chi_{\hs{a,b}} * \omega_\varepsilon \in C_0^{\infty}
+        \] 
+
+    \end{Ex}
+
+    \begin{Th}[Лебега о мажорированной сходимости]
+        Пусть $\hc{f_n}_{n=1}^\infty, f$ -- измеримые на  $\R$ функции, $f_n\to f$ почти всюду и существует мажоранта $\Phi\in L_1(\R )$, что $\hm{f_n(x)} \leqslant \Phi(x)$ почти всюду.
+
+        Тогда \[
+            \lim\limits_{n\to\infty} \int\limits_{\R} f_n(x) dx = \int\limits_{\R} \lim\limits_{n\to\infty} f_n(x) dx = \int\limits_{\R} f(x) dx.
+        \] 
+    \end{Th}
+
+    \begin{Cor}[Предельный переход в интеграле с параметром]
+        Пусть $y_0$ -- предельная точка для множества $Y$, $f_y \in L_1(\R) \quad \forall y\in Y$, $f_y \to f(x)$ почти всюду и существует мажоранта $\Phi\in L_1(\R)$, что существует окрестность  $U$ точки $y_0$ такая, что для почти всех $x$ и для любого $y\in U^{\circ} \cap Y$ $\hm{f_y(x)}\leqslant \Phi(x)$.
+
+        Тогда $f\in L_1(\R)$ и \[
+            \lim\limits_{y\to y_0} \int\limits_{\R} f_y(x) dx = \int\limits_{\R} \lim\limits_{y\to y_0} f_y(x) dx = \int\limits_{\R} f(x) dx.
+        \] 
+    \end{Cor}
+
+    \section{Пространство Шварца}
+    \begin{Def}
+        $f$ принадлежит пространству Шварца $\mathcal S(\R)$, если $f\in C^{\infty}(\R)$ и  $\forall \; \alpha,\beta\in \Z_+ \quad \sup\limits_{x\in \R} \hm{x^\alpha f^{(\beta)} (x)} < \infty$.
+    \end{Def}
+    \begin{Def}
+        $\rho_{\alpha, \beta}(f) = \sup\limits_{x\in \R} \hm{x^\alpha f^{(\beta)} (x)} $ называются полунормами Шварца.
+    \end{Def}
+    \begin{Def}
+        Пусть $f_n,f \in \mathcal{S}$.
+
+        Будем говорить, что $f_n \to f$ в пространстве Шварца $\mathcal S$, тогда и только тогда, когда $\sup\limits_{\alpha, \beta} \rho_{\alpha, \beta} \hr{f-f_n} \to 0$.
+    \end{Def}
+    \begin{Ex}
+        \[
+        f(x) = e^{-x^2} \in \mathcal{S}(\R).
+        \] 
+            \begin{figure}[h!]
+                \centering
+                \begin{tikzpicture}
+                    \begin{axis}[
+                        xmin= -3, xmax= 3,
+                        ymin= -1, ymax = 2,
+                        axis lines = middle,
+                    ]
+                        \addplot[domain=-3:3, samples=400]{exp(-x^2)};
+                    \end{axis}
+                \end{tikzpicture}
+                \caption{Пример функции из пространства Шварца}
+                \label{gauss}
+            \end{figure}
+    \end{Ex}
+    \begin{Note}
+        \[
+            C_0^{\infty} \subset \mathcal{S}(\R)
+        \] 
+        Пусть $f\in C_0^\infty(\R)$. Тогда ее носитель ограничен, а носитель любой производной может стать лишь меньше, то есть тоже ограничен. 
+
+        При этом $\sup\limits_{x\in \R} \hm{x^\alpha f^{(\beta)} (x)} < \infty$, так как под супремумом гладкая функция, а она достигает максимума и минимума на отрезке.
+    \end{Note}
+
+    \begin{Ex}
+        $f(x) = e^{-|x|} \not \in \mathcal{S}(\R)$, так как в точке 0 она не дифференцируема.
+    \end{Ex}
+    \begin{Ex}
+        $f(x) = \frac{1}{1+x^4} \not \in \mathcal{S}(\R)$, так как, например, $\rho_{5,0} = +\infty$.
+    \end{Ex}
+
+    \begin{Note}
+        $f\in \mathcal{S}(\R) \Leftrightarrow \begin{cases}
+            f\in C^{\infty}(\R),\\
+            \forall \; \alpha,\beta\in \Z_+ \quad \sup\limits_{x\in \R} \hm{(x^\beta f(x))^{(\alpha)}} < \infty.
+        \end{cases}$
+    \end{Note}
+    \begin{Note}
+        $f\in \mathcal{S}(\R) \Leftrightarrow \begin{cases}
+            f\in C^{\infty}(\R),\\
+            \forall \, \alpha\in \Z_+, \forall \, N\in \N \; \exists \, C_{\alpha,N}:  \quad \hm{f^{(\alpha)}(x)} \leqslant \frac{C_{\alpha, N}}{(1+|x|)^N}.
+        \end{cases}$
+    \end{Note}
+
+    \begin{Prop}[Замкнутость $\mathcal{S}$ относительно некоторых операций]
+        Пусть $f,g \in \mathcal{S}(\R)$. Тогда
+        \begin{enumerate}
+            \item $\forall\; \alpha\in \mathbb{C} \quad \alpha f \in \mathcal{S}(\R)$,
+            \item  $f + g \in \mathcal{S}(\R)$,
+            \item  $f \cdot g \in \mathcal{S}(\R)$,
+            \item $f^{(k)} \in \mathcal{S}(\R)$,
+            \item $f * g \in \mathcal{S}(\R)$,
+            \item[$\star$] $(f*g)^{(k)} = f^{(k)} * g = f * g^{(k)}$.
+        \end{enumerate}
+        \begin{Proof}
+            \begin{enumerate}
+                \item
+                \item
+                \item
+                \item
+                \item Проверим дифференцируемость
+                    \[
+                        (f*g)(t) = \int\limits_\R f(x) \cdot g(t-x) dx.
+                    \] 
+                    Зафиксируем $t\in \R$ и покажем, что свертка дифференцируема в этой точке.
+                    \[
+                        \begin{split}
+                        &\frac{(f*g)(t+\Delta t) - (f*g)(t)}{\Delta t} =\\
+                        &= \frac1{\Delta t} \hr{\int\limits_\R f(x) \cdot g(t+\Delta t-x) dx -\int\limits_\R f(x) \cdot g(t-x) dx} =\\
+                        &= \int\limits_\R f(x)\cdot  \frac{g(t+\Delta t- x) - g(t-x)}{\Delta t} dx.
+                        \end{split}
+                    \] 
+                    Так как производная есть предел, то нам надо проверить существование предела данного интеграла. Хочется применить теорему Лебега о предельном переходе в интеграле с параметром, чтобы работать не с интегралом, а с подынтегральной функцией. Проверим условие теоремы:
+                    \[
+                        \forall \, \Delta t \in U^{\circ} (0) \; \forall \, x \hm{f(x) \cdot \frac{g(t+\Delta t- x) - g(t-x)}{\Delta t} } \leqslant \Phi(x)
+                    \] 
+                    Так как $g$ -- бесконечное число раз дифференцируемая функция, то расписывая Тейлора с остатком в форме Лагранжа
+                    \[
+                        \begin{split}
+                            \frac{g(t+\Delta t- x) - g(t-x)}{\Delta t}&=\frac{g'(t-x)\Delta t + g''(t-x+\theta(t,x)\Delta t) \Delta t^2}{\Delta t} =\\
+                                                                      &=g'(t-x) + g''(t-x+\theta(t,x) \Delta t)\Delta t,
+                        \end{split}
+                    \]
+                    что дает существование $M$, при котором для любого $t\in U(\Delta t)$ выполнено \[\hm{\frac{g(t+\Delta t- x) - g(t-x)}{\Delta t}} \leqslant M.\]
+                    А значит можно рассмотреть в качестве мажоранты $\Phi(x) = M \cdot \hm{f(x)}$.
+                    Тогда по теореме Лебега 
+                    $
+                        \lim\limits_{\Delta t \to 0} \int\limits_\R f(x)\cdot  \frac{g(t+\Delta t- x) - g(t-x)}{\Delta t} dx 
+                   $ существует, а значит функция $(f*g)(t)$ -- дифференцируема и $(f*g)' = (f*g')$.
+
+                   Покажем, что $f*g = g*f$.
+                   \[
+                       f*g = \int\limits_\R f(x) \cdot g(t-x) dx = \hm{\begin{split}y=t-x\\dx = -dy \end{split} }= \int\limits_\R f(t-y) \cdot g(y) dy = g*f.
+                   \] 
+
+                   А значит, используя полученную коммутативность $f*g' = (f*g)' = (g*f)' = g*f' = f'*g$.
+                   
+                   При этом, так как $f,g'$ получились из класса Шварца, то $f*g'$ тоже дифференцируема. То есть получили, что $f*g \in C^{\infty}$.
+
+
+                   Покажем теперь выполнение неравенства 
+                   \[
+            \forall \, N\in \N \; \exists \, C_{N}:  \quad \hm{(f*g)(t)} \leqslant \frac{C_{N}}{(1+|t|)^N}.
+                   \] 
+                   \[
+                       \begin{split}
+                           \hm{(f*g)(t)} &= \hm{\int\limits_\R f(x) \cdot g(t-x) dx} \leqslant \int\limits_\R \hm{f(x)} \cdot \hm{g(t-x)} dx \leqslant\\
+                                         & \hm{\text{ т.к. $f,g \in \mathcal{S}(\R)$ }} \leqslant \int\limits_\R \frac{A_N}{(1+|x|)^N} \cdot \frac{B_N}{(1+|t-x|)^N} dx =\\
+                                         &=A_N \cdot B_N \cdot \int\limits_\R \frac{1}{(1+|x|)^N} \cdot \frac{1}{(1+|t-x|)^N} dx .
+                       \end{split}
+                   \]
+                   
+                   \begin{figure}[h!]
+                       \centering
+                       \begin{tikzpicture}
+                           \draw[->, gray] (-2, 0) -- (5,0) node[right]{$x$};
+                           \filldraw (2,0) circle(1pt) node[below]{$t$};
+                           \filldraw (1,0) circle(1pt) node[below]{$\frac{t}{2}$};
+                           \filldraw (3,0) circle(1pt) node[below]{$\frac{3t}{2}$};
+                           \fill[opacity=0.5, blue] (1,0) rectangle (3,0.5) node[above ]{$D_1$};
+                           \fill[opacity=0.5, green!50!black] (-2,0) rectangle (1,0.5); 
+                           \fill[opacity=0.5, green!50!black] (3,0) rectangle (5,0.5) node[above ]{$D_2$};
+                       \end{tikzpicture}
+                   \end{figure}
+                   Заметим, что на $D_1$ выполнено $|x| \geqslant \frac{|t|}{2}$, а на $D_2$ -- $|t-x| \geqslant \frac{|t|}{2}$. Тогда можем разбить интеграл на два:
+                   \[
+                       \begin{split}
+                       \int\limits_\R \frac{1}{(1+|x|)^N} \cdot \frac{1}{(1+|t-x|)^N} dx  =\\
+                       = \int\limits_{D_1} \frac{1}{(1+|x|)^N} \cdot \frac{1}{(1+|t-x|)^N} dx  + \int\limits_{D_2} \frac{1}{(1+|x|)^N} \cdot \frac{1}{(1+|t-x|)^N} dx \leqslant \\
+                       \leqslant \frac{1}{(1+\frac{|t|}{2})^N} \cdot\int\limits_{D_1}  \frac{1}{(1+|t-x|)^N} dx  + \frac{1}{(1+\frac{|t|}{2})^N} \int\limits_{D_2} \frac{1}{(1+|x|)^N} dx = \\
+                       = - \frac{1}{(1+\frac{|t|}{2})^N} \cdot\int\limits_{\hr{-\frac{t}{2}, \frac{t}{2}} \subset D_2}  \frac{1}{(1+|y|)^N} dy  + \frac{1}{(1+\frac{|t|}{2})^N} \int\limits_{D_2} \frac{1}{(1+|x|)^N} dx = \\
+                       = \frac{1}{(1+\frac{|t|}{2})^N} \int\limits_{D_2\setminus \hr{\frac{t}{2}, \frac{t}{2}}} \frac{1}{(1+|x|)^N} dx \leqslant \\
+                       \hm{\text{т.к. при $N\geqslant 2$ интеграл сходится }} \\
+                       \leqslant    \frac{1}{(1+|t|)^N} \frac{(1+|t|)^N}{(1+\frac{|t|}{2})^N} \tilde{C}_N \leqslant \frac{C_N}{(1+|t|)^N}.
+                       \end{split}
+                   \]
+                   При этом при $N=1$ можем рассмотреть ту же константу, что и при $N=2$, и неравенство останется верным.
+
+                   Таким образом, мы показали выполнение неравенства $\hm{(f*g)(t)} \leqslant \frac{C_{N}}{(1+|t|)^N}$ и попали в равносильное определение пространства Шварца.
+            \end{enumerate}
+        \end{Proof}
+    \end{Prop}
+
+    \section[12.05.2023]{Преобразование Фурье}
+    \begin{Def}
+    Пусть $f\in \mathcal{S}(\R)$.
+
+    Тогда преобразованием Фурье функции $f$ назовем оператор $\mathcal{F}$, возвращающий функцию
+    \[
+        \hat{f}(\xi) = \int\limits_\R f(x) \cdot e^{-2\pi i x \xi} dx.
+    \] 
+    \end{Def}
+    \begin{Note}
+    Часто говорят просто <<преобразование Фурье функции -- это функция $\hat{f}(\xi) $>>.
+    \end{Note}
+    
+    \begin{Ex}
+        Найти преобразование Фурье функции $f(x) = e^{-\pi x^2}$.
+
+        \begin{Solution}
+           \[
+               \begin{split}
+                   \hat{f}(\xi) &= \int\limits_\R e^{-\pi x^2} \cdot e^{-2\pi i x \xi} dx  = \int\limits_\R e^{-\pi\hr{x^2 + 2ix\xi}} dx =\\
+                                &= \int\limits_\R e^{-\pi\hr{x+i\xi}^2 - \pi \xi^2} dx = e^{-\pi \xi^2} \int\limits_\R e^{-\hr{\sqrt{\pi}x+\sqrt{\pi}i \xi}^2} dx = \cancel{\sqrt{\pi}} \cdot \frac{e^{-\pi \xi^2}}{\cancel{\sqrt{\pi}}} = e^{-\pi \xi^2}.
+               \end{split}
+           \]  
+           На самом деле при вычислении интеграла мы меняем область на комплекснозначную, что требует более строгого объяснения. Но мы можем показать, что этот интеграл вне зависимости от $\xi$ будет равен $\sqrt{\pi}$. Для этого можно рассмотреть производную по $\xi$ этого интеграла и убедиться, что после перестановки предела и интеграла, используя формулу Лебега, получается 0. А значит значение интеграла равно его значению при $\xi=0$, что дает интегралл Пуассона, равный $\sqrt{\pi}$.
+        \end{Solution}
+    \end{Ex}
+
+    Мы получили интересный результат: исходная функция совпадает с полученной после преобразования Фурье. А значит $f(x) = e^{-\pi x}$ является неподвижной точкой для преобразования Фурье.
+    
+    Введем несколько вспомогательных операторов.
+    \begin{Def}
+        \begin{enumerate}
+            \item $\tau^\alpha$ -- оператор сдвига. 
+                \[
+                \tau^\alpha f (x) = f(x-\alpha).
+                \] 
+            \item $\delta^\alpha$ -- оператор сжатия.
+                \[
+                \delta^\alpha f(x0 = f(\alpha x).
+                \] 
+            \item $\tilde{\cdot}$ -- оператор отражения.
+                 \[
+                     \tilde{f}(x) = f(-x).
+                \] 
+        \end{enumerate}
+    \end{Def}
+
+    \begin{Prop}[Свойства преобразования Фурье]
+        Пусть $f,g \in \mathcal{S}(\R)$, $b\in \mathbb{C}$, $\alpha\in\Z_+$.
+
+        Тогда имеют место следующие свойства:
+         \begin{enumerate}
+             \item \[
+                     (f+g)^\wedge = \hat{f} + \hat{g},
+             \] 
+         \item \[
+                 (bf)^\wedge = b\hat{f},
+         \] 
+     \item \[
+             \|\hat{f}\|_\infty \leqslant \|f\|_{L_1(\R)},
+     \] 
+ \item \[
+         \hat{\tilde{f}} = \tilde{\hat{f}},
+ \] 
+\item \[
+        \hat{\overline{f}} = \overline{\tilde{\hat{f}}},
+\] 
+\item \[
+        (\tau^a f)^\wedge (\xi) = e^{-2\pi i a \xi} \hat{f}(\xi),
+\] 
+\item \[
+        \hr{e^{2\pi i a \star} f}^\wedge = \tau^a f,
+\] 
+\item \[
+        \hr{\delta^a f}^\wedge = \frac1a \delta^{\frac{1}{a}} \hat{f},
+\] 
+\item \[
+    \hr{f^{(\alpha)}}^\wedge (\xi) = (2\pi i \xi)^\alpha \hat{f}(\xi),
+\] 
+\item \[
+        \hat{f}^{(\alpha)} = \hr{\hr{-2\pi i \star}^\alpha f}^\wedge,
+\] 
+\item \[
+    \hat{f} \in \mathcal{S}(\R),
+\] 
+\item \[
+        (f*g)^\wedge = \hat{f} \cdot \hat{g}.
+\] 
+        \end{enumerate}
+        \begin{Proof}
+            \begin{enumerate}
+                \item Очевидно из-за свойств интеграла
+                \item Очевидно из-за свойств интеграла
+                \item Вспомнив, что $\|f\|_{L_1} = \int\limits_\R f$, получается очевидно
+                \item 
+                \item Так как сопряжение проносится под интеграл, то поменяется знак у экспоненты, а отражение поменяет его обратно
+                \item \[
+                    (\tau^a f)^\wedge (\xi) = \int\limits_\R f(x-a) \cdot e^{-2\pi i x \xi} dx = e^{-2\pi i a \xi} \underbrace{\int\limits_\R f(x) \cdot e^{-2\pi i x \xi} dx}_{\hat{f}}.
+                \] 
+                \item \[
+                    \hr{e^{2\pi i a x} f}^\wedge = \int\limits_\R e^{2\pi i a x} f(x) \cdot e^{-2\pi i x \xi} dx = \int\limits_\R f(x) e^{-2\pi ix \hr{\xi-a}} dx = \tau^a \hat{f}.
+            \] 
+                \item \[
+                        \hr{\delta^a f}^\wedge = \int\limits_\R f(ax) \cdot e^{-2\pi i x \xi} dx = \frac1a \int\limits_\R f(x) \cdot e^{-2\pi i \frac{x}{a} \xi} dx = \frac1a \delta^{\frac1a} \hat{f}.
+                \] 
+            \item Покажем при $\alpha =1$:
+                \[
+                    \begin{split}
+                        (f')^\wedge (\xi) &= \int\limits_\R f'(x) \cdot e^{-2\pi i x \xi} dx =\\
+                                          & \hm{\begin{split}u=e^{-2\pi i x \xi} &\implies u' = -2\pi i \xi e^{-2\pi i x \xi},\\v' = f' &\implies v = f\end{split}} \\
+                                          &= \left. f\cdot e^{-2\pi i x \xi} \right|_{-\infty}^{+\infty} + 2\pi i \xi \int\limits_\R f(x) \cdot e^{-2\pi i x \xi} dx = 2\pi i \xi \hat{f}.
+                    \end{split}
+                \]
+            Тогда для высших производных индуктивно имеем такие же рассуждения, так как $f'\in \mathcal{S}(\R)$.
+        \item Снова покажем для $\alpha=1 $:
+            \[
+                \begin{split}
+                    \hat{f}' &= \hr{\int\limits_\R f(x) \cdot e^{-2\pi i x \xi} dx }' =\\
+                             &=\lim\limits_{\Delta \xi\to 0} \frac{\int\limits_\R f(x) \cdot e^{-2\pi i x (\xi+\Delta \xi)} dx - \int\limits_\R f(x) \cdot e^{-2\pi i x \xi} dx }{\Delta \xi} =\\
+                             &\hm{\text{по теореме Лебега можем поменять знаки интеграла и предела}}\\
+                             & = \int\limits_\R f(x) \cdot \lim\limits_{\Delta \xi \to 0} \frac{e^{-2\pi i x (\xi+\Delta \xi)}-e^{-2\pi i x \xi}}{\Delta \xi}  = \int\limits_\R f(x) \hr{e^{-2\pi i x \xi}}'_\xi  dx =\\
+                             &= -2\pi i  \int\limits_\R f(x) \cdot x \cdot e^{-2\pi i x \xi} dx = -2\pi i \xi \hat{f}.
+                \end{split}
+            \] 
+            Опять таки, строго говоря, надо находить мажоранту для применения теоремы Лебега. Для этого стоит рассмотреть вещественную и мнимую часть и ограничить их по Тейлору с остатком в форме Лагранжа. Тогда мажоранта $\Phi(x) = 2\hm{f(x)}$ подойдет. 
+        \item Понятно, что $\hat{f} \in C^{\infty}(\R)$, так как по предыдущему свойству любая производная есть преобразование Фурье от произведения функции на многочлен.
+
+            Воспользуемся эквивалентным определением принадлежности пространству Шварца:
+            \[
+                \forall\, \alpha,\beta \in \Z_+ \quad \sup\limits_\xi \hm{\hr{\xi^\beta \hat{f}(\xi)}^{(\alpha)}} < \infty.
+            \] 
+
+            Из 9-ого свойства:
+            \[
+                \xi^\beta \hat{f}(\xi) = \frac{1}{(2\pi i)^\beta} (f^{(\beta)})^\wedge (\xi).
+            \] 
+            Взяв производную с двух сторон и применив 10-ое свойство, получаем
+            \[
+                \hr{\xi^\beta \hat{f}(\xi)}^{(\alpha)} = \frac{1}{(2\pi i)^\beta} \hr{\hr{-2\pi i \star}^{\alpha} f^{(\beta)}}^\wedge (\xi) = \frac{(-2\pi i)^\alpha}{(2\pi i)^\beta} \hr{\star^\alpha f^{(\beta)}}^\wedge (\xi).
+            \] 
+            Тогда, переходя к нормам, по 3-ему свойству
+            \[
+                \|\hr{\xi^\beta \hat{f}(\xi)}^{(\alpha)}\| \leqslant  \frac{(2\pi )^\alpha}{(2\pi )^\beta} \int\limits_\R \hm{x^\alpha f^{(\beta)}(x)} dx.
+            \] 
+            Так как сама $f^{(\beta)}$ лежит в пространстве Шварца, то по одному из определений $f^{(\beta)}(x) \leqslant \frac{C_{N,\alpha}}{(1+|x|)^N}$. Возьмем, например, $N=\alpha+2$.
+            \[
+                \frac{(2\pi i)^\alpha}{(2\pi i)^\beta} \int\limits_\R \hm{x^\alpha f^{(\beta)}(x)} dx \leqslant \frac{(2\pi)^\alpha}{(2\pi)^\beta} \int\limits_\R \frac{|x|^\alpha C}{(1+|x|)^{\alpha+2}} dx < \infty.
+            \] 
+        \item \[
+                \begin{split}
+                    (f*g)^\wedge (\xi) &= \int\limits_\R (f*g)(x) \cdot e^{-2\pi i x\xi}dx = \\
+                                       &= \int\limits_\R \hr{\int\limits_\R f(t) \cdot g(x-t) dt} \cdot e^{-2\pi i x\xi}dx = \\
+                                       &= \int\limits_\R \hr{\int\limits_\R f(t) \cdot g(x-t)\cdot e^{-2\pi i x\xi}dx}dt = \\
+                                       &= \int\limits_\R f(t)\cdot \hr{\int\limits_\R g(u)\cdot e^{-2\pi i (t+u)\xi}du}dt =\\
+                                       &= \int\limits_\R f(t) \cdot e^{-2\pi i t \xi} \cdot \hr{\int\limits_\R g(u)\cdot e^{-2\pi i u\xi}du} dt = \\
+                                       &= \int\limits_\R f(t) \cdot e^{-2\pi i t \xi} \cdot \hat{g}(\xi) dt =\\
+                                       &= \hat{f}(\xi) \cdot \hat{g}(\xi).
+                \end{split}
+        \]  
+            \end{enumerate}
+        \end{Proof}
+    \end{Prop}
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
 

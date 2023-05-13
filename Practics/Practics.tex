@@ -54,6 +54,7 @@
 % Рисование
 \usepackage{tikz} % рисование
 \usepackage{pgfplots} % графики
+\usepgfplotslibrary{polar}
 % Таблицы
 \usepackage{multirow} % объединение строк
 \usepackage{multicol} % объединение столбцов
@@ -1409,5 +1410,594 @@
 			\det e^{A} = e^2.
 			\]
 		\end{Solution}
+	\end{Ex}
+
+	\section[03.03.2023]{Линейные уравнения}
+	\begin{Ex}
+		\[
+		4y''-8y'+5y=0.
+		\]
+		\begin{Solution}
+			Корни характеристического уравнения $\lambda = 1 \pm \frac12 i$.
+			
+			Тогда решения есть $e^{\hr{1 + \frac12 i}t}, e^{\hr{1 - \frac12 i}t}$. Овеществляя их, рассматривая вещественную и мнимую часть, получаем
+			\[
+			e^{t}\cos \frac t2, e^t \sin \frac t2.
+			\]
+			Тогда общее решение есть $y = C_1e^{t}\cos \frac t2 + C_2 e^t \sin \frac t2$.
+		\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+		\[
+		y'' - 2y' + y = \frac{e^t}{t}, \quad t>0.
+		\]
+		\begin{Solution}
+			Решение однородного есть $y = C_1 e^t + C_2 t e^t$.
+			
+			Тогда найдем $C_i$ из системы
+			
+			\[
+			\begin{bmatrix}
+				\Lambda e^t, \Lambda te^t
+			\end{bmatrix}
+			\begin{bmatrix}
+				C_1'\\C_2'
+			\end{bmatrix}
+			=
+			\begin{bmatrix}
+				0\\\frac{e^t}{t}
+			\end{bmatrix}.
+			\]
+			\[
+			\begin{cases}
+				C_1'e^t + C_2'te^t=0,\\
+				C_1' e^t + C_2' \hr{e^t+te^t} = \frac{e^t}{t}
+			\end{cases}
+			\]
+			\[
+			\begin{cases}
+				C_1' = -1,\\
+				C_2' = \frac{1}{t}
+			\end{cases}
+			\]
+			\[
+			\begin{cases}
+				C_1 = -t + C_3\\
+				C_2 = \ln t + C_4
+			\end{cases}
+			\]
+			
+			Таким образом, общее решение есть 
+			\[
+			y = \hr{-t + C_3} e^t + \hr{\ln t + C_4} t e^t
+			\]
+		\end{Solution}
+	\end{Ex}
+
+	\begin{Def}
+		$t^{k} e^{\lambda t}$ называется квазиодночленом. Соответственно, $\sum\limits_{j=1}^n t^{k_j} e^{\lambda_j t}$ называется квазимногочленом.
+	\end{Def}
+
+	\begin{Lem}
+		Если $q(t) = e^{\gamma t} p_k(t)$, где $p_k$ -- многочлен степени $R$, то уравнение $Ly=q(t)$ имеет решение 
+		\[
+		y = t^m e^{\gamma t}r_k(t),
+		\] 
+		где $r_k$ -- многочлены степени $r$ (с неопределенными коэффициентами), $m=0$, если $\gamma$ -- не характеристическое число, $m$ -- кратность $\gamma$, если $\gamma$ -- характеристическое число.
+	\end{Lem}
+
+	\begin{Ex}
+		\[
+		y''-y = t^2-t+1.
+		\]
+		\begin{Solution}
+			\[
+			q(t) = t^2 - t+ 1 = e^{\gamma t } p_k(t), \text{ где $\gamma = 0, k=2$}.
+			\]
+			
+			Так как характеристические корни $\lambda = \pm 1$, не равны $\gamma=0$, то $m=0$.
+			
+			Тогда $y = A_2 t^2 + A_1 t + A_0$ -- частное решение.
+			
+			Подставляя в исходное, получаем 
+			\[
+			2A_2 - \hr{A_2 t^2 + A_1 t + A_0} = t^2-t+1,
+			\]
+			По неопределенным коэффициентам находим
+			\[
+			\begin{cases}
+				A_2 = -1,\\
+				A_1 = 1,\\
+				A_0 = -3.
+			\end{cases}
+			\]
+			Таким образом, получаем, что общее решение исходного уравнения есть сумма общего решения однородного и частного
+			\[
+			y = C_1 e^{-t} + C_2 e^t -t^2 + t - 3 
+			\]
+		\end{Solution}
+	\end{Ex}
+
+	\begin{Ex}
+		\[
+		y'' + y = 2e^t + 1.
+		\]
+		\begin{Solution}
+			Решим уравнение $y'' + y = 2e^t$
+			\[
+			q(t) = 2e^t \implies k=0, \gamma=1.
+			\]
+			Характеристические корни есть $y=\pm i$. Тогда $m=0$.
+			
+			Таким образом, частное решение есть
+			\[
+			y = A_0 e^t. 
+			\]
+			Подставляя в исходное, получаем
+			\[
+			A_0 e^t + A_0 e^t = 2e^t,
+			\]
+			\[
+			A_0 = 1.
+			\]
+			
+			Решим уравнение $y'' + y = 1$
+			\[
+			q(t) = 1 \implies \gamma = 0, k = 0.
+			\]
+			Тогда частное решение имеет вид 
+			\[
+			y = A = 1.
+			\]
+			
+			А значит частное решение исходного есть сумма частных решений предыдущих
+			\[
+			y = e^t+1,
+			\]
+			Тогда общее решение, как сумма общего решение однородного и частного решения
+			\[
+			y = C_1 \cos t + C_2 \sin t + e^t + 1
+			\]
+		\end{Solution}
+	\end{Ex}
+	\section[10.03.2023]{Линейные уравнения с переменными коэффициентами}
+	\begin{Ex}
+		\[
+		y''-ty=0.
+		\]
+		Оказывается, что решения в виде элементарных функций у такого уравнения не существует. Однако по теореме Коши решения все-таки есть и выражается формулой Тейлора.
+		
+		Пусть $\varphi$ -- решение и имеет вид $\varphi = \sum\limits_{k=0}^{\infty} a_k t^k$. Найдем значения коэффициентов.
+		
+		Для этого подставим в исходное уравнение
+		\[
+		\sum\limits_{k=0}^{\infty} a_k t^k - t \sum\limits_{k=0}^{\infty} a_k t^k \equiv 0,
+		\]
+		\[
+		\sum\limits_{k=2}^{\infty} k(k-1) a_k t^{k-2} - \sum\limits_{k=0}^{\infty} a_k t^{k+1} \equiv 0,
+		\]
+		Сведем к одному ряду от нуля до бесконечности заменой индексов
+		\[
+			\sum\limits_{k=0}^{\infty} (k+2)(k+1)a_{k+2} t^k - \sum\limits_{k=1}^{\infty} a_{k-1} t^k \equiv 0,
+		\]
+		\[
+		\sum\limits_{k=1}^{\infty} \hr{(k+2)(k+1)a_{k+2} - a_{k-1}} t^k + 2a_2 \equiv 0,
+		\]
+		Тогда получаем 
+		\[
+		\begin{cases}
+			a_2 = 0,\\
+			(k+2)(k+1)a_{k+2} - a_{k-1} = 0, \quad k\geqslant 1.
+		\end{cases}
+		\]
+		
+		Второе равенство на самом деле есть реккурентное задание 
+		\[
+		a_m = \frac{a_{m-3}}{m(m-1)} \quad m\geqslant 3 = \frac{a_{m-6}}{m(m-1)(m-3)(m-6)} = \dots = \frac{a_{m \, mod \, 3}}{m!!! (m-1)!!!}.
+		\]
+		Таким образом,
+		\begin{itemize}
+			\item если $m\,mod\, 3 = 2$, то $a_m = 0$,
+			\item если $m\,mod\, 3 = 1$, то $a_m = \frac{a_{1}}{m!!! (m-1)!!!}$,
+			\item если $m\,mod\, 3 = 0$, то $a_m = \frac{a_{0}}{m!!! (m-1)!!!}$.
+		\end{itemize}
+		И тогда 
+		\[
+		\varphi(t) = a_0\sum\limits_{\stackrel{m=0}{m \,mod\,3=0}}^\infty \frac{t^m}{m!!!(m-1)!!!} + a_1\sum\limits_{\stackrel{m=0}{m \,mod\,3=1}}^\infty \frac{t^m}{m!!!(m-1)!!!}.
+		\]
+		При этом слагаемые оказываются действительно линейно независимыми решениями, так как вронскиан в нуле равен 1, а значит это действительно общее решение. 
+	\end{Ex}
+	\begin{Ex}
+		\[
+		xy''+2y'+xy=0.
+		\]
+		\begin{Solution}
+			Пусть $\varphi$ -- решение и имеет вид $\varphi = \sum\limits_{k=0}^{\infty} a_k x^k$. Найдем значения коэффициентов.
+			
+			Для этого подставим в исходное уравнение
+			\[
+			x\sum\limits_{k=2}^{\infty} k(k-1) a_k x^{k-2} + 2\sum\limits_{k=1}^{\infty}k  a_k x^{k-1} + x \sum\limits_{k=0}^{\infty} a_k x^k \equiv 0,
+			\]
+			\[
+			\sum\limits_{k=2}^{\infty} k(k-1) a_k x^{k-1} + 2\sum\limits_{k=1}^{\infty}k  a_k x^{k-1}  +  \sum\limits_{k=2}^{\infty} a_{k-2} x^{k-1} \equiv 0,
+			\]
+			\[
+			\sum\limits_{k=2}^{\infty} \hr{k(k-1) a_k + 2ka_k + a_{k-2}} + 2a_1 \equiv 0,
+			\]
+			\[
+			\begin{cases}
+				a_1 = 0,\\
+				k(k-1) a_k + 2ka_k + a_{k-2} = 0, \quad k \geqslant 2
+			\end{cases}
+			\]
+			Второе уравнение задает
+			\[
+			a_k = \frac{-a_{k-2}}{k^2+k}= \frac{a_{k-4}}{(k^2+k)((k-2)^2 + (k-2))} = \dots = \frac{(-1)^{[\frac{k}{2}]} a_{k\,mod\,2}}{(k+1)!}
+			\]
+			Таким образом, $a_{2m+1} = 0$, $a_{2m} = \frac{(-1)^{m} a_{0}}{(2m+1)!}$
+			
+			И решение есть
+			\[
+			\varphi(x) = a_0 \sum\limits_{m=0}^{\infty} \frac{(-1)^{m}}{(2m+1)!} x^{2m} = \frac{a_0}{x} \sum\limits_{m=0}^{\infty} \frac{(-1)^{m}}{(2m+1)!} x^{2m+1} = \frac{a_0}{x} \sin x.
+			\]
+			Однако видно, что это решение не задает линейное пространство нужной размерности, а значит не является общим.
+			
+			Воспользуемся теоремой Остроградского-Лиувилля уже для приведенного уравнения $y'' + \frac{2}{x} y' + y = 0$
+			\[
+			\begin{vmatrix}
+				\varphi_1 & \varphi_2 \\
+				\varphi_1' & \varphi_2' \\
+			\end{vmatrix} = W(x_0) e^{-\int_{x_0}^x \frac{2}{x}dx},
+			\]
+			\[
+			\begin{vmatrix}
+				\frac{\sin x}{x} & \varphi_2 \\
+				\frac{x\cos x - \sin x}{x^2} & \varphi_2' \\
+			\end{vmatrix} = C e^{-\int \frac{2}{x}dx},
+			\]
+			\[
+			\frac{\sin x}{x} \varphi_2' = \frac{x\cos x - \sin x}{x^2} \varphi_2 + \frac{1}{x^2},
+			\]
+			\[
+			\varphi_2' = \hr{\ctg x - \frac1x} \varphi_2 + \frac{1}{x\sin x},
+			\]
+			\[
+			\varphi_2 = \hr{C + \int \frac1{x\sin x} e^{-\int \hr{\ctg x - \frac1x}dx}} e^{\int \hr{\ctg x - \frac1x}dx},
+			\]
+			\[
+			\varphi_2 = \hr{C + \int \frac1{x\sin x} e^{-\ln(\sin x) + \ln x}} e^{\ln(\sin x) - \ln x},
+			\]
+			\[
+			\varphi_2 = \hr{C + \int \frac1{x\sin x} \frac{x}{\sin x}} \frac{\sin x}{x},
+			\]
+			\[
+			\varphi_2 = \hr{C - \ctg x} \frac{\sin x}{x},
+			\]
+			Рассмотрим какое-нибудь решение, например, при $C=0$ (при любом $C$ это решение будет линейно независимо с полученным через ряд).
+			
+			Таким образом, получается, что общее решение есть 
+			\[
+			\varphi = C_1 \frac{\sin x}{x} + C_2 \frac{\cos x}{x}
+			\]
+		\end{Solution}
+	\end{Ex}
+	\section[17.03.2023]{Устойчивости}
+	\begin{Ex}
+		Исследовать на устойчивость решение $\varphi(t) = t$ уравнения $x'=1+t-x$.
+		\begin{Solution}
+			Рассмотрим
+			\[
+			s' = 1+ t -(s+\varphi) - 1-t+\varphi = -s. 
+			\]
+			Так как решение $s=0$ является асимптотически устойчивым для этого уравнения, то любое решение также будет асимптотически устойчивым.
+		\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+		Исследовать на устойчивость решение $x=0$ уравнения $x'=\sin^2 x$.
+		\begin{Solution}
+			\textbf{1 способ}
+			
+			Решим данное дифференциальное уравнение:
+			
+			\[
+			\begin{split}
+			x = \arcctg(-t+C), \quad x \in (0,\pi),\\
+			x = -\pi + \arcctg(-t+C), \quad x \in (-\pi, 0),\\
+			\end{split}
+			\]
+			Причем $C$ определяется из начального условия $x(0) = x_0$ как $C=\ctg x_0$.
+			
+			Рассмотрим на положительной части. Так как арктангенс в любом случае стремится к $\pi$, то появляется предположение, что устойчивости нет.
+			
+			Вспомним отрицание определения устойчивости
+			\[
+			\exists \varepsilon: \; \forall \delta \; \exists x_0 \in B_\delta(0) \; \exists t \in \hsr{0, +\infty}: \quad \hm{x(t,x_0)} \geqslant \varepsilon.
+			\]
+			Тогда рассматривая $\varepsilon = \frac{\pi}2$, 
+			\[
+			\hm{\arcctg(-t+\ctg x_0)} \geqslant \frac{\pi}{2}, 
+			\]
+			так как $\arcctg$ стремится к $\pi$.
+			
+			\textbf{2 способ}
+			
+			Рассмотрим фазовое пространство в окрестности точки 0. Так как фазовые скорости всегда неотрицательны, то, выйдя из точки в окрестности 0, мы никогда не вернемся туда, то есть решение неустойчивое.
+		\end{Solution}
+	\end{Ex}
+
+	\begin{Ex}
+		Исследовать на устойчивость решение $x=0$ уравнения $x' = -\frac{\sin^2 x}{\cos x}$.
+		\begin{Solution}
+			Рассмотрим фазовое пространство в окрестности точки 0. Так как фазовые скорости всегда в этой окрестности неположительные, то, выйдя из точки в окрестности 0, мы всегда вернемся в нуль, то есть решение асимптотически устойчивое.
+		\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+		Найдите точки покоя уравнения
+		\[
+		x'=x^3-7x^2+36
+		\]
+		и исследуйте их на устойчивость.
+		\begin{Solution}
+			Точки покоя найдем из уравнения 
+			\[
+			x^3 - 7x^2 + 36 = 0 \Leftrightarrow x\in \{-2,3,6\}.
+			\]
+			При $x=-2$ в его окрестности фазовая скорость в сторону 0 оказывается положительной, а значит точка неустойчивая.
+			
+			При $x=-2$ в его окрестности фазовая скорость в сторону 0 оказывается положительной, а значит точка неустойчивая.
+			
+			При $x=-2$ в его окрестности фазовая скорость в сторону 0 оказывается положительной, а значит точка неустойчивая.
+			
+			
+		\end{Solution}
+	\end{Ex}
+
+
+	\section[14.04.2023]{Функция Четаева}
+	\begin{Ex}
+		Рассмотрим одномерный случай, в котором $f(x)>0$.
+		Тогда функция $C(x) = x$ является функцией Четаева:
+		\begin{enumerate}
+			\item $C(0) = 0$,
+			\item $\forall \;\rho > 0 \quad B_\rho(0) \cap \hc{r|C(r)>0} = \hr{0,\rho} \not = 0$,
+			\item $\forall \; r\in \bar{B}_\rho(0) \cap \hc{r|C(r)>0} \quad \grave{C}(r) = f(x) > 0$.
+		\end{enumerate}
+		Таким образом, функция действительно является функцией Четаева. И значит точка 0 является точкой неустойчивого положения равновесия.
+	\end{Ex}
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x'=-y+x^3,\\
+			y'=x+y^3.
+		\end{cases}
+		\]
+		Доказать, что положение равновесия $(0,0)$ неустойчиво. 
+		\begin{Solution}
+			Будем искать функцию Четаева в виде $C(x,y) = ax^{2\alpha} + by^{2\beta}$.
+				\begin{enumerate}
+				\item $C(0,0) = 0$,
+				\item $C(x,y)>0$ при $a,b>0$,
+				\item \[\begin{split}\forall \; r\in \bar{B}_\rho(0) \cap \hc{r|C(r)>0}\\ \grave{C}(r) = \begin{pmatrix}
+					2a\alpha x^{2\alpha-1} & 2b\beta y^{2\beta-1}
+				\end{pmatrix} \cdot \begin{pmatrix}
+				-y+x^3\\x+y^3
+			\end{pmatrix} = \\
+		= 2a\alpha x^{2\alpha+2} - 2a\alpha x^{2\alpha-1}y +  2b\beta y^{2\beta+2} + 2b\beta y^{2\beta-1}x = \\
+		= \underbrace{2a\alpha x^{2\alpha+2} +  2b\beta y^{2\beta+2}}_{>0} + 2xy \hr{b\beta y^{2\beta-2} + a\alpha x^{2\alpha-2}}
+		\end{split}\].
+			Выберем теперь коэффициенты так, чтобы $b\beta y^{2\beta-2} + a\alpha x^{2\alpha-2} = 0$. Например, $\alpha = \beta = 2$, $a=-b$. Тогда получаем, что $\grave{C}(r) > 0$.
+			\end{enumerate}
+		\end{Solution}
+	\end{Ex}
+
+	\begin{Note}
+		Вспомним теорему о том, что фазовые траектории системы $\begin{cases}
+			x' = f(x,y),\\
+			y' = g(x,y)
+		\end{cases}$ можно построить как интегральные кривые уравнения $g(x,y)dx - f(x,y)dy=0$ в области $\hc{\hr{x,y} | f(x,y)\neq 0 \vee g(x,y)\neq 0}$.
+	\end{Note}
+
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x' = -y-2xy,\\
+			y'=x+2x^2.
+		\end{cases}
+		\]
+		Исследовать точку $(0,0)$ на устойчивость.
+		\begin{Solution}
+			Воспользуемся теоремой, о которой только что вспомнили и рассмотрим уравнение
+			\[
+			\hr{x+2x^2} dx - \hr{-y-2xy} dy = 0.
+			\]
+			Будем искать интегрирующий множитель $\mu = \mu(y)$
+			\[
+			\mu (-2y) = \mu'_y (x+2x^2),
+			\]
+			\[
+			\mu'_y = -\mu \frac{2y}{x+2x^2},
+			\]
+			\[
+			\mu = \frac{e^{-y^2}}{x+2x^2}.
+			\]
+			\[
+			e^{-y^2} dx + \frac{e^{-y^2}}{x+2x^2} (y+2xy)dy = 0,
+			\]
+			\[
+			dx + \frac{y}{x}dy = 0,
+			\]
+			\[
+			y^2 = -x^2 + C,
+			\]
+			\[
+			y^2+x^2 = C.
+			\]
+			То есть интегральные кривые данного уравнения есть окружности, а значит и фазовые траектории выглядят, как окружности. Таким образом, попав в любую точку, мы будем оставаться на окружности, то есть положение устойчиво.
+		\end{Solution}
+	\end{Ex}
+	\begin{Note}
+		Также часто для анализа может помочь переход в полярные координаты.
+		\[
+		\begin{cases}
+			x'=f(x,y),\\
+			y'=g(x,y).
+		\end{cases}
+		\longrightarrow \begin{cases}
+			r' = u(r,\varphi),\\
+			\varphi' = v(r,\varphi).
+		\end{cases}
+		\]
+		Однако в лоб очень легко $u,v$ не получить. Поэтому воспользуемся хитростями:
+		
+		Вспомним, что $r^2 = x^2+y^2$. Тогда
+		\[
+		\frac{d r^2}{dt} = \frac{d x^2}{dt} + \frac{d y^2}{dt},
+		\]
+		\[
+		\begin{split}
+		2rr' = 2xx' + 2yy' \implies r' = \frac{xx'+yy'}{r} = \frac{xf(x,y)+yg(x,y)}{r} = \\
+		= f(r\cos \varphi, r\sin \varphi) \cos\varphi + g(r\cos \varphi, r\sin \varphi) \sin \varphi.
+		\end{split}
+		\]
+		
+		Также знаем, что $\tg \varphi = \frac yx$. Тогда
+		\[
+		\frac{d \tg \varphi}{dt} = \frac{d \frac yx}{dt},
+		\]
+		\[
+		\frac{1}{\cos^2 \varphi} \varphi' = \frac{y'x-x'y}{x^2},
+		\]
+		\[
+		\begin{split}
+		\varphi' &= \frac{y'x-x'y}{\hr{\frac{x}{\cos \varphi}}^2} = \frac{y'x-x'y}{r^2} =\\
+		&= \frac{g(r\cos \varphi, r\sin \varphi)\cos \varphi -f(r\cos \varphi, r\sin \varphi)\sin \varphi}{r}.
+		\end{split}
+		\]
+	\end{Note}
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x' = -y-x(x^2+y^2),\\
+			y' = x-y(x^2+y^2).
+		\end{cases}
+		\]
+		Исследовать на устойчивость точку $(0,0)$.
+		\begin{Solution}
+			Перейдем к полярным координатам
+			\[
+			r' = \frac{x (-y-x(x^2+y^2)) + y (x-y(x^2+y^2))}{\sqrt{x^2+y^2}} = (-x^2-y^2)\sqrt{x^2+y^2} = -r^3,
+			\]
+			\[
+			\varphi' = \frac{-y (-y-x(x^2+y^2)) + x (x-y(x^2+y^2))}{x^2+y^2} = 1.
+			\]
+			Заметим, что фазовое пространство данной системы (Рис. \ref{spiral}) есть спирали, закручивающиеся к точке $(0,0)$. То есть для любой точки пространства мы придем к началу координат. А значит есть асимптотическая устойчивость.
+			\begin{figure}[h!]
+				\centering
+				\begin{tikzpicture}
+					\begin{axis}[
+						xmin = -1, xmax = 1,
+						ymin = -1, ymax = 1,
+						zmin = 0, zmax = 1,
+						axis equal image,
+						view = {0}{90},
+						]
+						\addplot3[
+						quiver = {
+							u = {-y-x*(x^2+y^2)},
+							v = {x-y*(x^2+y^2)},
+							scale arrows = 0.25,
+						},
+						-stealth,
+						domain = -1:1,
+						domain y = -1:1,
+						] {0};
+					\end{axis}
+				\end{tikzpicture}
+			\caption{Фазовое пространство} \label{spiral}
+			\end{figure}
+		\end{Solution}
+	\end{Ex}
+
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x' = -y + x(1-x^2-y^2),\\
+			y' = x + y(1-x^2-y^2).
+		\end{cases}
+		\]
+		\begin{Solution}
+			Перейдем к полярным координатам
+			\[
+			r' = \frac{x(-y + x(1-x^2-y^2))+y(x + y(1-x^2-y^2))}{\sqrt{x^2+y^2}} = r-r^3,
+			\]
+			\[
+			\varphi' = \frac{-y(-y + x(1-x^2-y^2))+x(x + y(1-x^2-y^2))}{x^2+y^2} = \frac{x^2+y^2}{x^2+y^2} = 1.
+			\]
+			\begin{tikzpicture}
+				\draw[->] (0,0) -- (0,4) node[above]{$r$};
+				\draw (0,0) circle (1pt) node[left]{0};
+				\draw (0,2) circle (1pt) node[left]{1};
+				\draw[->] (0,0) -- (0,1) node[left]{+};
+				\draw[->] (0,4) -- (0,3)node[left]{-};
+				
+			\end{tikzpicture}
+	
+	
+		\end{Solution}
+	\end{Ex}
+	
+	\section[21.04.2023]{Циклы}
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x' = -y + x(1-2x^2-3y^2),\\
+			y' = x+y(1-2x^2-3y^2).
+		\end{cases}
+		\]
+		Доказать, что существуют циклы между $x^2+y^2=1$ и $x^2+y^2=\frac14$.
+		\begin{Solution}
+			Рассмотрим окружность $x^2+y^2=1$ в параметрическом виде $\begin{cases}
+				x = \cos t,\\y=\sin t.
+			\end{cases}$. Тогда ее нормаль есть $n(t) = \begin{pmatrix}
+			\cos t \\ \sin t
+		\end{pmatrix}$.
+		\[
+		n(t) \cdot f = -1-\sin^2 t  < 0.
+		\]
+		А значит любая траектория не выйдет за окружность.
+		
+		Аналогично для меньшей окружности:  $n = (\frac12 \cos t, \frac12 \sin t)^T$, $n\cdot f = \frac14 (\frac34 - \frac14 \sin^2 t) > 0$.
+		\end{Solution}
+	\end{Ex}
+	\begin{Ex}
+		\[
+		\begin{cases}
+			x' = 2x+y - xe^{x^2+y^2},\\
+			y' = -x + 2y - ye^{x^2+y^2}.
+		\end{cases}
+		\]
+		Доказать существование цикла (найти $c_o$, $c_i$ в виде окружностей).
+		\begin{Solution}
+			\[
+			\begin{cases}
+				x(t) = \sqrt{\ln2}\cos t,\\
+				y(t) = -\sqrt{\ln2}\sin t.
+			\end{cases}
+			\]
+		\end{Solution}
+	\end{Ex}
+
+	\begin{Ex}
+		\[
+		x'' + p(x) x' + q(x) = 0, \quad p(x) > 0, p, q \in C^1(\R).
+		\]
+		Доказать, что уравнение не имеет периодических решений.
+		\begin{Solution}
+			Перейдем к системе уравнений, равносильной уравнению
+			\[
+			
+			\]
+		\end{Solution}
+		
 	\end{Ex}
 \end{document}
