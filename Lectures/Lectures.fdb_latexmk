@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1683899524 "Lectures.tex" "Lectures.pdf" "Lectures" 1683899525
+["pdflatex"] 1685700938 "Lectures.tex" "Lectures.pdf" "Lectures" 1685700939
   "/etc/texmf/web2c/texmf.cnf" 1663933054 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/leo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk" 1664551960 11524 1c94f6ef5fb72a262b95ea09e5341877 ""
   "/home/leo/.texlive2021/texmf-var/fonts/pk/ljfour/lh/lh-t2a/labx1000.600pk" 1664551958 23444 b7df5854bc06b45a318a60058d452a2c ""
@@ -268,10 +268,10 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1664540709 130486 21bc5e8519b511467dceb304d5a8239d ""
-  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1678108479 1480998 f1f185c272f5970e78a5f6f2b98b4b13 ""
-  "Lectures.aux" 1683899525 7708 b62b4e20d707f9f52849f537d62307a7 "pdflatex"
-  "Lectures.out" 1683899525 7499 c2d4bd7618de91ad3c24313c7d7f6d40 "pdflatex"
-  "Lectures.tex" 1683899522 166840 85a70e1386470b3490da383ef69e7d3b ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1685608723 1481226 c6474c815f3045076c1a46da4f44193d ""
+  "Lectures.aux" 1685700939 8207 2df1330deed06288dccd73a60edd5458 "pdflatex"
+  "Lectures.out" 1685700939 8528 de69e08c62b969793bfa34fb45cdec28 "pdflatex"
+  "Lectures.tex" 1685700936 174689 9f66e381cf9ae4c7be2553225d399cab ""
   "dmvnbase.sty" 1663938030 36510 cdf8ea5db071b9470592173667e0834b ""
   (generated)
   "Lectures.aux"
